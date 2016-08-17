@@ -1,0 +1,8 @@
+Yumpu Class initialized
+getDocument from http://api.yumpu.com/2.0/document.json?id=55825000&return_fields=url
+Yumpu Class initialized
+getDocuments from http://api.yumpu.com/2.0/documents.json?offset=0&limit=0
+Yumpu Class initialized
+getDocuments from http://api.yumpu.com/2.0/documents.json?offset=0&limit=0
+Yumpu Class initialized
+getDocuments from http://api.yumpu.com/2.0/documents.json?offset=0&limit=0
