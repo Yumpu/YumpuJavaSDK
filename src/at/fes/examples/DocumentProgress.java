@@ -6,18 +6,11 @@ import org.json.JSONException;
 
 import at.fes.service.Yumpu;
 
-public class Document {
+public class DocumentProgress {
 
-	/**
-	 * @param args
-	 * @throws JSONException 
-	 * @throws IOException 
-	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"url"};
-		y.getDocument("55847151", returnFields);
-//		y.postUrl();
+		y.getDocumentProgress("0ce9d-d337a-71cc9-dd57b-f4bfb-0386a-aec35-5836c");
 	}
 
 }

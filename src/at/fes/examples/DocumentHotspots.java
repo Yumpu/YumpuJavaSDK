@@ -6,18 +6,12 @@ import org.json.JSONException;
 
 import at.fes.service.Yumpu;
 
-public class Document {
+public class DocumentHotspots {
 
-	/**
-	 * @param args
-	 * @throws JSONException 
-	 * @throws IOException 
-	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"url"};
-		y.getDocument("55847151", returnFields);
-//		y.postUrl();
+		String returnFields[] = {"page"};
+		y.getDocumentHotspots("55847151", returnFields);
 	}
 
 }

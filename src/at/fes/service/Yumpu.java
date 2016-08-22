@@ -32,8 +32,9 @@ import com.google.gson.GsonBuilder;
 import com.sun.xml.internal.ws.util.StringUtils;
 
 public class Yumpu {
-	Config config = new Config();
-	String method = "GET";
+	private Config config = new Config();
+	private String method = "GET";
+	public int responseCode;
 
 	public Yumpu() throws IOException {
 		log("Yumpu Class initialized");
@@ -50,68 +51,34 @@ public class Yumpu {
 	public JSONObject getDocument(String id, String returnFields[])
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
-		if (returnFields.length > 0) {
-			url = url + "&return_fields=";
-			for (int i = 0; i < returnFields.length; i++) {
-				url = url + returnFields[i];
-				if (!(i == returnFields.length - 1)) {
-					url = url + ",";
-				}
-			}
-		}
+		url = addParamsToURL(returnFields, url);
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getDocumentHotspots(String id, String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/hotspots") + "?id=" + id;
+		url = addParamsToURL(returnFields, url);
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getDocumentHotspot(String id)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/hotspot") + "?id=" + id;
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getDocumentProgress(String id)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/progress") + "?id=" + id;
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
 
-	public void postDocument() throws IOException {
-		String url = config.yumpuEndpoints.get("document/post/file");
-		postRequest(url);
-	}
-
-	public void postUrl() throws IOException {
-		String url = config.yumpuEndpoints.get("document/post/url");
-		postRequest(url);
-	}
-
-	private String postRequest(String geturl) throws IOException {
-		String body = "url="
-				+ URLEncoder
-						.encode("http://googledrive.com/host/0Bx2IXVexa9G6WHdKRUxZRTBMNGc/DA.pdf",
-								"UTF-8") + "&" + "title="
-				+ URLEncoder.encode("DA", "UTF-8");
-		// Create connection
-		URL url = new URL(geturl);
-		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-		connection.setRequestMethod("POST");
-		connection.setRequestProperty("Content-Type", "multipart/form-data");
-		connection.setRequestProperty("X-ACCESS-TOKEN",
-				config.config.get("token"));
-		connection.setUseCaches(false);
-		connection.setDoInput(true);
-		connection.setDoOutput(true);
-		connection.setAllowUserInteraction(true);
-		// Send request
-		DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-		wr.writeBytes(body);
-		wr.flush();
-		wr.close();
-
-		System.out.println("Response Code : " + connection.getResponseCode());
-
-		// Get Response
-		BufferedReader rd = new BufferedReader(new InputStreamReader(url.openStream(), "UTF-8"));
-		String line;
-		StringBuffer response = new StringBuffer();
-		while ((line = rd.readLine()) != null) {
-			response.append(line);
-			response.append('\r');
-		}
-		rd.close();
-
-		return response.toString();
-	}
-
-	private JSONObject executeRequest(String url) throws MalformedURLException,
+	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
 		URL obj = new URL(url);
 
@@ -123,7 +90,7 @@ public class Yumpu {
 		// optional default is GET
 		con.setRequestMethod(method);
 
-		int responseCode = con.getResponseCode();
+		responseCode = con.getResponseCode();
 		System.out.println("\nSending 'GET' request to URL : " + url);
 		System.out.println("Response Code : " + responseCode);
 
@@ -144,11 +111,24 @@ public class Yumpu {
 
 	private JSONObject prettyJSON(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
-		JSONObject jo = executeRequest(url);
+		JSONObject jo = getRequest(url);
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
 		System.out.println(prettyJson);
 		return jo;
+	}
+	
+	private String addParamsToURL(String[] returnFields, String url) {
+		if (returnFields.length > 0) {
+			url = url + "&return_fields=";
+			for (int i = 0; i < returnFields.length; i++) {
+				url = url + returnFields[i];
+				if (!(i == returnFields.length - 1)) {
+					url = url + ",";
+				}
+			}
+		}
+		return url;
 	}
 
 	private void log(String logText) throws IOException {
