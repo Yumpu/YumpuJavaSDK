@@ -6,5 +6,7 @@
 	<classpathentry kind="lib" path="C:/Users/stefan.feurstein.ADROM/Downloads/java-json.jar/java-json.jar"/>
 	<classpathentry kind="lib" path="C:/Users/stefan.feurstein.ADROM/Downloads/json-simple-1.1.jar/json-simple-1.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_101"/>
+	<classpathentry kind="lib" path="C:/Users/stefan.feurstein.ADROM/Downloads/httpclient-osgi-4.3.jar/httpclient-osgi-4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/stefan.feurstein.ADROM/Downloads/commons-logging-1.2-bin/commons-logging-1.2/commons-logging-1.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

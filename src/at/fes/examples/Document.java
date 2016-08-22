@@ -15,9 +15,9 @@ public class Document {
 	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"url"};
-		y.getDocument("55847151", returnFields);
-//		y.postUrl();
+//		String returnFields[] = {"url"};
+//		y.getDocument("55847151", returnFields);
+		y.postDocument("http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf", "Thats a new Doc");
 	}
 
 }
