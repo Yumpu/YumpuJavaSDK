@@ -83,4 +83,19 @@ public class YumpuTest {
 		y.getCollection("9RDnBITHpkxwc3s7", returnFields);
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetSection() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		String returnFields[] = {"id,name"};
+		y.getSection("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", returnFields);
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testSearch() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.search("q=sports&in=title,description&views=1000-5000&language=en");
+		assertTrue(y.responseCode == 200);
+	}
 }

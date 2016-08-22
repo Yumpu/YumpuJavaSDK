@@ -115,6 +115,21 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public JSONObject getSection(String id, String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("section/get") + "?id=" + id;
+		url = addParamsToURL(true, returnFields, url);
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject search(String params)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("search/get") + "?" + params;
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
 
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
