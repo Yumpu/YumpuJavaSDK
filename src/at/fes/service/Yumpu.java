@@ -167,6 +167,20 @@ public class Yumpu {
 		return prettyJSON(url);
 	}
 	
+	public JSONObject getAccessTags()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("accessTags/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getAccessTag(String id)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("accessTag/get") + "?id=" + id;
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
 		URL obj = new URL(url);

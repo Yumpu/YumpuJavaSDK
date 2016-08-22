@@ -44,5 +44,7 @@ public class Config {
 		yumpuEndpoints.put("embed/get" , String.valueOf(config.get("endpointDomain") + "embed.json"));
 		yumpuEndpoints.put("members/get" , String.valueOf(config.get("endpointDomain") + "account/members.json"));
 		yumpuEndpoints.put("member/get" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
+		yumpuEndpoints.put("accessTags/get" , String.valueOf(config.get("endpointDomain") + "account/access_tags.json"));
+		yumpuEndpoints.put("accessTag/get" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
 	}
 }

@@ -134,4 +134,18 @@ public class YumpuTest {
 		y.getMember("vGbxpwFZuvvdAGnS");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetAccessTags() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getAccessTags();
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetAccessTag() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getAccessTag("HnD4YrKMeGjxH3xT");
+		assertTrue(y.responseCode == 200);
+	}
 }
