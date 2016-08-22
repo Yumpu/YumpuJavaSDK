@@ -51,7 +51,7 @@ public class Yumpu {
 	public JSONObject getDocument(String id, String returnFields[])
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
-		url = addParamsToURL(returnFields, url);
+		url = addParamsToURL(true, returnFields, url);
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
@@ -59,7 +59,7 @@ public class Yumpu {
 	public JSONObject getDocumentHotspots(String id, String returnFields[])
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspots") + "?id=" + id;
-		url = addParamsToURL(returnFields, url);
+		url = addParamsToURL(true, returnFields, url);
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
@@ -74,6 +74,35 @@ public class Yumpu {
 	public JSONObject getDocumentProgress(String id)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/progress") + "?id=" + id;
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getCategories()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("categories/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getLanguages()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("languages/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getCountries()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("countries/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getCollections(String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("collections/get");
+		url = addParamsToURL(false, returnFields, url);
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
@@ -118,9 +147,12 @@ public class Yumpu {
 		return jo;
 	}
 	
-	private String addParamsToURL(String[] returnFields, String url) {
+	private String addParamsToURL(boolean isId, String[] returnFields, String url) {
 		if (returnFields.length > 0) {
-			url = url + "&return_fields=";
+			if (isId)
+				url = url + "&return_fields=";
+			else
+				url = url + "?return_fields=";
 			for (int i = 0; i < returnFields.length; i++) {
 				url = url + returnFields[i];
 				if (!(i == returnFields.length - 1)) {

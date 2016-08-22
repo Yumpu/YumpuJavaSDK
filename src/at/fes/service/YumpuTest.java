@@ -46,4 +46,33 @@ public class YumpuTest {
 		y.getDocumentProgress("0ce9d-d337a-71cc9-dd57b-f4bfb-0386a-aec35-5836c");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetCategories() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getCategories();
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetLanguages() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getLanguages();
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetCountries() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getCountries();
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetCollections() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		String returnFields[] = {"id, sections"};
+		y.getCollections(returnFields);
+		assertTrue(y.responseCode == 200);
+	}
 }
