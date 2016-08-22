@@ -148,4 +148,18 @@ public class YumpuTest {
 		y.getAccessTag("HnD4YrKMeGjxH3xT");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetSubscriptions() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getSubscriptions();
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetSubscription() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getSubscription("QOjiaWfWYWd7TBHE");
+		assertTrue(y.responseCode == 401);
+	}
 }

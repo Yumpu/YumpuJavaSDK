@@ -181,6 +181,20 @@ public class Yumpu {
 		return prettyJSON(url);
 	}
 	
+	public JSONObject getSubscriptions()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("subscriptions/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
+	public JSONObject getSubscription(String id)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("subscription/get") + "?id=" + id;
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
 		URL obj = new URL(url);
