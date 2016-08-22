@@ -114,7 +114,7 @@ public class Yumpu {
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
 		// add request header
-		con.setRequestProperty("X-ACCESS-TOKEN", config.config.get("token"));
+		con.setRequestProperty("X-ACCESS-TOKEN", config.config.get("token")); 
 
 		// optional default is GET
 		con.setRequestMethod(method);
