@@ -71,8 +71,16 @@ public class YumpuTest {
 	@Test
 	public void testGetCollections() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"id, sections"};
+		String returnFields[] = {"id,sections"};
 		y.getCollections(returnFields);
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetCollection() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		String returnFields[] = {"id,name"};
+		y.getCollection("9RDnBITHpkxwc3s7", returnFields);
 		assertTrue(y.responseCode == 200);
 	}
 }

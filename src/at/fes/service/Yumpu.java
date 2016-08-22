@@ -106,6 +106,15 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public JSONObject getCollection(String id, String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("collection/get") + "?id=" + id;
+		url = addParamsToURL(true, returnFields, url);
+		System.out.println(url);
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
 
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
@@ -164,9 +173,9 @@ public class Yumpu {
 	}
 
 	private void log(String logText) throws IOException {
-		File yumpuLog = new File(".\\src\\at\\fes\\log\\yumpu_log.txt");
-		FileWriter writer = new FileWriter(yumpuLog, true);
-		writer.write(logText + "\n");
-		writer.close();
+//		File yumpuLog = new File(".\\src\\at\\fes\\log\\yumpu_log.txt");
+//		FileWriter writer = new FileWriter(yumpuLog, true);
+//		writer.write(logText + "\n");
+//		writer.close();
 	}
 }
