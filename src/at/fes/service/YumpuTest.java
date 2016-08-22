@@ -120,4 +120,18 @@ public class YumpuTest {
 		y.getEmbed("rU3W05fqP9kZGnYw");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetMembers() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getMembers();
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testGetMember() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getMember("vGbxpwFZuvvdAGnS");
+		assertTrue(y.responseCode == 200);
+	}
 }

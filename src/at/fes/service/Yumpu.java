@@ -152,7 +152,21 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public JSONObject getMembers()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("members/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
 
+	public JSONObject getMember(String id)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("member/get") + "?id=" + id;
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
+	
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
 		URL obj = new URL(url);
