@@ -7,17 +7,21 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Arrays;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 public class Yumpu {
 	private Config config = new Config();
@@ -41,6 +45,15 @@ public class Yumpu {
 		return prettyJSON(url);
 	}
 
+	public void postDocument(String postUrl, String title) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/post/url");
+		JSONObject json = new JSONObject();
+		json.put("url", postUrl);
+		json.put("title", title);
+		postRequest(url, json);
+		log("getDocuments from " + url);
+	}
+
 	public JSONObject getDocumentHotspots(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspots") + "?id=" + id;
 		url = addParamsToURL(true, returnFields, url);
@@ -49,9 +62,27 @@ public class Yumpu {
 	}
 
 	public JSONObject getDocumentHotspot(String id) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/hotspot") + "?id=" + id;
+		String url = config.yumpuEndpoints.get("document/hotspot/get") + "?id=" + id;
 		log("getDocument from " + url);
 		return prettyJSON(url);
+	}
+
+	public void postDocumentHotspot() throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/hotspot/post");
+		JSONObject json = new JSONObject();
+		json.put("document_id", "55865447");
+		json.put("page", "1");
+		JSONObject settings = new JSONObject();
+		settings.put("x", "100");
+		settings.put("y", "100");
+		settings.put("w", "50");
+		settings.put("h", "50");
+		settings.put("name", "google.com");
+		settings.put("tooltip", "google.com");
+		json.put("settings", settings);
+		System.out.println(json);
+		postRequest(url, json);
+		log("getDocuments from " + url);
 	}
 
 	public JSONObject getDocumentProgress(String id) throws IOException, JSONException {
@@ -191,15 +222,6 @@ public class Yumpu {
 		in.close();
 
 		return myObject;
-	}
-
-	public void postDocument(String postUrl, String title) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/post/url");
-		JSONObject json = new JSONObject();
-		json.put("url", postUrl);
-		json.put("title", title);
-		postRequest(url, json);
-		log("getDocuments from " + url);
 	}
 
 	public void postRequest(String url, JSONObject json) {

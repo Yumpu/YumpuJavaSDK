@@ -31,7 +31,8 @@ public class Config {
 		yumpuEndpoints.put("document/get" , String.valueOf(config.get("endpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/post/url" , String.valueOf(config.get("endpointDomain") + "document/url.json"));
 		yumpuEndpoints.put("document/hotspots" , String.valueOf(config.get("endpointDomain") + "document/hotspots.json"));
-		yumpuEndpoints.put("document/hotspot" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/hotspot/get" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/hotspot/post" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
 		yumpuEndpoints.put("document/progress" , String.valueOf(config.get("endpointDomain") + "document/progress.json"));
 		yumpuEndpoints.put("categories/get" , String.valueOf(config.get("endpointDomain") + "document/categories.json"));
 		yumpuEndpoints.put("languages/get" , String.valueOf(config.get("endpointDomain") + "document/languages.json"));
