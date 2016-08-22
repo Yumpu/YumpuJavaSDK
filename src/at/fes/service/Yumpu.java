@@ -130,6 +130,13 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public JSONObject getUser()
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("user/get");
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
 
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {

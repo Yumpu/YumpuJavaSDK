@@ -98,4 +98,11 @@ public class YumpuTest {
 		y.search("q=sports&in=title,description&views=1000-5000&language=en");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetUser() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getUser();
+		assertTrue(y.responseCode == 200);
+	}
 }

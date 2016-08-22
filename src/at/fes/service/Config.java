@@ -39,5 +39,6 @@ public class Config {
 		yumpuEndpoints.put("collection/get" , String.valueOf(config.get("endpointDomain") + "collection.json"));
 		yumpuEndpoints.put("section/get" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
 		yumpuEndpoints.put("search/get" , String.valueOf(config.get("endpointSearchDomain") + "search.json"));
+		yumpuEndpoints.put("user/get" , String.valueOf(config.get("endpointDomain") + "user.json"));
 	}
 }
