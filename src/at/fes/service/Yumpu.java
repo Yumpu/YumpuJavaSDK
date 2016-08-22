@@ -137,6 +137,14 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public JSONObject getEmbeds(int offset, int limit, String sort, String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("embeds/get") + "?offset=" + offset + "&limit=" + limit + "&sort=" + sort;
+		url = addParamsToURL(true, returnFields, url);
+		log("getDocument from " + url);
+		return prettyJSON(url);
+	}
 
 	private JSONObject getRequest(String url) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
