@@ -41,5 +41,6 @@ public class Config {
 		yumpuEndpoints.put("search/get" , String.valueOf(config.get("endpointSearchDomain") + "search.json"));
 		yumpuEndpoints.put("user/get" , String.valueOf(config.get("endpointDomain") + "user.json"));
 		yumpuEndpoints.put("embeds/get" , String.valueOf(config.get("endpointDomain") + "embeds.json"));
+		yumpuEndpoints.put("embed/get" , String.valueOf(config.get("endpointDomain") + "embed.json"));
 	}
 }

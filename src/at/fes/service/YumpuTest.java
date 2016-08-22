@@ -113,4 +113,11 @@ public class YumpuTest {
 		y.getEmbeds(0, 0, "desc", returnFields);
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testGetEmbed() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.getEmbed("rU3W05fqP9kZGnYw");
+		assertTrue(y.responseCode == 200);
+	}
 }
