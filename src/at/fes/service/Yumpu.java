@@ -226,7 +226,17 @@ public class Yumpu {
 		
 		optionsPost(json, url);
 	}
-
+	
+	public void putEmbed(String id, int document_id, int type) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("embed/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("document_id", document_id);
+		json.put("type", type);
+		
+		optionsPut(url, json);
+	}
+	
 	public void getMembers() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("members/get");
 		

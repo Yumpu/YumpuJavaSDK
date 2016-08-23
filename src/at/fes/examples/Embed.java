@@ -11,7 +11,8 @@ public class Embed {
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
 //		y.getEmbed("rU3W05fqP9kZGnYw");
-		y.postEmbed(55865447, 2);
+//		y.postEmbed(55865447, 2);
+		y.putEmbed("lrQUW1EPLz5ey8bO", 55869263, 1);
 	}
 
 }

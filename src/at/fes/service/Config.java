@@ -51,6 +51,7 @@ public class Config {
 		yumpuEndpoints.put("embeds/get" , String.valueOf(config.get("endpointDomain") + "embeds.json"));
 		yumpuEndpoints.put("embed/get" , String.valueOf(config.get("endpointDomain") + "embed.json"));
 		yumpuEndpoints.put("embed/post" , String.valueOf(config.get("endpointDomain") + "embed.json"));
+		yumpuEndpoints.put("embed/put" , String.valueOf(config.get("endpointDomain") + "embed.json"));
 		yumpuEndpoints.put("members/get" , String.valueOf(config.get("endpointDomain") + "account/members.json"));
 		yumpuEndpoints.put("member/get" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
 		yumpuEndpoints.put("member/post" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
