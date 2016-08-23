@@ -45,4 +45,18 @@ public class YumpuTestPUT {
 		y.putMember("KUQDYspj5ZO42cw8", "new.name");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testPutAccessTag() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.putMember("hJNK19CGXWjlvy2z", "new.name");
+		assertTrue(y.responseCode == 200);
+	}
+	
+	@Test
+	public void testPutSubscriptioon() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.putSubscription("4INKOAYuMJzHTogW", "subscr7", "subscr8", 62);
+		assertTrue(y.responseCode == 200);
+	}
 }

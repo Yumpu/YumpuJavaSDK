@@ -292,9 +292,25 @@ public class Yumpu {
 		
 		optionsPost(json, url);
 	}
+	
+	public void putAccessTag(String id, String name) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("accessTag/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("name", name);
+		
+		optionsPut(url, json);
+	}
 
 	public void getSubscriptions() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscriptions/get");
+		
+		optionsGet(url);
+	}
+
+
+	public void getSubscription(String id) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("subscription/get") + "?id=" + id;
 		
 		optionsGet(url);
 	}
@@ -309,11 +325,16 @@ public class Yumpu {
 		
 		optionsPost(json, url);
 	}
-
-	public void getSubscription(String id) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("subscription/get") + "?id=" + id;
+	
+	public void putSubscription(String id, String itc_product_id, String name, int duration) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("subscription/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("itc_product_id", itc_product_id);
+		json.put("name", name);
+		json.put("duration", duration);
 		
-		optionsGet(url);
+		optionsPut(url, json);
 	}
 
 	private void optionsGet(String url) throws IOException, JSONException, MalformedURLException, ProtocolException {

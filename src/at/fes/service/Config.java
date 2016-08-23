@@ -59,8 +59,10 @@ public class Config {
 		yumpuEndpoints.put("accessTags/get" , String.valueOf(config.get("endpointDomain") + "account/access_tags.json"));
 		yumpuEndpoints.put("accessTag/get" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
 		yumpuEndpoints.put("accessTag/post" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
+		yumpuEndpoints.put("accessTag/put" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
 		yumpuEndpoints.put("subscriptions/get" , String.valueOf(config.get("endpointDomain") + "account/subscriptions.json"));
 		yumpuEndpoints.put("subscription/get" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
 		yumpuEndpoints.put("subscription/post" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
+		yumpuEndpoints.put("subscription/put" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
 	}
 }

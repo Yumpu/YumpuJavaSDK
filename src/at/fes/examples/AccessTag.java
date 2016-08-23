@@ -11,7 +11,8 @@ public class AccessTag {
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
 //		y.getAccessTag("MiskUIrpzluycDCn");
-		y.postAccessTag("name", "desc");
+//		y.postAccessTag("name", "desc");
+		y.putAccessTag("hJNK19CGXWjlvy2z", "neuertag");
 	}
 
 }

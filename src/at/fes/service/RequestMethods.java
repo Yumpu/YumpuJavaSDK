@@ -86,6 +86,7 @@ public class RequestMethods {
 		responseCode = response.getStatusLine().getStatusCode();
 		String jsonString = EntityUtils.toString(response.getEntity());
 		myObject = new JSONObject(jsonString);
+		
 		return myObject;
 	}
 }
