@@ -38,4 +38,11 @@ public class YumpuTestPUT {
 		y.putUser("male", "Stefan", "Feurstein");
 		assertTrue(y.responseCode == 200);
 	}
+	
+	@Test
+	public void testPutMember() throws IOException, JSONException {
+		Yumpu y = new Yumpu();
+		y.putMember("KUQDYspj5ZO42cw8", "new.name");
+		assertTrue(y.responseCode == 200);
+	}
 }

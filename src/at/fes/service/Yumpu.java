@@ -261,6 +261,15 @@ public class Yumpu {
 		
 		optionsPost(json, url);
 	}
+	
+	public void putMember(String id, String username) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("member/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("username", username);
+		
+		optionsPut(url, json);
+	}
 
 	public void getAccessTags() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("accessTags/get");
@@ -335,6 +344,7 @@ public class Yumpu {
 			throws MalformedURLException, IOException, ProtocolException, JSONException {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
+		System.out.println(prettyJson);
 		return prettyJson;
 	}
 

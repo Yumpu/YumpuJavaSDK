@@ -22,7 +22,7 @@ public class RequestMethods {
 	private Config config = new Config();
 	public int responseCode;
 	private String method = "GET";
-	
+
 	public JSONObject getRequest(String url) throws IOException, JSONException {
 		URL obj = new URL(url);
 
@@ -51,18 +51,18 @@ public class RequestMethods {
 
 		return myObject;
 	}
-	
+
 	public JSONObject postRequest(String url, JSONObject json) throws JSONException, ParseException, IOException {
 		JSONObject myObject = null;
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
-		
+
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
 		request.addHeader("content-type", "application/json");
-		
+
 		StringEntity params = new StringEntity(json.toString());
 		request.setEntity(params);
-		
+
 		HttpResponse response = httpClient.execute(request);
 		String jsonString = EntityUtils.toString(response.getEntity());
 		myObject = new JSONObject(jsonString);
@@ -70,7 +70,7 @@ public class RequestMethods {
 
 		return myObject;
 	}
-	
+
 	public JSONObject putRequest(String url, JSONObject json)
 			throws ClientProtocolException, IOException, JSONException {
 		HttpClient httpClient = HttpClientBuilder.create().build();
@@ -81,12 +81,11 @@ public class RequestMethods {
 		StringEntity input = new StringEntity(json.toString());
 		putRequest.setEntity(input);
 		putRequest.addHeader("Content-Type", "application/json");
-		
+
 		HttpResponse response = httpClient.execute(putRequest);
 		responseCode = response.getStatusLine().getStatusCode();
 		String jsonString = EntityUtils.toString(response.getEntity());
 		myObject = new JSONObject(jsonString);
-
 		return myObject;
 	}
 }
