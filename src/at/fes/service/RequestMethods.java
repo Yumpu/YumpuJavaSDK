@@ -83,9 +83,9 @@ public class RequestMethods {
 		putRequest.addHeader("Content-Type", "application/json");
 
 		HttpResponse response = httpClient.execute(putRequest);
+		responseCode = response.getStatusLine().getStatusCode();
 		String jsonString = EntityUtils.toString(response.getEntity());
 		myObject = new JSONObject(jsonString);
-		responseCode = response.getStatusLine().getStatusCode();
 
 		return myObject;
 	}

@@ -47,7 +47,8 @@ public class Yumpu {
 		String url = config.yumpuEndpoints.get("document/put");
 		JSONObject json = new JSONObject();
 		json.put("id", id);
-		json.put("title", name);
+		json.put("name", name);
+		
 		optionsPut(url, json);
 	}
 
@@ -120,15 +121,6 @@ public class Yumpu {
 		
 		optionsGet(url);
 	}
-	
-	public void putCollection(String id, String name) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("collection/put");
-		JSONObject json = new JSONObject();
-		json.put("id", id);
-		json.put("name", name);
-		optionsPut(url, json);
-	}
-
 
 	public void postCollection(String name) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
@@ -136,6 +128,14 @@ public class Yumpu {
 		json.put("name", name);
 		
 		optionsPost(json, url);
+	}
+	
+	public void putCollection(String id, String name) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("collection/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("name", name);
+		optionsPut(url, json);
 	}
 
 	public void getSection(String id, String returnFields[]) throws IOException, JSONException {
@@ -152,6 +152,14 @@ public class Yumpu {
 		json.put("name", name);
 		
 		optionsPost(json, url);
+	}
+	
+	public void putSection(String id, String name) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("section/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("name", name);
+		optionsPut(url, json);
 	}
 
 	public void postSectionDocument(String id, String documents[]) throws IOException, JSONException {
@@ -183,6 +191,16 @@ public class Yumpu {
 		json.put("password", password);
 		
 		optionsPost(json, url);
+	}
+	
+	public void putUser(String gender, String firstname, String lastname) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("user/put");
+		JSONObject json = new JSONObject();
+		json.put("gender", gender);
+		json.put("firstname", firstname);
+		json.put("lastname", lastname);
+		
+		optionsPut(url, json);
 	}
 
 	public void getEmbeds(int offset, int limit, String sort, String returnFields[])
@@ -307,7 +325,6 @@ public class Yumpu {
 			throws MalformedURLException, IOException, ProtocolException, JSONException {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
-		System.out.println(prettyJson);
 		return prettyJson;
 	}
 

@@ -12,6 +12,7 @@ public class User {
 		Yumpu y = new Yumpu();
 		y.getUser();
 //		y.postUser("cuo15642@zasod.com", "newuser80120", "hallo123");
+		y.putUser("male", "Stefan", "Feurstein");
 	}
 
 }

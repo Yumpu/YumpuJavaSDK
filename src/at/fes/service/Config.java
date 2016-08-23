@@ -42,10 +42,12 @@ public class Config {
 		yumpuEndpoints.put("collection/put" , String.valueOf(config.get("endpointDomain") + "collection.json"));
 		yumpuEndpoints.put("section/get" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
 		yumpuEndpoints.put("section/post" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
+		yumpuEndpoints.put("section/put" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
 		yumpuEndpoints.put("sectionDocument/post" , String.valueOf(config.get("endpointDomain") + "collection/section/document.json"));
 		yumpuEndpoints.put("search/get" , String.valueOf(config.get("endpointSearchDomain") + "search.json"));
 		yumpuEndpoints.put("user/get" , String.valueOf(config.get("endpointDomain") + "user.json"));
 		yumpuEndpoints.put("user/post" , String.valueOf(config.get("endpointDomain") + "user.json"));
+		yumpuEndpoints.put("user/put" , String.valueOf(config.get("endpointDomain") + "user.json"));
 		yumpuEndpoints.put("embeds/get" , String.valueOf(config.get("endpointDomain") + "embeds.json"));
 		yumpuEndpoints.put("embed/get" , String.valueOf(config.get("endpointDomain") + "embed.json"));
 		yumpuEndpoints.put("embed/post" , String.valueOf(config.get("endpointDomain") + "embed.json"));
