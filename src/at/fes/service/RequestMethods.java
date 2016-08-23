@@ -7,8 +7,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -49,25 +52,41 @@ public class RequestMethods {
 		return myObject;
 	}
 	
-	public JSONObject postRequest(String url, JSONObject json) throws JSONException {
-		HttpClient httpClient = HttpClientBuilder.create().build();
-
+	public JSONObject postRequest(String url, JSONObject json) throws JSONException, ParseException, IOException {
 		JSONObject myObject = null;
-		try {
-			HttpPost request = new HttpPost(url);
-			request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
-			StringEntity params = new StringEntity(json.toString());
-			request.setEntity(params);
-			request.addHeader("content-type", "application/json");
-			System.out.println(json.toString());
-			HttpResponse response = httpClient.execute(request);
-			String jsonString = EntityUtils.toString(response.getEntity());
-			myObject = new JSONObject(jsonString);
-			responseCode = response.getStatusLine().getStatusCode();
-		} catch (Exception ex) {
-			System.out.println("error" + ex);
-		}
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		HttpPost request = new HttpPost(url);
 		
+		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		request.addHeader("content-type", "application/json");
+		
+		StringEntity params = new StringEntity(json.toString());
+		request.setEntity(params);
+		
+		HttpResponse response = httpClient.execute(request);
+		String jsonString = EntityUtils.toString(response.getEntity());
+		myObject = new JSONObject(jsonString);
+		responseCode = response.getStatusLine().getStatusCode();
+
+		return myObject;
+	}
+	
+	public JSONObject putRequest(String url, JSONObject json)
+			throws ClientProtocolException, IOException, JSONException {
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		JSONObject myObject = null;
+
+		HttpPut putRequest = new HttpPut(url);
+		putRequest.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		StringEntity input = new StringEntity(json.toString());
+		putRequest.setEntity(input);
+		putRequest.addHeader("Content-Type", "application/json");
+
+		HttpResponse response = httpClient.execute(putRequest);
+		String jsonString = EntityUtils.toString(response.getEntity());
+		myObject = new JSONObject(jsonString);
+		responseCode = response.getStatusLine().getStatusCode();
+
 		return myObject;
 	}
 }

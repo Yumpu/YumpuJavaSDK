@@ -17,7 +17,9 @@ public class Document {
 		Yumpu y = new Yumpu();
 //		String returnFields[] = {"url"};
 //		y.getDocument("55847151", returnFields);
-		y.postDocument("http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf", "Thats a new Doc");
+		y.postDocumentUrl("http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf", "Diplomarbeit asdvon Stefan");
+		System.out.println(y.responseCode);
+//		y.putDocument("new documentname", 55865398);
 	}
 
 }
