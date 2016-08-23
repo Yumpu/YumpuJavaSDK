@@ -3,10 +3,13 @@ package at.fes.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import org.apache.http.HttpResponse;
@@ -81,7 +84,7 @@ public class Yumpu {
 		settings.put("name", "google.com");
 		settings.put("tooltip", "google.com");
 		settings.put("link", "www.google.com");
-		json.put("settings", settings);		
+		json.put("settings", settings);
 		System.out.println(json);
 		postRequest(url, json);
 		log("getDocuments from " + url);
@@ -125,7 +128,7 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
-	
+
 	public void postCollection(String name) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
 		JSONObject json = new JSONObject();
@@ -140,7 +143,7 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
-	
+
 	public void postSection(String id, String name) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("section/post");
 		JSONObject json = new JSONObject();
@@ -158,7 +161,7 @@ public class Yumpu {
 		postRequest(url, json);
 		log("getDocuments from " + url);
 	}
-	
+
 	public JSONObject search(String params) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("search/get") + "?" + params;
 		log("getDocument from " + url);
@@ -170,7 +173,7 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
-	
+
 	public void postUser(String email, String username, String password) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("user/post");
 		JSONObject json = new JSONObject();
@@ -196,6 +199,15 @@ public class Yumpu {
 		return prettyJSON(url);
 	}
 
+	public void postEmbed(int document_id, int type) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("embed/post");
+		JSONObject json = new JSONObject();
+		json.put("document_id", document_id);
+		json.put("type", type);
+		postRequest(url, json);
+		log("getDocuments from " + url);
+	}
+
 	public JSONObject getMembers() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("members/get");
 		log("getDocument from " + url);
@@ -206,6 +218,19 @@ public class Yumpu {
 		String url = config.yumpuEndpoints.get("member/get") + "?id=" + id;
 		log("getDocument from " + url);
 		return prettyJSON(url);
+	}
+
+	public void postMember(String username, String password)
+			throws IOException, JSONException, NoSuchAlgorithmException {
+		String url = config.yumpuEndpoints.get("member/post");
+		JSONObject json = new JSONObject();
+		MessageDigest m = MessageDigest.getInstance("MD5");
+		m.update(password.getBytes(), 0, password.length());
+		password = new BigInteger(1, m.digest()).toString(16);
+		json.put("username", username);
+		json.put("password", password);
+		postRequest(url, json);
+		log("getDocuments from " + url);
 	}
 
 	public JSONObject getAccessTags() throws IOException, JSONException {
@@ -219,11 +244,32 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public void postAccessTag(String name, String description)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("accessTag/post");
+		JSONObject json = new JSONObject();
+		json.put("name", name);
+		json.put("description", description);
+		postRequest(url, json);
+		log("getDocuments from " + url);
+	}
 
 	public JSONObject getSubscriptions() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscriptions/get");
 		log("getDocument from " + url);
 		return prettyJSON(url);
+	}
+	
+	public void postSubscription(String itc_product_id, String name, int duration)
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("subscription/post");
+		JSONObject json = new JSONObject();
+		json.put("itc_product_id", itc_product_id);
+		json.put("name", name);
+		json.put("duration", duration);
+		postRequest(url, json);
+		log("getDocuments from " + url);
 	}
 
 	public JSONObject getSubscription(String id) throws IOException, JSONException {

@@ -48,11 +48,15 @@ public class Config {
 		yumpuEndpoints.put("user/post" , String.valueOf(config.get("endpointDomain") + "user.json"));
 		yumpuEndpoints.put("embeds/get" , String.valueOf(config.get("endpointDomain") + "embeds.json"));
 		yumpuEndpoints.put("embed/get" , String.valueOf(config.get("endpointDomain") + "embed.json"));
+		yumpuEndpoints.put("embed/post" , String.valueOf(config.get("endpointDomain") + "embed.json"));
 		yumpuEndpoints.put("members/get" , String.valueOf(config.get("endpointDomain") + "account/members.json"));
 		yumpuEndpoints.put("member/get" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
+		yumpuEndpoints.put("member/post" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
 		yumpuEndpoints.put("accessTags/get" , String.valueOf(config.get("endpointDomain") + "account/access_tags.json"));
 		yumpuEndpoints.put("accessTag/get" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
+		yumpuEndpoints.put("accessTag/post" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
 		yumpuEndpoints.put("subscriptions/get" , String.valueOf(config.get("endpointDomain") + "account/subscriptions.json"));
 		yumpuEndpoints.put("subscription/get" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
+		yumpuEndpoints.put("subscription/post" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
 	}
 }
