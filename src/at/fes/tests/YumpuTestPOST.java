@@ -1,4 +1,4 @@
-package at.fes.service;
+package at.fes.tests;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,8 @@ import java.security.NoSuchAlgorithmException;
 
 import org.json.JSONException;
 import org.junit.Test;
+
+import at.fes.service.Yumpu;
 
 public class YumpuTestPOST {
 

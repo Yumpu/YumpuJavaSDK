@@ -40,7 +40,7 @@ public class Yumpu {
 		json.put("title", title);
 		String url = config.yumpuEndpoints.get("document/post/url");
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 	
 	public void putDocument(String name, int id) throws IOException, JSONException {
@@ -48,8 +48,7 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("id", id);
 		json.put("title", name);
-		rm.putRequest(url, json);
-		responseCode = rm.responseCode;
+		optionsPut(url, json);
 	}
 
 	public void getDocumentHotspots(String id, String returnFields[]) throws IOException, JSONException {
@@ -81,7 +80,7 @@ public class Yumpu {
 		settings.put("link", "www.google.com");
 		json.put("settings", settings);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getDocumentProgress(String id) throws IOException, JSONException {
@@ -121,13 +120,22 @@ public class Yumpu {
 		
 		optionsGet(url);
 	}
+	
+	public void putCollection(String id, String name) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("collection/put");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("name", name);
+		optionsPut(url, json);
+	}
+
 
 	public void postCollection(String name) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
 		JSONObject json = new JSONObject();
 		json.put("name", name);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getSection(String id, String returnFields[]) throws IOException, JSONException {
@@ -143,7 +151,7 @@ public class Yumpu {
 		json.put("id", id);
 		json.put("name", name);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void postSectionDocument(String id, String documents[]) throws IOException, JSONException {
@@ -152,7 +160,7 @@ public class Yumpu {
 		json.put("id", id);
 		json.put("documents", documents);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void search(String params) throws IOException, JSONException {
@@ -174,7 +182,7 @@ public class Yumpu {
 		json.put("username", username);
 		json.put("password", password);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getEmbeds(int offset, int limit, String sort, String returnFields[])
@@ -198,7 +206,7 @@ public class Yumpu {
 		json.put("document_id", document_id);
 		json.put("type", type);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getMembers() throws IOException, JSONException {
@@ -223,7 +231,7 @@ public class Yumpu {
 		json.put("username", username);
 		json.put("password", password);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getAccessTags() throws IOException, JSONException {
@@ -245,7 +253,7 @@ public class Yumpu {
 		json.put("name", name);
 		json.put("description", description);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getSubscriptions() throws IOException, JSONException {
@@ -262,7 +270,7 @@ public class Yumpu {
 		json.put("name", name);
 		json.put("duration", duration);
 		
-		optionPost(json, url);
+		optionsPost(json, url);
 	}
 
 	public void getSubscription(String id) throws IOException, JSONException {
@@ -278,10 +286,19 @@ public class Yumpu {
 		prettyJSON(jo);
 	}
 	
-	private void optionPost(JSONObject json, String url)
+	private void optionsPost(JSONObject json, String url)
 			throws IOException, JSONException, MalformedURLException, ProtocolException {
-		log("getDocuments from " + url);		
+		log("getDocuments from " + url);
 		JSONObject jo = rm.postRequest(url, json);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
+	}
+	
+
+	private void optionsPut(String url, JSONObject json)
+			throws IOException, JSONException, MalformedURLException, ProtocolException {
+		log("getDocuments from " + url);
+		JSONObject jo = rm.putRequest(url, json);
 		responseCode = rm.responseCode;
 		prettyJSON(jo);
 	}

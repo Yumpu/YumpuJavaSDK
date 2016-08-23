@@ -12,6 +12,7 @@ public class Collection {
 		Yumpu y = new Yumpu();
 		String returnFields[] = {"id,name"};
 //		y.getCollection("9RDnBITHpkxwc3s7", returnFields);
-		y.postCollection("holidays");
+//		y.postCollection("new one");
+		y.putCollection("49cvPY1uKERtNnyZ", "neydaswer");
 	}
 }
