@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.junit.Test;
 
 
-public class YumpuTest {
+public class YumpuTestGET {
 	
 	@Test
 	public void testGetDocument() throws IOException, JSONException {
@@ -131,7 +131,7 @@ public class YumpuTest {
 	@Test
 	public void testGetMember() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getMember("vGbxpwFZuvvdAGnS");
+		y.getMember("KUQDYspj5ZO42cw8");
 		assertTrue(y.responseCode == 200);
 	}
 	
@@ -145,7 +145,7 @@ public class YumpuTest {
 	@Test
 	public void testGetAccessTag() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getAccessTag("HnD4YrKMeGjxH3xT");
+		y.getAccessTag("MiskUIrpzluycDCn");
 		assertTrue(y.responseCode == 200);
 	}
 	
@@ -159,7 +159,7 @@ public class YumpuTest {
 	@Test
 	public void testGetSubscription() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getSubscription("QOjiaWfWYWd7TBHE");
-		assertTrue(y.responseCode == 401);
+		y.getSubscription("4INKOAYuMJzHTogW");
+		assertTrue(y.responseCode == 200);
 	}
 }

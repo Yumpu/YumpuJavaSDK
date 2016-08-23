@@ -3,9 +3,6 @@ package at.fes.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class Config {
 	Map<String, String> config;
 	Map<String, String> yumpuEndpoints;

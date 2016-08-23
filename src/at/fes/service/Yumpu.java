@@ -1,51 +1,42 @@
 package at.fes.service;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.math.BigInteger;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 public class Yumpu {
 	private Config config = new Config();
-	private String method = "GET";
+	private RequestMethods rm = new RequestMethods();
 	public int responseCode;
 
 	public Yumpu() throws IOException {
 		log("Yumpu Class initialized");
 	}
 
-	public JSONObject getDocuments(int offset, int limit) throws IOException, JSONException {
+	public void getDocuments(int offset, int limit) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("documents/get") + "?offset=" + offset + "&limit=" + limit;
-		log("getDocuments from " + url);
-		return prettyJSON(url);
+		log("getDocument from " + url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getDocument(String id, String returnFields[]) throws IOException, JSONException {
+	public void getDocument(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
 		url = addParamsToURL(true, returnFields, url);
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postDocument(String postUrl, String title) throws IOException, JSONException {
@@ -53,21 +44,25 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("url", postUrl);
 		json.put("title", title);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getDocumentHotspots(String id, String returnFields[]) throws IOException, JSONException {
+	public void getDocumentHotspots(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspots") + "?id=" + id;
 		url = addParamsToURL(true, returnFields, url);
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getDocumentHotspot(String id) throws IOException, JSONException {
+	public void getDocumentHotspot(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/get") + "?id=" + id;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postDocumentHotspot() throws IOException, JSONException {
@@ -86,62 +81,76 @@ public class Yumpu {
 		settings.put("link", "www.google.com");
 		json.put("settings", settings);
 		System.out.println(json);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getDocumentProgress(String id) throws IOException, JSONException {
+	public void getDocumentProgress(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/progress") + "?id=" + id;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getCategories() throws IOException, JSONException {
+	public void getCategories() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("categories/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getLanguages() throws IOException, JSONException {
+	public void getLanguages() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("languages/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getCountries() throws IOException, JSONException {
+	public void getCountries() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("countries/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getCollections(String returnFields[]) throws IOException, JSONException {
+	public void getCollections(String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collections/get");
 		url = addParamsToURL(false, returnFields, url);
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getCollection(String id, String returnFields[]) throws IOException, JSONException {
+	public void getCollection(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collection/get") + "?id=" + id;
 		url = addParamsToURL(true, returnFields, url);
 		System.out.println(url);
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postCollection(String name) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
 		JSONObject json = new JSONObject();
 		json.put("name", name);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getSection(String id, String returnFields[]) throws IOException, JSONException {
+	public void getSection(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("section/get") + "?id=" + id;
 		url = addParamsToURL(true, returnFields, url);
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postSection(String id, String name) throws IOException, JSONException {
@@ -149,7 +158,7 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("id", id);
 		json.put("name", name);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
@@ -158,20 +167,24 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("id", id);
 		json.put("documents", documents);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject search(String params) throws IOException, JSONException {
+	public void search(String params) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("search/get") + "?" + params;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getUser() throws IOException, JSONException {
+	public void getUser() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("user/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postUser(String email, String username, String password) throws IOException, JSONException {
@@ -180,23 +193,27 @@ public class Yumpu {
 		json.put("email", email);
 		json.put("username", username);
 		json.put("password", password);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getEmbeds(int offset, int limit, String sort, String returnFields[])
+	public void getEmbeds(int offset, int limit, String sort, String returnFields[])
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embeds/get") + "?offset=" + offset + "&limit=" + limit + "&sort="
 				+ sort;
 		url = addParamsToURL(true, returnFields, url);
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getEmbed(String id) throws IOException, JSONException {
+	public void getEmbed(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/get") + "?id=" + id;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postEmbed(int document_id, int type) throws IOException, JSONException {
@@ -204,20 +221,24 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("document_id", document_id);
 		json.put("type", type);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getMembers() throws IOException, JSONException {
+	public void getMembers() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("members/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getMember(String id) throws IOException, JSONException {
+	public void getMember(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("member/get") + "?id=" + id;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
 	public void postMember(String username, String password)
@@ -229,20 +250,24 @@ public class Yumpu {
 		password = new BigInteger(1, m.digest()).toString(16);
 		json.put("username", username);
 		json.put("password", password);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getAccessTags() throws IOException, JSONException {
+	public void getAccessTags() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("accessTags/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	public JSONObject getAccessTag(String id) throws IOException, JSONException {
+	public void getAccessTag(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/get") + "?id=" + id;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 	
 	public void postAccessTag(String name, String description)
@@ -251,14 +276,16 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("name", name);
 		json.put("description", description);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getSubscriptions() throws IOException, JSONException {
+	public void getSubscriptions() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscriptions/get");
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 	
 	public void postSubscription(String itc_product_id, String name, int duration)
@@ -268,69 +295,24 @@ public class Yumpu {
 		json.put("itc_product_id", itc_product_id);
 		json.put("name", name);
 		json.put("duration", duration);
-		postRequest(url, json);
+		rm.postRequest(url, json);
 		log("getDocuments from " + url);
 	}
 
-	public JSONObject getSubscription(String id) throws IOException, JSONException {
+	public void getSubscription(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscription/get") + "?id=" + id;
 		log("getDocument from " + url);
-		return prettyJSON(url);
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
 
-	private JSONObject getRequest(String url)
+	private String prettyJSON(JSONObject jo)
 			throws MalformedURLException, IOException, ProtocolException, JSONException {
-		URL obj = new URL(url);
-
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-		// add request header
-		con.setRequestProperty("X-ACCESS-TOKEN", config.config.get("token"));
-
-		// optional default is GET
-		con.setRequestMethod(method);
-
-		responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-		String inputLine;
-		JSONObject myObject = null;
-
-		while ((inputLine = in.readLine()) != null) {
-			myObject = new JSONObject(inputLine);
-		}
-
-		in.close();
-
-		return myObject;
-	}
-
-	public void postRequest(String url, JSONObject json) {
-		HttpClient httpClient = HttpClientBuilder.create().build();
-		try {
-			HttpPost request = new HttpPost(url);
-			request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
-			StringEntity params = new StringEntity(json.toString());
-			request.addHeader("content-type", "application/json");
-			request.setEntity(params);
-			HttpResponse response = httpClient.execute(request);
-
-			System.out.println(response);
-		} catch (Exception ex) {
-			System.out.println("error" + ex);
-		}
-	}
-
-	private JSONObject prettyJSON(String url)
-			throws MalformedURLException, IOException, ProtocolException, JSONException {
-		JSONObject jo = getRequest(url);
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
 		System.out.println(prettyJson);
-		return jo;
+		return prettyJson;
 	}
 
 	private String addParamsToURL(boolean isId, String[] returnFields, String url) {

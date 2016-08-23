@@ -10,8 +10,8 @@ public class Subscription {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-//		y.getSubscription("QOjiaWfWYWd7TBHE");
-		y.postSubscription("subscr7", "subscr7", 62);
+		y.getSubscription("4INKOAYuMJzHTogW");
+//		y.postSubscription("subscr7", "subscr7", 62);
 	}
 
 }
