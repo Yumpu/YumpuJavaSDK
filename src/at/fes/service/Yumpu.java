@@ -70,16 +70,18 @@ public class Yumpu {
 	public void postDocumentHotspot() throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/post");
 		JSONObject json = new JSONObject();
-		json.put("document_id", "55865447");
+		json.put("document_id", 55865447);
 		json.put("page", "1");
+		json.put("type", "link");
 		JSONObject settings = new JSONObject();
-		settings.put("x", "100");
-		settings.put("y", "100");
-		settings.put("w", "50");
-		settings.put("h", "50");
+		settings.put("x", 100);
+		settings.put("y", 100);
+		settings.put("w", 50);
+		settings.put("h", 50);
 		settings.put("name", "google.com");
 		settings.put("tooltip", "google.com");
-		json.put("settings", settings);
+		settings.put("link", "www.google.com");
+		json.put("settings", settings);		
 		System.out.println(json);
 		postRequest(url, json);
 		log("getDocuments from " + url);
@@ -123,6 +125,14 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public void postCollection(String name) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("collection/post");
+		JSONObject json = new JSONObject();
+		json.put("name", name);
+		postRequest(url, json);
+		log("getDocuments from " + url);
+	}
 
 	public JSONObject getSection(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("section/get") + "?id=" + id;
@@ -130,7 +140,25 @@ public class Yumpu {
 		log("getDocument from " + url);
 		return prettyJSON(url);
 	}
+	
+	public void postSection(String id, String name) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("section/post");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("name", name);
+		postRequest(url, json);
+		log("getDocuments from " + url);
+	}
 
+	public void postSectionDocument(String id, String documents[]) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("sectionDocument/post");
+		JSONObject json = new JSONObject();
+		json.put("id", id);
+		json.put("documents", documents);
+		postRequest(url, json);
+		log("getDocuments from " + url);
+	}
+	
 	public JSONObject search(String params) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("search/get") + "?" + params;
 		log("getDocument from " + url);
@@ -141,6 +169,16 @@ public class Yumpu {
 		String url = config.yumpuEndpoints.get("user/get");
 		log("getDocument from " + url);
 		return prettyJSON(url);
+	}
+	
+	public void postUser(String email, String username, String password) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("user/post");
+		JSONObject json = new JSONObject();
+		json.put("email", email);
+		json.put("username", username);
+		json.put("password", password);
+		postRequest(url, json);
+		log("getDocuments from " + url);
 	}
 
 	public JSONObject getEmbeds(int offset, int limit, String sort, String returnFields[])

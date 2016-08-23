@@ -6,12 +6,12 @@ import org.json.JSONException;
 
 import at.fes.service.Yumpu;
 
-public class User {
+public class SectionDocument {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getUser();
-//		y.postUser("cuo15642@zasod.com", "newuser80120", "hallo123");
+		String documents[] = {"55865447"};
+		y.postSectionDocument("SyQPxIYetzpAhOgK_9r58Udahn0zFjQ23", documents);
 	}
 
 }

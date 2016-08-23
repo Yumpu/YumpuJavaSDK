@@ -12,6 +12,7 @@ public class Section {
 		Yumpu y = new Yumpu();
 		String returnFields[] = {"id,name"};
 		y.getSection("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", returnFields);
+//		y.postSection("SyQPxIYetzpAhOgK", "section");
 	}
 
 }

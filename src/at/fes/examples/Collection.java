@@ -11,6 +11,7 @@ public class Collection {
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
 		String returnFields[] = {"id,name"};
-		y.getCollection("9RDnBITHpkxwc3s7", returnFields);
+//		y.getCollection("9RDnBITHpkxwc3s7", returnFields);
+		y.postCollection("holidays");
 	}
 }

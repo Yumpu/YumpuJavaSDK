@@ -20,44 +20,47 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 public class Tester {
 
 	public static void main(String[] args) throws ClientProtocolException, IOException, JSONException  {
-//		HttpClient client = HttpClientBuilder.create().build();
-//		HttpPost post = new HttpPost("http://api.yumpu.com/2.0/document/file.json");
-//		post.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-//		post.setHeader("content-type", "application/json");
-//		File file = new File("C:\"Users\"stefan.feurstein.ADROM\"Downloads\"DA.pdf");
-//		JSONObject json = new JSONObject();
-//		json.put("file", file);
-//		json.put("title", "asdsada");
-//		
-//		System.out.println(json);
-//
-//		StringEntity params = new StringEntity(json.toString());
-//		
-//		post.setEntity(params);
-//
-//		HttpResponse response = client.execute(post);
-//		System.out.println(response);
+		JSONObject json = new JSONObject();
+		json.put("document_id", 55865447);
+		json.put("page", "1");
+		json.put("type", "link");
+		JSONObject settings = new JSONObject();
+		settings.put("x", 100);
+		settings.put("y", 100);
+		settings.put("w", 50);
+		settings.put("h", 50);
+		settings.put("name", "google.com");
+		settings.put("tooltip", "google.com");
+		settings.put("link", "www.google.com");
+		json.put("settings", settings);
 		
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpPost httpPost = new HttpPost("http://api.yumpu.com/2.0/document/file.json");
-		httpPost.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+		System.out.println(json);
+		postRequest(json);
+		
+		
+	}
+	
+	public static void postRequest(JSONObject json){
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		try {
+			HttpPost request = new HttpPost("http://api.yumpu.com/2.0/document/hotspot.json");
+			request.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+			StringEntity params = new StringEntity(json.toString());
+			request.setEntity(params);
+			request.addHeader("content-type", "application/json");
+			System.out.println(json.toString());
+			HttpResponse response = httpClient.execute(request);
 
-		httpPost.setHeader("Content-Type", "multipart/form-data");
-        File payload = new File("C:\\Users\\stefan.feurstein.ADROM\\Downloads\\DA.pdf");
-
-        HttpEntity entity = MultipartEntityBuilder.create()
-        		.setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-        		.addPart("file", new FileBody(payload))
-        		.addPart("title", new StringBody("afhasfh"))
-        		.build();
-        
-        System.out.println(entity.toString());
-        httpPost.setEntity(entity);
-        HttpResponse  response = client.execute(httpPost);
-        System.out.println(response);
+			System.out.println(response);
+		} catch (Exception ex) {
+			System.out.println("error" + ex);
+		}
 	}
 
 }
