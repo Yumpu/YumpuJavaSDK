@@ -37,36 +37,36 @@ public class YumpuTestPOST {
 	@Test
 	public void testPostSectionDocument() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String documents[] = { "55865398" };
-		y.postSectionDocument("SyQPxIYetzpAhOgK_9r58Udahn0zFjQ23", documents);
+		String documents = "55865398";
+		y.postSectionDocument("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", documents);
 		assertTrue(y.responseCode == 200);
 	}
 	
 	@Test
 	public void testPostUser() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.postUser("cuo15642@zasod.com", "newuser80120", "hallo123");
+		y.postUser("xyc54663@zasod.com", "newser80120", "hallo123");
 		assertTrue(y.responseCode == 200);
 	}
 	
 	@Test
 	public void testPostEmbed() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.postEmbed(55865447, 2);
+		y.postEmbed(55869242, 2);
 		assertTrue(y.responseCode == 200);
 	}
 	
 	@Test
 	public void testPostMember() throws IOException, JSONException, NoSuchAlgorithmException {
 		Yumpu y = new Yumpu();
-		y.postMember("my.username", "my.pwd");
+		y.postMember("my.aasd", "my.pwd");
 		assertTrue(y.responseCode == 200);
 	}
 	
 	@Test
 	public void testPostAccessTag() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.postAccessTag("name", "desc");
+		y.postAccessTag("naame123", "desc");
 		assertTrue(y.responseCode == 200);
 	}
 	

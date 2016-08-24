@@ -14,7 +14,7 @@ public class YumpuTestPUT {
 	@Test
 	public void testPutDocument() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.putDocument("new name", 55865398);
+		y.putDocument(55873028, "new name");
 		assertTrue(y.responseCode == 200);
 	}
 	
@@ -28,7 +28,7 @@ public class YumpuTestPUT {
 	@Test
 	public void testPutSection() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.putSection("dpXYOxSR7Jeqw6f4_SPbrTa3UXwz5DjY6", "new ahsd");
+		y.putSection("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", "new ahsd");
 		assertTrue(y.responseCode == 200);
 	}
 
@@ -42,14 +42,14 @@ public class YumpuTestPUT {
 	@Test
 	public void testPutMember() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.putMember("KUQDYspj5ZO42cw8", "new.name");
+		y.putMember("ZSseFDtlUdAvh016", "newnasdme");
 		assertTrue(y.responseCode == 200);
 	}
 	
 	@Test
 	public void testPutAccessTag() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.putMember("hJNK19CGXWjlvy2z", "new.name");
+		y.putMember("NXBIAZm6cHC7Vne0", "newsdsfname");
 		assertTrue(y.responseCode == 200);
 	}
 	

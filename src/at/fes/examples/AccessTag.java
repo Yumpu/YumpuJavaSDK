@@ -12,7 +12,7 @@ public class AccessTag {
 		Yumpu y = new Yumpu();
 //		y.getAccessTag("MiskUIrpzluycDCn");
 //		y.postAccessTag("name", "desc");
-		y.putAccessTag("hJNK19CGXWjlvy2z", "neuertag");
+		y.putAccessTag("NXBIAZm6cHC7Vne0", "neuertaezr");
 	}
 
 }

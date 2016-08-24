@@ -13,7 +13,7 @@ public class Member {
 		Yumpu y = new Yumpu();
 //		y.getMember("KUQDYspj5ZO42cw8");
 //		y.postMember("my.username", "my.pwd");
-		y.putMember("KUQDYspj5ZO42cw8", "cooleruser");
+		y.putMember("ZSseFDtlUdAvh016", "cooleruser");
 	}
 
 }

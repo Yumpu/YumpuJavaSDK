@@ -13,7 +13,7 @@ public class Section {
 		String returnFields[] = {"id,name"};
 //		y.getSection("9RDnBITHpkxwc3s7_BNTizyI4S9mEdkDZ", returnFields);
 //		y.postSection("9RDnBITHpkxwc3s7", "section");
-		y.putSection("9RDnBITHpkxwc3s7_BNTizyI4S9mEdkDZ", "new ahsd");
+		y.putSection("SyQPxIYetzpAhOgK_J8i04sHdlZPztByp", "newahsd");
 	}
 
 }

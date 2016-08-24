@@ -10,6 +10,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
@@ -23,60 +25,40 @@ public class RequestMethods {
 	public int responseCode;
 	private String method = "GET";
 
-	public JSONObject getRequest(String url) throws IOException, JSONException {
-		URL obj = new URL(url);
+	public JSONObject getRequest(String url) throws ClientProtocolException, IOException, JSONException {
 
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpGet request = new HttpGet(url);
 
 		// add request header
-		con.setRequestProperty("X-ACCESS-TOKEN", config.config.get("token"));
+		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		HttpResponse response = client.execute(request);
 
-		// optional default is GET
-		con.setRequestMethod(method);
-
-		responseCode = con.getResponseCode();
-		System.out.println("\nSending 'GET' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-		String inputLine;
-		JSONObject myObject = null;
-
-		while ((inputLine = in.readLine()) != null) {
-			myObject = new JSONObject(inputLine);
-		}
-
-		in.close();
+		System.out.println("Response Code : "
+		                + response.getStatusLine().getStatusCode());
+		
+		String jsonString = EntityUtils.toString(response.getEntity());
+		JSONObject myObject = new JSONObject(jsonString);
+		responseCode = response.getStatusLine().getStatusCode();
 
 		return myObject;
 	}
 	
-	public JSONObject deleteRequest(String url) throws IOException, JSONException {
-		URL obj = new URL(url);
+	public JSONObject deleteRequest(String url) throws ClientProtocolException, IOException, JSONException {
 
-		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpDelete request = new HttpDelete(url);
 
 		// add request header
-		con.setRequestProperty("X-ACCESS-TOKEN", config.config.get("devtoken"));
+		request.setHeader("X-ACCESS-TOKEN", config.config.get("devtoken"));
+		HttpResponse response = client.execute(request);
 
-		// optional default is GET
-		con.setRequestMethod("DELETE");
-
-		responseCode = con.getResponseCode();
-		System.out.println("\nSending 'DELETE' request to URL : " + url);
-		System.out.println("Response Code : " + responseCode);
-
-		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
-		String inputLine;
-		JSONObject myObject = null;
-
-		while ((inputLine = in.readLine()) != null) {
-			myObject = new JSONObject(inputLine);
-		}
-
-		in.close();
+		System.out.println("Response Code : "
+		                + response.getStatusLine().getStatusCode());
+		
+		String jsonString = EntityUtils.toString(response.getEntity());
+		JSONObject myObject = new JSONObject(jsonString);
+		responseCode = response.getStatusLine().getStatusCode();
 
 		return myObject;
 	}

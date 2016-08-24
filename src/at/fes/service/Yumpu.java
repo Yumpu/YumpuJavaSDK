@@ -47,11 +47,11 @@ public class Yumpu {
 		optionsPost(json, url);
 	}
 	
-	public void putDocument(String name, int id) throws IOException, JSONException {
+	public void putDocument(int id, String title) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/put");
 		JSONObject json = new JSONObject();
 		json.put("id", id);
-		json.put("name", name);
+		json.put("title", title);
 		
 		optionsPut(url, json);
 	}
@@ -109,7 +109,7 @@ public class Yumpu {
 //		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 //		String json = gson.toJson(obj, LinkedHashMap.class);
 //
-//		System.out.println(json);
+		System.out.println(json);
 //		
 //		optionsPost(json, url);
 	}
@@ -189,10 +189,11 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		json.put("id", id);
 		json.put("name", name);
+		
 		optionsPut(url, json);
 	}
 
-	public void postSectionDocument(String id, String documents[]) throws IOException, JSONException {
+	public void postSectionDocument(String id, String documents) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("sectionDocument/post");
 		JSONObject json = new JSONObject();
 		json.put("id", id);
