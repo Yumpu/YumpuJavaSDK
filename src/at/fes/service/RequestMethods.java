@@ -51,6 +51,35 @@ public class RequestMethods {
 
 		return myObject;
 	}
+	
+	public JSONObject deleteRequest(String url) throws IOException, JSONException {
+		URL obj = new URL(url);
+
+		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+		// add request header
+		con.setRequestProperty("X-ACCESS-TOKEN", config.config.get("devtoken"));
+
+		// optional default is GET
+		con.setRequestMethod("DELETE");
+
+		responseCode = con.getResponseCode();
+		System.out.println("\nSending 'DELETE' request to URL : " + url);
+		System.out.println("Response Code : " + responseCode);
+
+		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+
+		String inputLine;
+		JSONObject myObject = null;
+
+		while ((inputLine = in.readLine()) != null) {
+			myObject = new JSONObject(inputLine);
+		}
+
+		in.close();
+
+		return myObject;
+	}
 
 	public JSONObject postRequest(String url, JSONObject json) throws JSONException, ParseException, IOException {
 		JSONObject myObject = null;

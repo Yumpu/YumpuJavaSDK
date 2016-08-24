@@ -1,11 +1,15 @@
 package at.fes.service;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +55,12 @@ public class Yumpu {
 		
 		optionsPut(url, json);
 	}
+	
+	public void deleteDocument(int id) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/delete") + "?id=" + id;
+		
+		optionsDelete(url);
+	}
 
 	public void getDocumentHotspots(String id, String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspots") + "?id=" + id;
@@ -81,7 +91,27 @@ public class Yumpu {
 		settings.put("link", "www.google.com");
 		json.put("settings", settings);
 		
-		optionsPost(json, url);
+//		Map<String, String> obj = new LinkedHashMap<String, String>();
+//		obj.put("document_id", "55869263");
+//		obj.put("page", "1");
+//		obj.put("type", "link");
+//		
+//		Map<String, String> settings = new LinkedHashMap<String, String>();
+//		settings.put("x", "100");
+//		settings.put("y", "100");
+//		settings.put("w", "50");
+//		settings.put("h", "50");
+//		settings.put("name", "newone");
+//		settings.put("tooltip", "newone");
+//		settings.put("link", "http://www.google.com");
+//		obj.put("settings", settings.toString());
+//		
+//		Gson gson = new GsonBuilder().disableHtmlEscaping().create();
+//		String json = gson.toJson(obj, LinkedHashMap.class);
+//
+//		System.out.println(json);
+//		
+//		optionsPost(json, url);
 	}
 
 	public void getDocumentProgress(String id) throws IOException, JSONException {
@@ -344,18 +374,24 @@ public class Yumpu {
 		prettyJSON(jo);
 	}
 	
+	private void optionsDelete(String url) throws IOException, JSONException {
+		log("deleteDocument from " + url);
+		JSONObject jo = rm.deleteRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
+	}
+		
 	private void optionsPost(JSONObject json, String url)
 			throws IOException, JSONException, MalformedURLException, ProtocolException {
-		log("getDocuments from " + url);
+		log("postDocuments to " + url);
 		JSONObject jo = rm.postRequest(url, json);
 		responseCode = rm.responseCode;
 		prettyJSON(jo);
 	}
 	
-
 	private void optionsPut(String url, JSONObject json)
 			throws IOException, JSONException, MalformedURLException, ProtocolException {
-		log("getDocuments from " + url);
+		log("putDocuments to " + url);
 		JSONObject jo = rm.putRequest(url, json);
 		responseCode = rm.responseCode;
 		prettyJSON(jo);
@@ -386,9 +422,9 @@ public class Yumpu {
 	}
 
 	private void log(String logText) throws IOException {
-		// File yumpuLog = new File(".\\src\\at\\fes\\log\\yumpu_log.txt");
-		// FileWriter writer = new FileWriter(yumpuLog, true);
-		// writer.write(logText + "\n");
-		// writer.close();
+		 File yumpuLog = new File(".\\src\\at\\fes\\log\\yumpu_log.txt");
+		 FileWriter writer = new FileWriter(yumpuLog, true);
+		 writer.write(logText + "\n");
+		 writer.close();
 	}
 }

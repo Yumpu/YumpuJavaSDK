@@ -17,7 +17,9 @@ public class Config {
 		config = new HashMap<String, String>();
 		
 		config.put("token" , String.valueOf("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv"));
+		config.put("devtoken" , String.valueOf("vEKfrHQLPlOc2sAbU5zqGwoegmSdnC1M"));
 		config.put("endpointDomain" , String.valueOf("http://api.yumpu.com/2.0/"));
+		config.put("devEndpointDomain" , String.valueOf("http://devapi.yumpu.com/2.0/"));
 		config.put("endpointSearchDomain" , String.valueOf("http://search.yumpu.com/2.0/"));
 	}
 	
@@ -27,11 +29,12 @@ public class Config {
 		yumpuEndpoints.put("documents/get" , String.valueOf(config.get("endpointDomain") + "documents.json"));
 		yumpuEndpoints.put("document/get" , String.valueOf(config.get("endpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/post/url" , String.valueOf(config.get("endpointDomain") + "document/url.json"));
-		yumpuEndpoints.put("document/delete" , String.valueOf(config.get("endpointDomain") + "document.json"));
+		yumpuEndpoints.put("document/delete" , String.valueOf(config.get("devEndpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/put" , String.valueOf(config.get("endpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/hotspots" , String.valueOf(config.get("endpointDomain") + "document/hotspots.json"));
 		yumpuEndpoints.put("document/hotspot/get" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
 		yumpuEndpoints.put("document/hotspot/post" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/hotspot/delete" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
 		yumpuEndpoints.put("document/progress" , String.valueOf(config.get("endpointDomain") + "document/progress.json"));
 		yumpuEndpoints.put("categories/get" , String.valueOf(config.get("endpointDomain") + "document/categories.json"));
 		yumpuEndpoints.put("languages/get" , String.valueOf(config.get("endpointDomain") + "document/languages.json"));

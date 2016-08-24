@@ -18,7 +18,8 @@ public class Document {
 //		String returnFields[] = {"url"};
 //		y.getDocument("55847151", returnFields);
 //		y.postDocumentUrl("http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf", "Diplomarbeit asdvon Stefan");
-		y.putDocument("new documentname", 55865398);
+//		y.putDocument("new documentname", 55865398);
+		y.deleteDocument(10663);
 	}
 
 }
