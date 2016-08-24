@@ -8,8 +8,6 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
