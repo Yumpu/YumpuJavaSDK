@@ -10,10 +10,12 @@ public class Section {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"id,name"};
-//		y.getSection("9RDnBITHpkxwc3s7_BNTizyI4S9mEdkDZ", returnFields);
-//		y.postSection("9RDnBITHpkxwc3s7", "section");
-		y.putSection("SyQPxIYetzpAhOgK_J8i04sHdlZPztByp", "newahsd");
+		String[] params = {};
+		String returnFields[] = { "id,name" };
+		String[]  body = {"id=SyQPxIYetzpAhOgK_e1a8grt3i0FPMklT", "name=sasdfd", "description=aösldasdöjd"};
+//		y.getSection("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", params, returnFields);
+//		y.postSection(body);
+		y.putSection(body);
 	}
 
 }

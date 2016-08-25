@@ -10,7 +10,8 @@ public class Embeds {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"id"};
-		y.getEmbeds("0", "2", "desc", returnFields);
+		String[] params = {};
+		String returnFields[] = { "id" };
+		y.getEmbeds(params, returnFields);
 	}
 }

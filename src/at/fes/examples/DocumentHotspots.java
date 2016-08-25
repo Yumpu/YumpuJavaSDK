@@ -10,8 +10,9 @@ public class DocumentHotspots {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"page"};
-		y.getDocumentHotspots("55847151", returnFields);
+		String[] params = {};
+		String returnFields[] = {};
+		y.getDocumentHotspots("55875413", params, returnFields);
 	}
 
 }

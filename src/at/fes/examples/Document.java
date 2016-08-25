@@ -10,16 +10,19 @@ public class Document {
 
 	/**
 	 * @param args
-	 * @throws JSONException 
-	 * @throws IOException 
+	 * @throws JSONException
+	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-//		String returnFields[] = {"url"};
-//		y.getDocument("55847151", returnFields);
-//		y.postDocumentUrl("http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf", "Diplomarbeit asdvon Stefan");
-//		y.putDocument(55873028, "new documentname");
-		y.deleteDocument("10671");
+		String[] params = {};
+		String returnFields[] = { "url" };
+		String[] body = {"id=55875793",
+				 "title=newtitles"};
+//		y.getDocument("55875413", params, returnFields);
+//		 y.postDocumentUrl(body);
+		 y.putDocument(body);
+//		y.deleteDocument("10671");
 	}
 
 }

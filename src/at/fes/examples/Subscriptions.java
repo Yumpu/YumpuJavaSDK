@@ -10,7 +10,9 @@ public class Subscriptions {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getSubscriptions();
+		String[] params = {};
+		String returnFields[] = { "id,name" };
+		y.getSubscriptions(params, returnFields);
 	}
 
 }

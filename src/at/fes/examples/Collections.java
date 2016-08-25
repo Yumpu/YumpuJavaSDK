@@ -10,8 +10,9 @@ public class Collections {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		String returnFields[] = {"id,sections"};
-		y.getCollections(returnFields);
+		String[] params = {};
+		String returnFields[] = { "id" };
+		y.getCollections(params, returnFields);
 	}
 
 }

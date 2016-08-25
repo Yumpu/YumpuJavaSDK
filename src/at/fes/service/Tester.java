@@ -27,48 +27,52 @@ public class Tester {
 		Tester t = new Tester();
 		String[] params = {};
 		String returnFields[] = { "url" };
-		t.getDocument("55875413", params, returnFields);
+		String[] body = {"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf", "title=ayxcxycsd"};
+		t.postDocumentUrl(body);
 	}
 
-	public void getDocument(String id, String[] params, String returnFields[])
+	public void postDocumentUrl(String[] body)
 			throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
-		url = addParams(true, url, params, returnFields);
-		optionsGet(url);
+		String url = config.yumpuEndpoints.get("document/post/url");
+
+		JSONObject json = new JSONObject();
+		createBody(body, json);
+		optionsPost(json, url);
 	}
 
-	public void getDocuments(String[] params, String returnFields[])
-			throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("documents/get");
-		url = addParams(false, url, params, returnFields);
-		System.out.println(url);
-		// optionsGet(url);
+	private void createBody(String[] body, JSONObject json)
+			throws JSONException {
+		for (String s : body) {
+			String index = s.substring(0, s.indexOf("="));
+			String value = s.substring(s.indexOf("=") + 1);
+			json.put(index, value);
+		}
 	}
 
 	private String addParams(boolean isId, String url, String[] params,
 			String[] returnFields) {
 
-			if (isId) {
-				url = url + "&";
-				for (String s : params) {
-					url = url + s + "&";
-				}
-				url = addParamsToURL(isId, returnFields, url);
-			} else {
-				url = url + "?";
-				for (String s : params) {
-					url = url + s + "&";
-				}
-				url = addParamsToURL(isId, returnFields, url);
+		if (isId) {
+			url = url + "&";
+			for (String s : params) {
+				url = url + s + "&";
 			}
-		
+			url = addParamsToURL(isId, returnFields, url);
+		} else {
+			url = url + "?";
+			for (String s : params) {
+				url = url + s + "&";
+			}
+			url = addParamsToURL(isId, returnFields, url);
+		}
+
 		return url;
 	}
 
 	private String addParamsToURL(boolean isId, String[] returnFields,
 			String url) {
 		if (returnFields.length > 0) {
-			
+
 			url = url + "return_fields=";
 			for (int i = 0; i < returnFields.length; i++) {
 				url = url + returnFields[i];
@@ -88,9 +92,9 @@ public class Tester {
 		return prettyJson;
 	}
 
-	private void optionsGet(String url) throws IOException, JSONException,
-			MalformedURLException, ProtocolException {
-		JSONObject jo = rm.getRequest(url);
+	private void optionsPost(JSONObject json, String url) throws IOException,
+			JSONException, MalformedURLException, ProtocolException {
+		JSONObject jo = rm.postRequest(url, json);
 		responseCode = rm.responseCode;
 		prettyJSON(jo);
 	}

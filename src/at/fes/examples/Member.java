@@ -9,11 +9,16 @@ import at.fes.service.Yumpu;
 
 public class Member {
 
-	public static void main(String[] args) throws IOException, JSONException, NoSuchAlgorithmException {
+	public static void main(String[] args) throws IOException, JSONException,
+			NoSuchAlgorithmException {
 		Yumpu y = new Yumpu();
-//		y.getMember("KUQDYspj5ZO42cw8");
-		y.postMember("my.name", "my.pwd");
-//		y.putMember("ZSseFDtlUdAvh016", "cooleruser");
+		String[] params = {};
+		String returnFields[] = { "id" };
+		String[] body = {"comment=prataö"};
+//		y.getMember("KUQDYspj5ZO42cw8", params, returnFields);
+
+		 y.postMember("quallesd", "my.pwd", body);
+		// y.putMember("ZSseFDtlUdAvh016", "cooleruser");
 	}
 
 }

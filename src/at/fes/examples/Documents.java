@@ -10,12 +10,14 @@ public class Documents {
 
 	/**
 	 * @param args
-	 * @throws JSONException 
-	 * @throws IOException 
+	 * @throws JSONException
+	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getDocuments("0", "0");
+		String[] params = {};
+		String returnFields[] = { "url" };
+		y.getDocuments(params, returnFields);
 	}
 
 }

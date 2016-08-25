@@ -10,9 +10,12 @@ public class User {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getUser();
-//		y.postUser("cuo15642@zasod.com", "newuser80120", "hallo123");
-		y.putUser("male", "Stefan", "Feurstein");
+		String[] params = {};
+		String returnFields[] = { "id,name" };
+		String[] body = {"gender=male", "firstname=brutasadl", "lastname=1qsadwe", "address=aljdsd 10"};
+//		y.getUser(params, returnFields);
+//		y.postUser(body);
+		y.putUser(body);
 	}
 
 }
