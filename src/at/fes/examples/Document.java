@@ -3,6 +3,7 @@ package at.fes.examples;
 import java.io.IOException;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import at.fes.service.Yumpu;
 
@@ -17,11 +18,15 @@ public class Document {
 		Yumpu y = new Yumpu();
 		String[] params = {};
 		String returnFields[] = { "url" };
-		String[] body = {"id=55875793",
-				 "title=newtitles"};
+		JSONObject json = new JSONObject(y.getDocument("55875934", params, returnFields));
+
+//		String[] body = {"id=55875793","title=new title"};
+//		String[] params = {};
+//		String returnFields[] = { "url" };
 //		y.getDocument("55875413", params, returnFields);
-//		 y.postDocumentUrl(body);
-		 y.putDocument(body);
+		
+//		y.postDocumentUrl(body);
+//		y.putDocument(body);
 //		y.deleteDocument("10671");
 	}
 
