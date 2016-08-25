@@ -12,7 +12,7 @@ public class Subscription {
 		Yumpu y = new Yumpu();
 //		y.getSubscription("4INKOAYuMJzHTogW");
 //		y.postSubscription("subscr7", "subscr7", 62);
-		y.putSubscription("4INKOAYuMJzHTogW", "subscr7", "subscr8", 62);
+		y.putSubscription("4INKOAYuMJzHTogW", "subscr7", "subscr8", "62");
 	}
 
 }

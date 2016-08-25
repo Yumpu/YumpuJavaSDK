@@ -23,7 +23,7 @@ public class YumpuTestGET {
 	@Test
 	public void testGetDocuments() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getDocuments(0,0);
+		y.getDocuments("0","0");
 		assertTrue(y.responseCode == 200);
 	}
 	
@@ -112,7 +112,7 @@ public class YumpuTestGET {
 	public void testGetEmbeds() throws IOException, JSONException {
 		Yumpu y = new Yumpu();
 		String returnFields[] = {"id"};
-		y.getEmbeds(0, 0, "desc", returnFields);
+		y.getEmbeds("0", "0", "desc", returnFields);
 		assertTrue(y.responseCode == 200);
 	}
 	

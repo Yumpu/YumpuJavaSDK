@@ -12,8 +12,8 @@ public class Member {
 	public static void main(String[] args) throws IOException, JSONException, NoSuchAlgorithmException {
 		Yumpu y = new Yumpu();
 //		y.getMember("KUQDYspj5ZO42cw8");
-//		y.postMember("my.username", "my.pwd");
-		y.putMember("ZSseFDtlUdAvh016", "cooleruser");
+		y.postMember("my.name", "my.pwd");
+//		y.putMember("ZSseFDtlUdAvh016", "cooleruser");
 	}
 
 }

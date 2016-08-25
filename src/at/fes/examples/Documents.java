@@ -15,7 +15,7 @@ public class Documents {
 	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
-		y.getDocuments(0, 0);
+		y.getDocuments("0", "0");
 	}
 
 }

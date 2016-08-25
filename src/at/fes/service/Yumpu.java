@@ -24,7 +24,7 @@ public class Yumpu {
 		log("Yumpu Class initialized");
 	}
 
-	public void getDocuments(int offset, int limit) throws IOException, JSONException {
+	public void getDocuments(String offset, String limit) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("documents/get") + "?offset=" + offset + "&limit=" + limit;
 		
 		optionsGet(url);
@@ -45,7 +45,7 @@ public class Yumpu {
 		optionsPost(json, url);
 	}
 	
-	public void putDocument(int id, String title) throws IOException, JSONException {
+	public void putDocument(String id, String title) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/put");
 		JSONObject json = new JSONObject();
 		json.put("id", id);
@@ -54,7 +54,7 @@ public class Yumpu {
 		optionsPut(url, json);
 	}
 	
-	public void deleteDocument(int id) throws IOException, JSONException {
+	public void deleteDocument(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/delete") + "?id=" + id;
 		
 		optionsDelete(url);
@@ -232,7 +232,7 @@ public class Yumpu {
 		optionsPut(url, json);
 	}
 
-	public void getEmbeds(int offset, int limit, String sort, String returnFields[])
+	public void getEmbeds(String offset, String limit, String sort, String returnFields[])
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embeds/get") + "?offset=" + offset + "&limit=" + limit + "&sort="
 				+ sort;
@@ -247,7 +247,7 @@ public class Yumpu {
 		optionsGet(url);
 	}
 
-	public void postEmbed(int document_id, int type) throws IOException, JSONException {
+	public void postEmbed(String document_id, String type) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/post");
 		JSONObject json = new JSONObject();
 		json.put("document_id", document_id);
@@ -256,7 +256,7 @@ public class Yumpu {
 		optionsPost(json, url);
 	}
 	
-	public void putEmbed(String id, int document_id, int type) throws IOException, JSONException {
+	public void putEmbed(String id, String document_id, String type) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/put");
 		JSONObject json = new JSONObject();
 		json.put("id", id);
@@ -344,7 +344,7 @@ public class Yumpu {
 		optionsGet(url);
 	}
 	
-	public void postSubscription(String itc_product_id, String name, int duration)
+	public void postSubscription(String itc_product_id, String name, String duration)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscription/post");
 		JSONObject json = new JSONObject();
@@ -355,7 +355,7 @@ public class Yumpu {
 		optionsPost(json, url);
 	}
 	
-	public void putSubscription(String id, String itc_product_id, String name, int duration) throws IOException, JSONException {
+	public void putSubscription(String id, String itc_product_id, String name, String duration) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscription/put");
 		JSONObject json = new JSONObject();
 		json.put("id", id);

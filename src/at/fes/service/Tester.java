@@ -3,6 +3,7 @@ package at.fes.service;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
+import java.util.Arrays;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -22,49 +23,75 @@ public class Tester {
 	private String method = "GET";
 	private RequestMethods rm = new RequestMethods();
 
-	public static void main(String[] args) throws ClientProtocolException, IOException, JSONException {
+	public static void main(String[] args) throws IOException, JSONException {
 		Tester t = new Tester();
-		t.getDocuments(0, 0);
+		String[] params = {};
+		String returnFields[] = { "url" };
+		t.getDocument("55875413", params, returnFields);
 	}
-	
-	public void getDocuments(int offset, int limit) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("documents/get") + "?offset=" + offset + "&limit=" + limit;
-		
+
+	public void getDocument(String id, String[] params, String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
+		url = addParams(true, url, params, returnFields);
 		optionsGet(url);
 	}
-	
-	private void optionsGet(String url) throws IOException, JSONException, MalformedURLException, ProtocolException {
-		JSONObject jo = rm.getRequest(url);
-		responseCode = rm.responseCode;
-		prettyJSON(jo);
+
+	public void getDocuments(String[] params, String returnFields[])
+			throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("documents/get");
+		url = addParams(false, url, params, returnFields);
+		System.out.println(url);
+		// optionsGet(url);
 	}
-	
-	private String prettyJSON(JSONObject jo)
-			throws MalformedURLException, IOException, ProtocolException, JSONException {
+
+	private String addParams(boolean isId, String url, String[] params,
+			String[] returnFields) {
+
+			if (isId) {
+				url = url + "&";
+				for (String s : params) {
+					url = url + s + "&";
+				}
+				url = addParamsToURL(isId, returnFields, url);
+			} else {
+				url = url + "?";
+				for (String s : params) {
+					url = url + s + "&";
+				}
+				url = addParamsToURL(isId, returnFields, url);
+			}
+		
+		return url;
+	}
+
+	private String addParamsToURL(boolean isId, String[] returnFields,
+			String url) {
+		if (returnFields.length > 0) {
+			
+			url = url + "return_fields=";
+			for (int i = 0; i < returnFields.length; i++) {
+				url = url + returnFields[i];
+				if (!(i == returnFields.length - 1)) {
+					url = url + ",";
+				}
+			}
+		}
+		return url;
+	}
+
+	private String prettyJSON(JSONObject jo) throws MalformedURLException,
+			IOException, ProtocolException, JSONException {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
 		System.out.println(prettyJson);
 		return prettyJson;
 	}
 
-	public JSONObject deleteRequest(String url) throws ClientProtocolException, IOException, JSONException {
-
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpDelete request = new HttpDelete(url);
-
-		// add request header
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
-		HttpResponse response = client.execute(request);
-
-		System.out.println("Response Code : "
-		                + response.getStatusLine().getStatusCode());
-		
-		String jsonString = EntityUtils.toString(response.getEntity());
-		JSONObject myObject = new JSONObject(jsonString);
-		responseCode = response.getStatusLine().getStatusCode();
-
-		return myObject;
+	private void optionsGet(String url) throws IOException, JSONException,
+			MalformedURLException, ProtocolException {
+		JSONObject jo = rm.getRequest(url);
+		responseCode = rm.responseCode;
+		prettyJSON(jo);
 	}
-	
-	
 }
