@@ -308,12 +308,11 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putMember(String id, String username) throws IOException,
+	public JSONObject putMember(String[] body) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("member/put");
 		JSONObject json = new JSONObject();
-		json.put("id", id);
-		json.put("username", username);
+		createBody(body, json);
 
 		return optionsPut(url, json);
 	}
@@ -342,12 +341,11 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putAccessTag(String id, String name) throws IOException,
+	public JSONObject putAccessTag(String[] body) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/put");
 		JSONObject json = new JSONObject();
-		json.put("id", id);
-		json.put("name", name);
+		createBody(body, json);
 
 		return optionsPut(url, json);
 	}
@@ -376,14 +374,10 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putSubscription(String id, String itc_product_id, String name,
-			String duration) throws IOException, JSONException {
+	public JSONObject putSubscription(String[] body) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("subscription/put");
 		JSONObject json = new JSONObject();
-		json.put("id", id);
-		json.put("itc_product_id", itc_product_id);
-		json.put("name", name);
-		json.put("duration", duration);
+		createBody(body, json);
 
 		return optionsPut(url, json);
 	}

@@ -9,11 +9,6 @@ import at.fes.service.Yumpu;
 
 public class Document {
 
-	/**
-	 * @param args
-	 * @throws JSONException
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
 		String[] params = {};

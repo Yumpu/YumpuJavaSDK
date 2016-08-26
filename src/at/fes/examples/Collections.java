@@ -3,6 +3,7 @@ package at.fes.examples;
 import java.io.IOException;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import at.fes.service.Yumpu;
 
@@ -12,7 +13,7 @@ public class Collections {
 		Yumpu y = new Yumpu();
 		String[] params = {};
 		String returnFields[] = { "id" };
-		y.getCollections(params, returnFields);
+		JSONObject json = new JSONObject(y.getCollections(params, returnFields));
 	}
 
 }

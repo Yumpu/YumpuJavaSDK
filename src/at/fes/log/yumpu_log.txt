@@ -1209,3 +1209,9 @@ Yumpu Class initialized
 getDocument from http://api.yumpu.com/2.0/document.json?id=55875934&return_fields=url
 Yumpu Class initialized
 getDocument from http://api.yumpu.com/2.0/document.json?id=55875934&return_fields=url
+Yumpu Class initialized
+postDocuments to http://api.yumpu.com/2.0/collection/section/document.json
+Yumpu Class initialized
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+Yumpu Class initialized
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json

@@ -11,7 +11,7 @@ public class Subscriptions {
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu();
 		String[] params = {};
-		String returnFields[] = { "id,name" };
+		String[] returnFields = { "id,name" };
 		y.getSubscriptions(params, returnFields);
 	}
 
