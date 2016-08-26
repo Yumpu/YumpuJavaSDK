@@ -10,9 +10,12 @@ import at.fes.service.Yumpu;
 public class SectionDocument {
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String documents = "55875794,55875934";
-		JSONObject json = new JSONObject(y.postSectionDocument("SyQPxIYetzpAhOgK_Vc7jXD3BEeqPto0S", documents));
+		JSONObject json = new JSONObject(y.deleteSectionDocument("SyQPxIYetzpAhOgK_Vc7jXD3BEeqPto0S", documents));
+		
+//		y.deleteSectionDocument("SyQPxIYetzpAhOgK_Vc7jXD3BEeqPto0S", "55875794");
+//		y.postSectionDocument("SyQPxIYetzpAhOgK_Vc7jXD3BEeqPto0S", documents);
 	}
 
 }

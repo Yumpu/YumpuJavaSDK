@@ -12,7 +12,7 @@ public class Member {
 
 	public static void main(String[] args) throws IOException, JSONException,
 			NoSuchAlgorithmException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = {"id=X6Q1dLOzYf4Tgnb5", "username=newusername"};
 		JSONObject json = new JSONObject(y.putMember(body));
 		
@@ -22,6 +22,7 @@ public class Member {
 //		y.getMember("KUQDYspj5ZO42cw8", params, returnFields);
 //		y.postMember("quallesd", "my.pwd", body);
 //		y.putMember("ZSseFDtlUdAvh016", "cooleruser");
+//		y.deleteMember("X6Q1dLOzYf4Tgnb5");
 	}
 
 }

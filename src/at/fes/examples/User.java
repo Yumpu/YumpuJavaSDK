@@ -10,7 +10,7 @@ import at.fes.service.Yumpu;
 public class User {
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = {"gender=male", "firstname=brutasadl"};
 		JSONObject json = new JSONObject(y.putUser(body));
 

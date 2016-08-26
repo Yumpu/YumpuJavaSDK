@@ -17,11 +17,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RequestMethods {
-	private Config config = new Config();
+	private Config config;
 	public int responseCode;
 	private String method = "GET";
 
-	public JSONObject getRequest(String url) throws ClientProtocolException, IOException, JSONException {
+	public JSONObject getRequest(Config config, String url) throws ClientProtocolException, IOException, JSONException {
+		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(url);
 
@@ -33,7 +34,8 @@ public class RequestMethods {
 		return myObject;
 	}
 	
-	public JSONObject deleteRequest(String url) throws ClientProtocolException, IOException, JSONException {
+	public JSONObject deleteRequest(Config config, String url) throws ClientProtocolException, IOException, JSONException {
+		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpDelete request = new HttpDelete(url);
 
@@ -45,7 +47,8 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	public JSONObject postRequest(String url, JSONObject json) throws JSONException, ParseException, IOException {
+	public JSONObject postRequest(Config config, String url, JSONObject json) throws JSONException, ParseException, IOException {
+		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 
@@ -61,8 +64,9 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	public JSONObject putRequest(String url, JSONObject json)
+	public JSONObject putRequest(Config config, String url, JSONObject json)
 			throws ClientProtocolException, IOException, JSONException {
+		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPut request = new HttpPut(url);
 		

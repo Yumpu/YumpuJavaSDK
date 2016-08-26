@@ -10,13 +10,14 @@ import at.fes.service.Yumpu;
 public class DocumentHotspot {
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu();
-		String[] params = {};
-		String returnFields[] = { "id" };
-		JSONObject json = new JSONObject(y.getDocumentHotspot("35936979C40pnPVD", params, returnFields));
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");	
+		JSONObject json = new JSONObject(y.deleteDocumentHotspot("35936979C40pnPVD"));
 		
+//		String[] params = {};
+//		String returnFields[] = { "id" };
 //		y.postDocumentHotspot();
 //		y.putDocumentHotspot();		
+//		y.deleteDocumentHotspot("35936979C40pnPVD");
 	}
 
 }

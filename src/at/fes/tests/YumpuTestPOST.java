@@ -14,7 +14,7 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostDocumentUrl() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = {
 				"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
 				"title=Diplomarbeit asdvon Stefan" };
@@ -24,14 +24,14 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostCollection() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		y.postCollection("holidays");
 		assertTrue(y.responseCode == 200);
 	}
 
 	@Test
 	public void testPostSection() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = { "id=SyQPxIYetzpAhOgK", "name=section",
 				"description=aösldaöjd" };
 		y.postSection(body);
@@ -40,7 +40,7 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostSectionDocument() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String documents = "55875793";
 		y.postSectionDocument("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", documents);
 		assertTrue(y.responseCode == 200);
@@ -48,7 +48,7 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostUser() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = { "email=idz06322@zasod.com", "username=basdcsadl",
 				"password=1qsadwe", "gender=male", "firstname=stef" };
 		y.postUser(body);
@@ -57,7 +57,7 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostEmbed() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = { "document_id=55875854", "type=1", "start_page=2",
 				"width=619" };
 		y.postEmbed(body);
@@ -67,7 +67,7 @@ public class YumpuTestPOST {
 	@Test
 	public void testPostMember() throws IOException, JSONException,
 			NoSuchAlgorithmException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = { "comment=prataö" };
 		y.postMember("uberwasser", "my.pwd", body);
 		assertTrue(y.responseCode == 200);
@@ -75,7 +75,7 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostAccessTag() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = { "name=uberwasser", "description=hallolo", "default=y" };
 		y.postAccessTag(body);
 		assertTrue(y.responseCode == 200);
@@ -83,7 +83,7 @@ public class YumpuTestPOST {
 
 	@Test
 	public void testPostSubscription() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] body = { "itc_product_id=uberwasser", "name=uberwaser",
 				"duration=62", "description=213123" };
 		y.postSubscription(body);

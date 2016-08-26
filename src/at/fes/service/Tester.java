@@ -94,7 +94,7 @@ public class Tester {
 
 	private void optionsPost(JSONObject json, String url) throws IOException,
 			JSONException, MalformedURLException, ProtocolException {
-		JSONObject jo = rm.postRequest(url, json);
+		JSONObject jo = rm.postRequest(config, url, json);
 		responseCode = rm.responseCode;
 		prettyJSON(jo);
 	}

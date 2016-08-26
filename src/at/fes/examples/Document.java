@@ -10,7 +10,7 @@ import at.fes.service.Yumpu;
 public class Document {
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "url" };
 		JSONObject json = new JSONObject(y.getDocument("55875934", params, returnFields));

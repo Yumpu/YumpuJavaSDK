@@ -13,7 +13,7 @@ public class YumpuTestDELETE {
 
 	@Test
 	public void test() throws IOException, JSONException {
-		Yumpu y = new Yumpu();
+		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		y.deleteDocument("10669");
 		assertTrue(y.responseCode == 200);
 	}
