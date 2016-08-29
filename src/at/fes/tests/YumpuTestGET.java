@@ -135,7 +135,7 @@ public class YumpuTestGET {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "id" };
-		y.getEmbed("rU3W05fqP9kZGnYw", params, returnFields);
+		y.getEmbed("WJ14dzHVSZjAyDYu", params, returnFields);
 		assertTrue(y.responseCode == 200);
 	}
 	
