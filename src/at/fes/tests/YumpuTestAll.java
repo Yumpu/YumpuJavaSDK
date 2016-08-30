@@ -20,6 +20,7 @@ public class YumpuTestAll {
 	private String progress_id, progress_state, document_id, hotspot_id,
 			collection_id, section_id, embed_id, member_id, access_tag_id, subscription_id;
 	JSONObject control = new JSONObject();
+	private int successful, fail;
 
 	public static void main(String[] args) throws IOException, JSONException,
 			InterruptedException {
@@ -29,14 +30,14 @@ public class YumpuTestAll {
 
 	 public void getCountries() throws IOException, JSONException {
 	 y.getCountries();
-	 System.out.println("get Countries response Code: " + y.responseCode);
+	 System.out.println("get Countries " + checkStatus(y.responseCode) + " " + y.responseCode);
 	 control.put("getCountries", y.responseCode);
 	 getCategories();
 	 }
 	
 	 public void getCategories() throws IOException, JSONException {
 	 y.getCategories();
-	 System.out.println("get Categories response Code: " + y.responseCode);
+	 System.out.println("get Categories " + checkStatus(y.responseCode) + " " + y.responseCode);
 	 control.put("getCategories", y.responseCode);
 	 getLanguages();
 	 }
@@ -44,7 +45,7 @@ public class YumpuTestAll {
 	 public void getLanguages() throws IOException, JSONException {
 	 y.getLanguages();
 	 try {
-		System.out.println("get Languages response Code: " + y.responseCode);
+		System.out.println("get Languages " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getLanguages", y.responseCode);
 		postDocumentURL();
 		} catch (InterruptedException e) {
@@ -61,7 +62,7 @@ public class YumpuTestAll {
 		String res = y.postDocumentUrl(body).toString();
 		JSONObject j = new JSONObject(res);
 		progress_id = j.getString("progress_id");
-		System.out.println("post document URL response Code: " + y.responseCode);
+		System.out.println("post document URL " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postDocumentURL", y.responseCode);
 		getDocumentProgress();
 	}
@@ -73,7 +74,6 @@ public class YumpuTestAll {
 		String res = y.getDocumentProgress(
 				progress_id, params,
 				returnFields).toString();
-		System.out.println("get Document Progress response Code: " + y.responseCode);
 		control.put("getDocumentProgress", y.responseCode);
 		JSONObject j = new JSONObject(res);
 		try {
@@ -83,11 +83,13 @@ public class YumpuTestAll {
 			System.out.println(progress_state);
 		} catch (Exception e) {
 			progress_state = "done";
+			System.out.println("rendering_done");
 		}
 		if (progress_state.equals("rendering_in_progress")) {
 			TimeUnit.SECONDS.sleep(5);
 			getDocumentProgress();
 		} else {
+			System.out.println("get Document Progress " + checkStatus(y.responseCode) + " " + y.responseCode);
 			String doc = (String) j.get("document").toString();
 			JSONArray jarr = new JSONArray(doc);
 			for (int i = 0; i < jarr.length(); ++i) {
@@ -102,7 +104,7 @@ public class YumpuTestAll {
 		String[] params = { "limit=1" };
 		String[] returnFields = {};
 		y.getDocuments(params, returnFields);
-		System.out.println("get Documents response Code: " + y.responseCode);
+		System.out.println("get Documents " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getDocuments", y.responseCode);
 		getDocument();
 	}
@@ -111,7 +113,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String returnFields[] = { "url" };
 		y.getDocument(document_id, params, returnFields);
-		System.out.println("get Document response Code: " + y.responseCode);
+		System.out.println("get Document " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getDocument", y.responseCode);
 		putDocument();
 	}
@@ -119,7 +121,7 @@ public class YumpuTestAll {
 	private void putDocument() throws IOException, JSONException {
 		String[] body = { "id=" + document_id, "title=newer title" };
 		y.putDocument(body);
-		System.out.println("put Document response Code: " + y.responseCode);
+		System.out.println("put Document " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putDocument", y.responseCode);
 		getDocumentHotspots();
 	}
@@ -134,7 +136,7 @@ public class YumpuTestAll {
 		JSONArray jarr = new JSONArray(hotspots);
 		JSONObject rec = jarr.getJSONObject(0);
 		hotspot_id = rec.getString("id");
-		System.out.println("get Document hotpsots response Code: "
+		System.out.println("get Document hotpsots " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocumentHotspots", y.responseCode);
 		getDocumentHotspot();
@@ -144,7 +146,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String returnFields[] = {};
 		y.getDocumentHotspot(hotspot_id, params, returnFields);
-		System.out.println("get Document hotpsot response Code: "
+		System.out.println("get Document hotpsot " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocumentHotspot", y.responseCode);
 		// y.post/putHotspot
@@ -158,7 +160,7 @@ public class YumpuTestAll {
 		JSONArray jarr = new JSONArray(collection);
 		JSONObject rec = jarr.getJSONObject(0);
 		collection_id = rec.getString("id");
-		System.out.println("post Collection response Code: " + y.responseCode);
+		System.out.println("post Collection " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postCollection", y.responseCode);
 		getCollections();
 	}
@@ -167,7 +169,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String returnFields[] = {};
 		JSONObject json = new JSONObject(y.getCollections(params, returnFields));
-		System.out.println("get Collections response Code: " + y.responseCode);
+		System.out.println("get Collections " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getCollections", y.responseCode);
 		getCollection();
 	}
@@ -176,14 +178,14 @@ public class YumpuTestAll {
 		String[] params = {};
 		String returnFields[] = {};
 		y.getCollection(collection_id, params, returnFields);
-		System.out.println("get Collection response Code: " + y.responseCode);
+		System.out.println("get Collection " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getCollection", y.responseCode);
 		putCollection();
 	}
 
 	private void putCollection() throws IOException, JSONException {
 		y.putCollection(collection_id, "neydaswer");
-		System.out.println("put Collection response Code: " + y.responseCode);
+		System.out.println("put Collection " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putCollection", y.responseCode);
 		postSection();
 	}
@@ -197,7 +199,7 @@ public class YumpuTestAll {
 		JSONArray jarr = new JSONArray(section);
 		JSONObject rec = jarr.getJSONObject(0);
 		section_id = collection_id + "_" + rec.getString("id");
-		System.out.println("post Section response Code: " + y.responseCode);
+		System.out.println("post Section " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postSection", y.responseCode);
 		getSection();
 	}
@@ -206,7 +208,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String returnFields[] = {};
 		y.getSection(section_id, params, returnFields);
-		System.out.println("get Section response Code: " + y.responseCode);
+		System.out.println("get Section " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getSection", y.responseCode);
 		putSection();
 	}
@@ -215,14 +217,14 @@ public class YumpuTestAll {
 		String[] body = { "id=" + section_id,
 				"name=sasdfd", "description=aösldasdöjd" };
 		y.putSection(body);
-		System.out.println("post Section response Code: " + y.responseCode);
+		System.out.println("post Section " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putSection", y.responseCode);
 		postSectionDocument();
 	}
 
 	private void postSectionDocument() throws IOException, JSONException {
 		y.postSectionDocument(section_id, document_id);
-		System.out.println("post Section document response Code: "
+		System.out.println("post Section document " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("postSectionDocument", y.responseCode);
 		search();
@@ -230,7 +232,7 @@ public class YumpuTestAll {
 
 	private void search() throws IOException, JSONException {
 		y.search("q=sports&in=title,description&views=1000-5000&language=en");
-		System.out.println("search response Code: " + y.responseCode);
+		System.out.println("search " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("search", y.responseCode);
 		putUser();
 	}
@@ -239,7 +241,7 @@ public class YumpuTestAll {
 		String[] body = { "gender=male", "firstname=Stefan",
 				"lastname=nachname", "address=dahuam 10" };
 		y.putUser(body);
-		System.out.println("post User response Code: " + y.responseCode);
+		System.out.println("post User " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putUser", y.responseCode);
 		getUser();
 	}
@@ -248,7 +250,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getUser(params, returnFields);
-		System.out.println("get User response Code: " + y.responseCode);
+		System.out.println("get User " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getUser", y.responseCode);
 		postEmbed();
 	}
@@ -260,7 +262,7 @@ public class YumpuTestAll {
 		String embed = (String) j.get("embed").toString();
 		JSONObject rec = new JSONObject(embed);
 		embed_id = rec.getString("id");
-		System.out.println("post Embed response Code: " + y.responseCode);
+		System.out.println("post Embed " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postEmbed", y.responseCode);
 		getEmbeds();
 	}
@@ -269,7 +271,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String returnFields[] = {};
 		y.getEmbeds(params, returnFields);
-		System.out.println("get Embeds response Code: " + y.responseCode);
+		System.out.println("get Embeds " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getEmbeds", y.responseCode);
 		getEmbed();
 	}
@@ -278,7 +280,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getEmbed(embed_id, params, returnFields);
-		System.out.println("get Embed response Code: " + y.responseCode);
+		System.out.println("get Embed " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getEmbed", y.responseCode);
 		postMember();
 	}
@@ -294,7 +296,7 @@ public class YumpuTestAll {
 			String member = (String) j.get("member").toString();
 			JSONObject rec = new JSONObject(member);
 			member_id = rec.getString("id");
-			System.out.println("post Member response Code: " + y.responseCode);
+			System.out.println("post Member " + checkStatus(y.responseCode) + " " + y.responseCode);
 			control.put("postMember", y.responseCode);
 			getMembers();
 		} catch (NoSuchAlgorithmException e) {
@@ -313,7 +315,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getMembers(params, returnFields);
-		System.out.println("get Members response Code: " + y.responseCode);
+		System.out.println("get Members " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getMembers", y.responseCode);
 		getMember();
 	}
@@ -322,7 +324,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getMember(member_id, params, returnFields);
-		System.out.println("get Member response Code: " + y.responseCode);
+		System.out.println("get Member " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getMember", y.responseCode);
 		putMember();
 	}
@@ -333,7 +335,7 @@ public class YumpuTestAll {
 		String memName = "member" + sdf.format(cal.getTime());
 		String[] body = { "id=" + member_id, "username=new" + memName };
 		y.putMember(body);
-		System.out.println("put Member response Code: " + y.responseCode);
+		System.out.println("put Member " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putMember", y.responseCode);
 		postAccessTag();
 	}
@@ -350,7 +352,7 @@ public class YumpuTestAll {
 		String accTag = (String) j.get("access_tag").toString();
 		JSONObject rec = new JSONObject(accTag);
 		access_tag_id = rec.getString("id");
-		System.out.println("post AccessTag response Code: " + y.responseCode);
+		System.out.println("post AccessTag " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postAccessTag", y.responseCode);
 		getAccessTags();
 	}
@@ -359,7 +361,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getAccessTags(params, returnFields);
-		System.out.println("get AccessTags response Code: " + y.responseCode);
+		System.out.println("get AccessTags " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getAccessTags", y.responseCode);
 		getAccessTag();
 	}
@@ -368,7 +370,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getAccessTag(access_tag_id, params, returnFields);
-		System.out.println("get AccessTag response Code: " + y.responseCode);
+		System.out.println("get AccessTag " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getAccessTag", y.responseCode);
 		putAccessTag();
 	}
@@ -379,7 +381,7 @@ public class YumpuTestAll {
 		String accTagName = "newAcT" + sdf.format(cal.getTime());
 		String[] body = { "id=" + access_tag_id, "name=" + accTagName };
 		y.putAccessTag(body);
-		System.out.println("put AccessTag response Code: " + y.responseCode);
+		System.out.println("put AccessTag " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putAccessTag", y.responseCode);
 		postSubscription();
 	}
@@ -395,7 +397,7 @@ public class YumpuTestAll {
 		String sub = (String) j.get("subscription").toString();
 		JSONObject rec = new JSONObject(sub);
 		subscription_id = rec.getString("id");
-		System.out.println("post Subscription response Code: " + y.responseCode);
+		System.out.println("post Subscription " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postSubscription", y.responseCode);
 		getSubscriptions();
 	}
@@ -404,7 +406,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getSubscriptions(params, returnFields);
-		System.out.println("get Subscriptions response Code: " + y.responseCode);
+		System.out.println("get Subscriptions " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getSubscriptions", y.responseCode);
 		getSubscription();
 	}
@@ -413,7 +415,7 @@ public class YumpuTestAll {
 		String[] params = {};
 		String[] returnFields = {};
 		y.getSubscription(subscription_id, params, returnFields);
-		System.out.println("get Subscription response Code: " + y.responseCode);
+		System.out.println("get Subscription " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getSubscription", y.responseCode);
 		putSubscription();
 	}
@@ -424,15 +426,88 @@ public class YumpuTestAll {
 		String subName = "newsub" + sdf.format(cal.getTime());
 		String[] body = {"id=" + subscription_id,"itc_product_id=" + subName, "name=" + subName, "duration=62"};
 		y.putSubscription(body);
-		System.out.println("put Subscription response Code: " + y.responseCode);
+		System.out.println("put Subscription " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putSubscription", y.responseCode);
+		deleteDocumentHotspot();
+	}
+
+	private void deleteDocumentHotspot() throws IOException, JSONException {
+		y.deleteDocumentHotspot(hotspot_id);
+		System.out.println("delete Document Hotpsot " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteDocumentHotspot", y.responseCode);
+		deleteSectionDocument();
+	}
+
+	private void deleteSectionDocument() throws IOException, JSONException {
+		y.deleteSectionDocument(section_id, document_id);
+		System.out.println("delete Section Document " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteSectionDocument", y.responseCode);
+		deleteSection();
+	}
+
+	private void deleteSection() throws IOException, JSONException {
+		y.deleteSection(section_id);
+		System.out.println("delete Section " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteSection", y.responseCode);
+		deleteCollection();
+	}
+	
+	private void deleteCollection() throws IOException, JSONException {
+		y.deleteCollection(collection_id);
+		System.out.println("delete Collection " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteCollection", y.responseCode);
+		deleteEmbed();
+	}
+
+	private void deleteEmbed() throws IOException, JSONException {
+		y.deleteEmbed(embed_id);
+		System.out.println("delete Embed " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteEmbed", y.responseCode);
+		deleteMember();
+	}
+	
+	private void deleteMember() throws IOException, JSONException {
+		y.deleteMember(member_id);
+		System.out.println("delete Member " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteMember", y.responseCode);
+		deleteAccessTag();
+	}
+
+	private void deleteAccessTag() throws IOException, JSONException {
+		y.deleteAccessTag(access_tag_id);
+		System.out.println("delete Access Tag " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteAccessTag", y.responseCode);
+		deleteSubscription();
+	}
+
+	private void deleteSubscription() throws IOException, JSONException {
+		y.deleteSubscription(subscription_id);
+		System.out.println("delete Subscription " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteSubscription", y.responseCode);
+		deleteDocument();
+	}
+
+	private void deleteDocument() throws IOException, JSONException{
+		y.deleteDocument(document_id);
+		System.out.println("delete Document " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("deleteDocument", y.responseCode);
 		postJSON();
+	}
+	
+	private String checkStatus(int responseCode){
+		if(responseCode > 202) {
+			fail++;
+			if (responseCode == 401)
+				System.out.println("you must be a premium user to use this feature");
+			return "fail";
+		}
+		else {
+			successful++;
+			return "successful";
+		}
 	}
 
 	private void postJSON() throws JSONException {
-		System.out.println(control);
-		if(control.has("fail")){
-			System.out.println("hi");
-		}
+		System.out.println(control.length() + " tests done - " + successful + " successful and " + fail + " failed");
 	}
 }

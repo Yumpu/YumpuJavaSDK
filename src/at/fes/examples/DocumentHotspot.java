@@ -11,7 +11,7 @@ public class DocumentHotspot {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");	
-		JSONObject json = new JSONObject(y.deleteDocumentHotspot("35936979C40pnPVD"));
+		JSONObject json = new JSONObject(y.postDocumentHotspot());
 		
 //		String[] params = {};
 //		String returnFields[] = { "id" };

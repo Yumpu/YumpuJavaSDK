@@ -23,6 +23,29 @@ public class RequestMethods {
 	private Config config;
 	public int responseCode;
 	private String method = "GET";
+	
+	@NotThreadSafe
+	class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
+		public static final String METHOD_NAME = "DELETE";
+
+		public String getMethod() {
+			return METHOD_NAME;
+		}
+
+		public HttpDeleteWithBody(final String uri) {
+			super();
+			setURI(URI.create(uri));
+		}
+
+		public HttpDeleteWithBody(final URI uri) {
+			super();
+			setURI(uri);
+		}
+
+		public HttpDeleteWithBody() {
+			super();
+		}
+	}
 
 	public JSONObject getRequest(Config config, String url)
 			throws ClientProtocolException, IOException, JSONException {
@@ -38,13 +61,18 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	public JSONObject deleteRequest(Config config, String url)
+	public JSONObject deleteRequest(Config config, String url, String id)
 			throws ClientProtocolException, IOException, JSONException {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
-		HttpDelete request = new HttpDelete(url);
+		HttpDeleteWithBody request = new HttpDeleteWithBody(url);
 
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("devtoken"));
+		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		
+		StringEntity inputId = new StringEntity("id=" + id);  
+
+        request.setEntity(inputId); 
+        
 		HttpResponse response = client.execute(request);
 
 		JSONObject myObject = sendResponse(response);
@@ -78,7 +106,7 @@ public class RequestMethods {
 
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
 		request.addHeader("Content-Type", "application/json");
-
+		
 		StringEntity params = new StringEntity(json.toString());
 		request.setEntity(params);
 
@@ -94,28 +122,5 @@ public class RequestMethods {
 		JSONObject myObject = new JSONObject(jsonString);
 		responseCode = response.getStatusLine().getStatusCode();
 		return myObject;
-	}
-
-	@NotThreadSafe
-	class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
-		public static final String METHOD_NAME = "DELETE";
-
-		public String getMethod() {
-			return METHOD_NAME;
-		}
-
-		public HttpDeleteWithBody(final String uri) {
-			super();
-			setURI(URI.create(uri));
-		}
-
-		public HttpDeleteWithBody(final URI uri) {
-			super();
-			setURI(uri);
-		}
-
-		public HttpDeleteWithBody() {
-			super();
-		}
 	}
 }
