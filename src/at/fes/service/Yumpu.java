@@ -20,12 +20,12 @@ public class Yumpu {
 	private RequestMethods rm = new RequestMethods();
 	public int responseCode;
 	public String documents = null;
-	
+
 	public Yumpu(String token) {
 		Config config = new Config(token);
 		this.config = config;
 	}
-	
+
 	public Yumpu() throws IOException {
 		log("Yumpu Class initialized");
 	}
@@ -37,20 +37,28 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject getDocument(String id, String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getDocument(String id, String[] params,
+			String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
 		url = addParams(true, url, params, returnFields);
 		return optionsGet(url);
 	}
 
-	public JSONObject postDocumentUrl(String[] body)
-			throws IOException, JSONException {
+	public JSONObject postDocumentUrl(String[] body) throws IOException,
+			JSONException {
 		JSONObject json = new JSONObject();
 		createBody(body, json);
 		String url = config.yumpuEndpoints.get("document/post/url");
 
 		return optionsPost(json, url);
+	}
+
+	public JSONObject postDocumentFile() throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("document/post/file");
+		JSONObject json = rm.postFileRequest(config, url);
+		prettyJSON(json);
+		return json;
 	}
 
 	public JSONObject putDocument(String[] body) throws IOException,
@@ -62,9 +70,10 @@ public class Yumpu {
 		return optionsPut(url, json);
 	}
 
-	public JSONObject deleteDocument(String id) throws IOException, JSONException {
+	public JSONObject deleteDocument(String id) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("document/delete");
-		
+
 		return optionsDelete(url, id);
 	}
 
@@ -124,8 +133,9 @@ public class Yumpu {
 		//
 		// optionsPost(json, url);
 	}
-	
-	public JSONObject deleteDocumentHotspot(String id) throws IOException, JSONException {
+
+	public JSONObject deleteDocumentHotspot(String id) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/delete");
 
 		return optionsDelete(url, id);
@@ -165,15 +175,16 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject getCollection(String id, String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getCollection(String id, String[] params,
+			String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("collection/get") + "?id=" + id;
 		url = addParams(true, url, params, returnFields);
 
 		return optionsGet(url);
 	}
 
-	public JSONObject postCollection(String name) throws IOException, JSONException {
+	public JSONObject postCollection(String name) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
 		JSONObject json = new JSONObject();
 		json.put("name", name);
@@ -189,15 +200,16 @@ public class Yumpu {
 		json.put("name", name);
 		return optionsPut(url, json);
 	}
-	
-	public JSONObject deleteCollection(String id) throws IOException, JSONException {
+
+	public JSONObject deleteCollection(String id) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("collection/delete");
 
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getSection(String id, String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getSection(String id, String[] params,
+			String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("section/get") + "?id=" + id;
 		url = addParams(true, url, params, returnFields);
 
@@ -221,13 +233,14 @@ public class Yumpu {
 
 		return optionsPut(url, json);
 	}
-	
-	public JSONObject deleteSection(String id) throws IOException, JSONException {
+
+	public JSONObject deleteSection(String id) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("section/delete");
 
 		return optionsDelete(url, id);
 	}
-	
+
 	public JSONObject postSectionDocument(String id, String documents)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("sectionDocument/post");
@@ -237,8 +250,9 @@ public class Yumpu {
 
 		return optionsPost(json, url);
 	}
-	
-	public JSONObject deleteSectionDocument(String id, String documents) throws IOException, JSONException {
+
+	public JSONObject deleteSectionDocument(String id, String documents)
+			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("sectionDocument/delete");
 		String input = id + "&documents=" + documents;
 		return optionsDelete(url, input);
@@ -257,8 +271,7 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postUser(String[] body)
-			throws IOException, JSONException {
+	public JSONObject postUser(String[] body) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("user/post");
 		JSONObject json = new JSONObject();
 		createBody(body, json);
@@ -266,8 +279,7 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putUser(String[] body)
-			throws IOException, JSONException {
+	public JSONObject putUser(String[] body) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("user/put");
 		JSONObject json = new JSONObject();
 		createBody(body, json);
@@ -283,8 +295,8 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject getEmbed(String id, String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getEmbed(String id, String[] params,
+			String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/get") + "?id=" + id;
 		url = addParams(true, url, params, returnFields);
 		return optionsGet(url);
@@ -309,7 +321,7 @@ public class Yumpu {
 
 		return optionsPut(url, json);
 	}
-	
+
 	public JSONObject deleteEmbed(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/delete");
 
@@ -323,8 +335,8 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject getMember(String id, String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getMember(String id, String[] params,
+			String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("member/get") + "?id=" + id;
 
 		url = addParams(true, url, params, returnFields);
@@ -353,7 +365,7 @@ public class Yumpu {
 
 		return optionsPut(url, json);
 	}
-	
+
 	public JSONObject deleteMember(String id) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("member/delete");
 
@@ -367,16 +379,16 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject getAccessTag(String id, String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getAccessTag(String id, String[] params,
+			String returnFields[]) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/get") + "?id=" + id;
 
 		url = addParams(true, url, params, returnFields);
 		return optionsGet(url);
 	}
 
-	public JSONObject postAccessTag(String[] body)
-			throws IOException, JSONException {
+	public JSONObject postAccessTag(String[] body) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/post");
 		JSONObject json = new JSONObject();
 		createBody(body, json);
@@ -392,8 +404,9 @@ public class Yumpu {
 
 		return optionsPut(url, json);
 	}
-	
-	public JSONObject deleteAccessTag(String id) throws IOException, JSONException {
+
+	public JSONObject deleteAccessTag(String id) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/delete");
 
 		return optionsDelete(url, id);
@@ -415,7 +428,8 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postSubscription(String[] body) throws IOException, JSONException {
+	public JSONObject postSubscription(String[] body) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("subscription/post");
 		JSONObject json = new JSONObject();
 		createBody(body, json);
@@ -423,22 +437,24 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putSubscription(String[] body) throws IOException, JSONException {
+	public JSONObject putSubscription(String[] body) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("subscription/put");
 		JSONObject json = new JSONObject();
 		createBody(body, json);
 
 		return optionsPut(url, json);
 	}
-	
-	public JSONObject deleteSubscription(String id) throws IOException, JSONException {
+
+	public JSONObject deleteSubscription(String id) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("subscription/delete");
 
 		return optionsDelete(url, id);
 	}
 
-	private JSONObject optionsGet(String url) throws IOException, JSONException,
-			MalformedURLException, ProtocolException {
+	private JSONObject optionsGet(String url) throws IOException,
+			JSONException, MalformedURLException, ProtocolException {
 		log("getDocument from " + url);
 		JSONObject jo = rm.getRequest(config, url);
 		responseCode = rm.responseCode;
@@ -446,7 +462,8 @@ public class Yumpu {
 		return jo;
 	}
 
-	private JSONObject optionsDelete(String url, String id) throws IOException, JSONException {
+	private JSONObject optionsDelete(String url, String id) throws IOException,
+			JSONException {
 		log("deleteDocument from " + url);
 		JSONObject jo = rm.deleteRequest(config, url, id);
 		responseCode = rm.responseCode;
@@ -454,8 +471,9 @@ public class Yumpu {
 		return null;
 	}
 
-	private JSONObject optionsPost(JSONObject json, String url) throws IOException,
-			JSONException, MalformedURLException, ProtocolException {
+	private JSONObject optionsPost(JSONObject json, String url)
+			throws IOException, JSONException, MalformedURLException,
+			ProtocolException {
 		log("postDocuments to " + url);
 		JSONObject jo = rm.postRequest(config, url, json);
 		responseCode = rm.responseCode;
@@ -463,8 +481,9 @@ public class Yumpu {
 		return jo;
 	}
 
-	private JSONObject optionsPut(String url, JSONObject json) throws IOException,
-			JSONException, MalformedURLException, ProtocolException {
+	private JSONObject optionsPut(String url, JSONObject json)
+			throws IOException, JSONException, MalformedURLException,
+			ProtocolException {
 		log("putDocuments to " + url);
 		JSONObject jo = rm.putRequest(config, url, json);
 		responseCode = rm.responseCode;
@@ -476,7 +495,7 @@ public class Yumpu {
 			IOException, ProtocolException, JSONException {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
-//		System.out.println(prettyJson);
+		System.out.println(prettyJson);
 		return prettyJson;
 	}
 

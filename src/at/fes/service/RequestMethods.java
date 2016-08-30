@@ -1,8 +1,14 @@
 package at.fes.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.multipart.FilePart;
+import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
+import org.apache.commons.httpclient.methods.multipart.Part;
+import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.annotation.NotThreadSafe;
@@ -23,7 +29,7 @@ public class RequestMethods {
 	private Config config;
 	public int responseCode;
 	private String method = "GET";
-	
+
 	@NotThreadSafe
 	class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 		public static final String METHOD_NAME = "DELETE";
@@ -68,11 +74,11 @@ public class RequestMethods {
 		HttpDeleteWithBody request = new HttpDeleteWithBody(url);
 
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
-		
-		StringEntity inputId = new StringEntity("id=" + id);  
 
-        request.setEntity(inputId); 
-        
+		StringEntity inputId = new StringEntity("id=" + id);
+
+		request.setEntity(inputId);
+
 		HttpResponse response = client.execute(request);
 
 		JSONObject myObject = sendResponse(response);
@@ -98,6 +104,28 @@ public class RequestMethods {
 		return myObject;
 	}
 
+	public JSONObject postFileRequest(Config config, String url) throws JSONException,
+			ParseException, IOException {
+		org.apache.commons.httpclient.HttpClient client = new org.apache.commons.httpclient.HttpClient();
+		PostMethod request = new PostMethod(url);
+
+		request.setRequestHeader("X-ACCESS-TOKEN", config.config.get("token"));
+
+		File targetFile = new File(
+				"C:\\Users\\stefan.feurstein\\Downloads\\DA.pdf");
+		Part[] parts = { new FilePart("file", targetFile),
+				new StringPart("title", "vom Dornbirnwe Markt") };
+
+		request.setRequestEntity(new MultipartRequestEntity(parts, request
+				.getParams()));
+
+		responseCode = client.executeMethod(request);
+		String response = request.getResponseBodyAsString();
+		JSONObject myObject = new JSONObject(response);
+
+		return myObject;
+	}
+
 	public JSONObject putRequest(Config config, String url, JSONObject json)
 			throws ClientProtocolException, IOException, JSONException {
 		this.config = config;
@@ -106,7 +134,7 @@ public class RequestMethods {
 
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
 		request.addHeader("Content-Type", "application/json");
-		
+
 		StringEntity params = new StringEntity(json.toString());
 		request.setEntity(params);
 

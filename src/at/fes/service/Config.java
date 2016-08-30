@@ -33,6 +33,7 @@ public class Config {
 		yumpuEndpoints.put("documents/get" , String.valueOf(config.get("endpointDomain") + "documents.json"));
 		yumpuEndpoints.put("document/get" , String.valueOf(config.get("endpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/post/url" , String.valueOf(config.get("endpointDomain") + "document/url.json"));
+		yumpuEndpoints.put("document/post/file" , String.valueOf(config.get("endpointDomain") + "document/file.json"));
 		yumpuEndpoints.put("document/delete" , String.valueOf(config.get("endpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/put" , String.valueOf(config.get("endpointDomain") + "document.json"));
 		yumpuEndpoints.put("document/hotspots" , String.valueOf(config.get("endpointDomain") + "document/hotspots.json"));

@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="C:/Users/stefan.feurstein/Downloads/commons-logging-1.2-bin/commons-logging-1.2/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/stefan.feurstein/Downloads/httpclient-osgi-4.3.jar/httpclient-osgi-4.3.jar"/>
 	<classpathentry kind="lib" path="C:/Users/stefan.feurstein/Downloads/gson-2.2.2.jar/gson-2.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/stefan.feurstein/Downloads/commons-httpclient-3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

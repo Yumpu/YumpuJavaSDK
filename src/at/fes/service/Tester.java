@@ -1,120 +1,66 @@
 package at.fes.service;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URI;
-import java.util.Arrays;
+import java.io.BufferedReader;
 
-import org.apache.http.Header;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.annotation.NotThreadSafe;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
-import org.apache.http.entity.ContentType;
+import org.apache.http.ParseException;
+import org.apache.commons.httpclient.HttpClient; 
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import org.apache.commons.httpclient.methods.multipart.Part; 
+import org.apache.commons.httpclient.methods.multipart.FilePart; 
+import org.apache.commons.httpclient.methods.multipart.StringPart;
+import org.apache.commons.httpclient.methods.PostMethod;
 
 public class Tester {
-	private Config config = new Config();
-	public int responseCode;
-	private String method = "GET";
-	private RequestMethods rm = new RequestMethods();
+	private String boundary;
+	private static final String LINE_FEED = "\r\n";
+	private HttpURLConnection httpConn;
+	private String charset;
+	private OutputStream outputStream;
+	private PrintWriter writer;
 
-	public static void main(String[] args) throws IOException, JSONException {
+	public static void main(String[] args) throws IOException, ParseException, JSONException {
 		Tester t = new Tester();
-		t.deleteDocument("55886810");
+		t.postRequest("http://api.yumpu.com/2.0/document/file.json");
 	}
 
-	public JSONObject deleteDocument(String id) throws IOException,
-			JSONException {
-		String url = "http://api.yumpu.com/2.0/document.json";
+	public JSONObject postRequest(String url)
+			throws JSONException, ParseException, IOException {
+		HttpClient client = new HttpClient(); 
+		PostMethod request = new PostMethod(url);
+		
+		request.setRequestHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+		
+		File targetFile = new File("C:\\Users\\stefan.feurstein\\Downloads\\DA.pdf");
+		Part[] parts = { new FilePart("file", targetFile), new StringPart("title", "es geht bei stefan") };
+		
+		request.setRequestEntity(new MultipartRequestEntity(parts, request.getParams()));
 
-		return optionsDelete(url);
-	}
+		client.executeMethod(request); 
+		String response = request.getResponseBodyAsString();
+		JSONObject myObject = new JSONObject(response);
+		int responseCode = client.executeMethod(request);
 
-	public JSONObject deleteRequest(Config config, String url)
-			throws ClientProtocolException, IOException, JSONException {
-		this.config = config;
-
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        
-        url = "http://api.yumpu.com/2.0/document.json";
- 
-        HttpDeleteWithBody httpDelete = new HttpDeleteWithBody(url);
-        httpDelete.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-        StringEntity input = new StringEntity("id=55886158");
-         
-        httpDelete.setEntity(input);  
- 
-        System.out.println("****REQUEST***************************************");
-        System.out.println(url);
-        Header requestHeaders[] = httpDelete.getAllHeaders();
-        for (Header h : requestHeaders) {
-            System.out.println(h.getName() + ": " + h.getValue());
-        }
- 
-        CloseableHttpResponse response = httpclient.execute(httpDelete);
- 
-        System.out.println("****RESPONSE***************************************");
-        System.out.println("----status:---------------------");
-        System.out.println(response.getStatusLine());
-        System.out.println("----header:---------------------");
-        Header responseHeaders[] = response.getAllHeaders();
-        for (Header h : responseHeaders) {
-            System.out.println(h.getName() + ": " + h.getValue());
-        }
-        System.out.println("----content:---------------------");
-        System.out.println(EntityUtils.toString(response.getEntity()));
-		JSONObject myObject = null;
 		return myObject;
-	}
-
-	private JSONObject sendResponse(HttpResponse response) throws IOException,
-			JSONException {
-		String jsonString = EntityUtils.toString(response.getEntity());
-		JSONObject myObject = new JSONObject(jsonString);
-		responseCode = response.getStatusLine().getStatusCode();
-		return myObject;
-	}
-
-	private JSONObject optionsDelete(String url) throws IOException,
-			JSONException {
-		JSONObject jo = deleteRequest(config, url);
-		return jo;
-	}
-
-	@NotThreadSafe
-	class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
-		public static final String METHOD_NAME = "DELETE";
-
-		public String getMethod() {
-			return METHOD_NAME;
-		}
-
-		public HttpDeleteWithBody(final String uri) {
-			super();
-			setURI(URI.create(uri));
-		}
-
-		public HttpDeleteWithBody(final URI uri) {
-			super();
-			setURI(uri);
-		}
-
-		public HttpDeleteWithBody() {
-			super();
-		}
 	}
 }

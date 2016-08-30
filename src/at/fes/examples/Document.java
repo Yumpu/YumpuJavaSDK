@@ -13,7 +13,8 @@ public class Document {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "url" };
-		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
+		y.postDocumentFile();
+//		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
 
 //		String[] body = {"id=55875793","title=new title"};
 //		String[] params = {};
