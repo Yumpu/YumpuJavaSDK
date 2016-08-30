@@ -94,44 +94,24 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postDocumentHotspot() throws IOException, JSONException {
+	public JSONObject postDocumentHotspot(String[] body, String[] settings) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/post");
 		JSONObject json = new JSONObject();
-		json.put("document_id", 55865447);
-		json.put("page", "1");
-		json.put("type", "link");
-		JSONObject settings = new JSONObject();
-		settings.put("x", 100);
-		settings.put("y", 100);
-		settings.put("w", 50);
-		settings.put("h", 50);
-		settings.put("name", "google.com");
-		settings.put("tooltip", "google.com");
-		settings.put("link", "www.google.com");
-		json.put("settings", settings);
-		System.out.println(json);
-		return json;
-
-		// Map<String, String> obj = new LinkedHashMap<String, String>();
-		// obj.put("document_id", "55869263");
-		// obj.put("page", "1");
-		// obj.put("type", "link");
-		//
-		// Map<String, String> settings = new LinkedHashMap<String, String>();
-		// settings.put("x", "100");
-		// settings.put("y", "100");
-		// settings.put("w", "50");
-		// settings.put("h", "50");
-		// settings.put("name", "newone");
-		// settings.put("tooltip", "newone");
-		// settings.put("link", "http://www.google.com");
-		// obj.put("settings", settings.toString());
-		//
-		// Gson gson = new GsonBuilder().disableHtmlEscaping().create();
-		// String json = gson.toJson(obj, LinkedHashMap.class);
-		//
-		//
-		// optionsPost(json, url);
+		createBody(body, json);
+		JSONObject jsonSett = new JSONObject();
+		createBody(settings, jsonSett);
+		json.put("settings", jsonSett);
+		return optionsPost(json, url);
+	}
+	
+	public JSONObject putDocumentHotspot(String[] body, String[] settings) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("document/hotspot/put");
+		JSONObject json = new JSONObject();
+		createBody(body, json);
+		JSONObject jsonSett = new JSONObject();
+		createBody(settings, jsonSett);
+		json.put("settings", jsonSett);
+		return optionsPut(url, json);
 	}
 
 	public JSONObject deleteDocumentHotspot(String id) throws IOException,
@@ -495,7 +475,7 @@ public class Yumpu {
 			IOException, ProtocolException, JSONException {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
 		String prettyJson = prettyGson.toJson(jo);
-		System.out.println(prettyJson);
+//		System.out.println(prettyJson);
 		return prettyJson;
 	}
 

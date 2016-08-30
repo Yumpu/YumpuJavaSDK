@@ -147,6 +147,7 @@ public class RequestMethods {
 	private JSONObject sendResponse(HttpResponse response) throws IOException,
 			JSONException {
 		String jsonString = EntityUtils.toString(response.getEntity());
+//		System.out.println(jsonString);
 		JSONObject myObject = new JSONObject(jsonString);
 		responseCode = response.getStatusLine().getStatusCode();
 		return myObject;

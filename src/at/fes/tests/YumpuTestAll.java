@@ -94,7 +94,7 @@ public class YumpuTestAll {
 			JSONArray jarr = new JSONArray(doc);
 			for (int i = 0; i < jarr.length(); ++i) {
 				JSONObject rec = jarr.getJSONObject(i);
-				document_id = rec.getString("id");
+				document_id = Integer.toString(rec.getInt("id"));
 			}
 			getDocuments();
 		}
@@ -123,19 +123,28 @@ public class YumpuTestAll {
 		y.putDocument(body);
 		System.out.println("put Document " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putDocument", y.responseCode);
+		postDocumentHotspot();
+	}
+
+
+	private void postDocumentHotspot() throws IOException, JSONException {
+		String[] body = {"document_id=" + document_id, "type=link", "page=1"};
+		String[] settings = {"x=100", "y=100", "w=50", "h=50", "name=google", "tooltip=google.com", "link=http://www.google.com"};
+		String res = y.postDocumentHotspot(body, settings).toString();
+		JSONObject j = new JSONObject(res);
+		String hotspot = (String) j.get("hotspot").toString();
+		JSONArray jarr = new JSONArray(hotspot);
+		JSONObject rec = jarr.getJSONObject(0);
+		hotspot_id = rec.getString("id");
+		System.out.println("post Document hotspot " + checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("postDocumentHotspot", y.responseCode);
 		getDocumentHotspots();
 	}
 
 	private void getDocumentHotspots() throws IOException, JSONException {
 		String[] params = {};
 		String returnFields[] = {};
-		String res = y.getDocumentHotspots(document_id, params, returnFields)
-				.toString();
-		JSONObject j = new JSONObject(res);
-		String hotspots = (String) j.get("hotspots").toString();
-		JSONArray jarr = new JSONArray(hotspots);
-		JSONObject rec = jarr.getJSONObject(0);
-		hotspot_id = rec.getString("id");
+		y.getDocumentHotspots(document_id, params, returnFields).toString();
 		System.out.println("get Document hotpsots " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocumentHotspots", y.responseCode);
@@ -149,7 +158,6 @@ public class YumpuTestAll {
 		System.out.println("get Document hotpsot " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocumentHotspot", y.responseCode);
-		// y.post/putHotspot
 		postCollection();
 	}
 
@@ -168,7 +176,7 @@ public class YumpuTestAll {
 	private void getCollections() throws IOException, JSONException {
 		String[] params = {};
 		String returnFields[] = {};
-		JSONObject json = new JSONObject(y.getCollections(params, returnFields));
+		y.getCollections(params, returnFields);
 		System.out.println("get Collections " + checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getCollections", y.responseCode);
 		getCollection();
