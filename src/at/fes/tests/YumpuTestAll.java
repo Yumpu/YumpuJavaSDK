@@ -1,7 +1,5 @@
 package at.fes.tests;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
@@ -12,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.junit.Test;
 
 import at.fes.service.Yumpu;
 
@@ -63,10 +60,17 @@ public class YumpuTestAll {
 
 	public void postDocumentURL() throws IOException, JSONException,
 			InterruptedException {
-		String[] body = {
-				"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
-				"title=Diplomarbeit von Stefan" };
-		String res = y.postDocumentUrl(body).toString();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("url", "http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf");
+		map.put("title", "Das istasdsd");
+		map.put("description", "das ist genial");
+		map.put("category", "1");
+		map.put("page_teaser_page_range", "1-2");
+		map.put("page_teaser_url", "http://www.yumpu.com/en");
+
+		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
+		y.postDocumentUrl(imgPath, map);
+		String res = y.postDocumentUrl(imgPath, map).toString();
 		JSONObject j = new JSONObject(res);
 		progress_id = j.getString("progress_id");
 		System.out.println("post document URL " + checkStatus(y.responseCode)

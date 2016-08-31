@@ -14,16 +14,16 @@ public class Document {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "url" };
-		HashMap<String, String>map = new HashMap<String, String>();
-		map.put("title", "Das ist super");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("url", "http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf");
+		map.put("title", "Das istasdsd");
 		map.put("description", "das ist genial");
 		map.put("category", "1");
 		map.put("page_teaser_page_range", "1-2");
 		map.put("page_teaser_url", "http://www.yumpu.com/en");
-		
-		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
+
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		y.postDocumentFile(path, imgPath, map);
+		y.postDocumentUrl(imgPath, map);
 		
 //		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
 

@@ -45,15 +45,17 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postDocumentUrl(String[] body) throws IOException,
+	@SuppressWarnings("rawtypes") 
+	public JSONObject postDocumentUrl(String imgPath, Map map) throws IOException,
 			JSONException {
-		JSONObject json = new JSONObject();
-		createBody(body, json);
 		String url = config.yumpuEndpoints.get("document/post/url");
-
-		return optionsPost(json, url);
+		JSONObject json = rm.postUrlRequest(config, url, map, imgPath);
+		prettyJSON(json);		
+	
+		return json;
 	}
-
+	
+	@SuppressWarnings("rawtypes") 
 	public JSONObject postDocumentFile(String path, String imgPath, Map map) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");

@@ -25,34 +25,31 @@ public class Tester {
 	public static void main(String[] args) throws IOException, ParseException,
 			JSONException {
 		Tester t = new Tester();
-		Config config = new Config("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+		Config config = new Config("vEKfrHQLPlOc2sAbU5zqGwoegmSdnC1M");
 
 		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("url", "http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf");
 		map.put("title", "Das istasdsd");
 		map.put("description", "das ist genial");
 		map.put("category", "1");
 		map.put("page_teaser_page_range", "1-2");
 		map.put("page_teaser_url", "http://www.yumpu.com/en");
 
-		String url = "http://api.yumpu.com/2.0/document/file.json";
-		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
+		String url = "http://devapi.yumpu.com/2.0/document/url.json";
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		t.postFileRequest(config, url, path, map, imgPath);
+		t.postImgRequest(config, url, map, imgPath);
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
-	public JSONObject postFileRequest(Config config, String url, String path,
+	public JSONObject postImgRequest(Config config, String url,
 			Map map, String imgPath) throws JSONException, ParseException, IOException {
-		File file = new File(path);
 		File img = new File(imgPath);
 		
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
 		MultipartEntity entity = new MultipartEntity();
-		FileBody pdfBody = new FileBody(file);
 		FileBody imageBody = new FileBody(img);
-		entity.addPart("file", pdfBody);
 		entity.addPart("page_teaser_image", imageBody);
 
 		Set<String> keys = map.keySet();
