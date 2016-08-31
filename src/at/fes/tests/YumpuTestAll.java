@@ -167,6 +167,17 @@ public class YumpuTestAll {
 		System.out.println("get Document hotpsot "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getDocumentHotspot", y.responseCode);
+		putDocumentHotspot();
+	}
+
+	private void putDocumentHotspot() throws IOException, JSONException {
+		String[] body = { "id=" + hotspot_id, "type=link" };
+		String[] settings = { "x=100", "y=100", "w=50", "h=50", "name=google",
+				"tooltip=google.com", "link=http://www.google.com" };
+		String res = y.putDocumentHotspot(body, settings).toString();
+		System.out.println("put Document hotspot "
+				+ checkStatus(y.responseCode) + " " + y.responseCode);
+		control.put("putDocumentHotspot", y.responseCode);
 		postCollection();
 	}
 

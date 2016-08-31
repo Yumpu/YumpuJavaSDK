@@ -16,7 +16,7 @@ public class DocumentHotspot {
 		String[] body = {"id=d3160bf4ZAykIx2l", "type=link"};
 		String[] settings = {"x=100", "y=100", "w=50", "h=50", "name=google", "tooltip=google.com", "link=http://www.google.com"};
 
-		JSONObject json = new JSONObject(y.putDocumentHotspot(body, settings));
+		JSONObject json = new JSONObject(y.postDocumentHotspot(body, settings));
 		
 //		String[] params = {};
 //		String returnFields[] = { "id" };
