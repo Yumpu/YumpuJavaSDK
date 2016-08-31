@@ -3,6 +3,8 @@ package at.fes.service;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.multipart.FilePart;
@@ -20,6 +22,9 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
@@ -104,24 +109,26 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	public JSONObject postFileRequest(Config config, String url) throws JSONException,
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes"})
+	public JSONObject postFileRequest(Config config, String url, String path, Map map) throws JSONException,
 			ParseException, IOException {
-		org.apache.commons.httpclient.HttpClient client = new org.apache.commons.httpclient.HttpClient();
-		PostMethod request = new PostMethod(url);
+		File file = new File(path);
 
-		request.setRequestHeader("X-ACCESS-TOKEN", config.config.get("token"));
-
-		File targetFile = new File(
-				"C:\\Users\\stefan.feurstein\\Downloads\\DA.pdf");
-		Part[] parts = { new FilePart("file", targetFile),
-				new StringPart("title", "vom Dornbirnwe Markt") };
-
-		request.setRequestEntity(new MultipartRequestEntity(parts, request
-				.getParams()));
-
-		responseCode = client.executeMethod(request);
-		String response = request.getResponseBodyAsString();
-		JSONObject myObject = new JSONObject(response);
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpPost request = new HttpPost(url);
+		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		MultipartEntity entity = new MultipartEntity();
+		FileBody body = new FileBody(file);
+		entity.addPart("file", body);
+		
+		Set<String> keys = map.keySet();
+		for (String key : keys) {
+			entity.addPart(key, new StringBody((String) map.get(key)));
+		}
+		request.setEntity(entity);
+		
+		HttpResponse response = client.execute(request);
+		JSONObject myObject = sendResponse(response);
 
 		return myObject;
 	}

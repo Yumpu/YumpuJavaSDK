@@ -1,6 +1,7 @@
 package at.fes.examples;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -13,7 +14,14 @@ public class Document {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "url" };
-		y.postDocumentFile();
+		HashMap<String, String>map = new HashMap<String, String>();
+		map.put("title", "Das ist super");
+		map.put("description", "das ist genial");
+		map.put("category", "1");
+		
+		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
+		y.postDocumentFile(path, map);
+		
 //		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
 
 //		String[] body = {"id=55875793","title=new title"};

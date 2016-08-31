@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.json.JSONArray;
@@ -17,7 +18,7 @@ import at.fes.service.Yumpu;
 
 public class YumpuTestAll {
 	private Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-	private String progress_id, progress_state, document_id, hotspot_id,
+	private String progress_id, progress_state, document_url_id, document_file_id, hotspot_id,
 			collection_id, section_id, embed_id, member_id, access_tag_id,
 			subscription_id;
 	JSONObject control = new JSONObject();
@@ -27,6 +28,8 @@ public class YumpuTestAll {
 			InterruptedException {
 		YumpuTestAll ya = new YumpuTestAll();
 		ya.getCountries();
+//		ya.postDocumentFile();
+//		ya.getDocuments();
 	}
 
 	public void getCountries() throws IOException, JSONException {
@@ -69,7 +72,20 @@ public class YumpuTestAll {
 		System.out.println("post document URL " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("postDocumentURL", y.responseCode);
+		postDocumentFile();
 		getDocumentProgress();
+	}
+	
+	public void postDocumentFile() throws IOException, JSONException, InterruptedException {
+		HashMap<String, String>map = new HashMap<String, String>();
+		map.put("title", "Test file");
+		map.put("description", "Test desc");
+		
+		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
+		y.postDocumentFile(path, map);
+		System.out.println("post document file " + checkStatus(y.responseCode)
+				+ " " + y.responseCode);
+		control.put("postDocumentFile", y.responseCode);
 	}
 
 	public void getDocumentProgress() throws IOException, JSONException,
@@ -99,16 +115,25 @@ public class YumpuTestAll {
 			JSONArray jarr = new JSONArray(doc);
 			for (int i = 0; i < jarr.length(); ++i) {
 				JSONObject rec = jarr.getJSONObject(i);
-				document_id = Integer.toString(rec.getInt("id"));
+				document_url_id = Integer.toString(rec.getInt("id"));
 			}
 			getDocuments();
 		}
 	}
 
 	private void getDocuments() throws IOException, JSONException {
-		String[] params = { "limit=1" };
+		String[] params = { "limit=2" };
 		String[] returnFields = {};
-		y.getDocuments(params, returnFields);
+		String res = y.getDocuments(params, returnFields).toString();
+		
+		JSONObject json = new JSONObject(res);
+		JSONArray jarr = new JSONArray(json.get("documents").toString());
+		for (int i = 0; i < jarr.length(); i++) {
+			JSONObject jnew = new JSONObject(jarr.get(i).toString());
+			if (i == 0)
+				document_file_id = jnew.get("id").toString();
+		}
+		
 		System.out.println("get Documents " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocuments", y.responseCode);
@@ -118,7 +143,7 @@ public class YumpuTestAll {
 	private void getDocument() throws IOException, JSONException {
 		String[] params = {};
 		String returnFields[] = { "url" };
-		y.getDocument(document_id, params, returnFields);
+		y.getDocument(document_url_id, params, returnFields);
 		System.out.println("get Document " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocument", y.responseCode);
@@ -126,7 +151,7 @@ public class YumpuTestAll {
 	}
 
 	private void putDocument() throws IOException, JSONException {
-		String[] body = { "id=" + document_id, "title=newer title" };
+		String[] body = { "id=" + document_url_id, "title=newer title" };
 		y.putDocument(body);
 		System.out.println("put Document " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
@@ -135,7 +160,7 @@ public class YumpuTestAll {
 	}
 
 	private void postDocumentHotspot() throws IOException, JSONException {
-		String[] body = { "document_id=" + document_id, "type=link", "page=1" };
+		String[] body = { "document_id=" + document_url_id, "type=link", "page=1" };
 		String[] settings = { "x=100", "y=100", "w=50", "h=50", "name=google",
 				"tooltip=google.com", "link=http://www.google.com" };
 		String res = y.postDocumentHotspot(body, settings).toString();
@@ -153,7 +178,7 @@ public class YumpuTestAll {
 	private void getDocumentHotspots() throws IOException, JSONException {
 		String[] params = {};
 		String returnFields[] = {};
-		y.getDocumentHotspots(document_id, params, returnFields).toString();
+		y.getDocumentHotspots(document_url_id, params, returnFields).toString();
 		System.out.println("get Document hotpsots "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getDocumentHotspots", y.responseCode);
@@ -258,7 +283,7 @@ public class YumpuTestAll {
 	}
 
 	private void postSectionDocument() throws IOException, JSONException {
-		y.postSectionDocument(section_id, document_id);
+		y.postSectionDocument(section_id, document_url_id);
 		System.out.println("post Section document "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postSectionDocument", y.responseCode);
@@ -294,7 +319,7 @@ public class YumpuTestAll {
 	}
 
 	private void postEmbed() throws IOException, JSONException {
-		String[] body = { "document_id=" + document_id, "type=1" };
+		String[] body = { "document_id=" + document_url_id, "type=1" };
 		String res = y.postEmbed(body).toString();
 		JSONObject j = new JSONObject(res);
 		String embed = (String) j.get("embed").toString();
@@ -494,7 +519,7 @@ public class YumpuTestAll {
 	}
 
 	private void deleteSectionDocument() throws IOException, JSONException {
-		y.deleteSectionDocument(section_id, document_id);
+		y.deleteSectionDocument(section_id, document_url_id);
 		System.out.println("delete Section Document "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("deleteSectionDocument", y.responseCode);
@@ -550,7 +575,8 @@ public class YumpuTestAll {
 	}
 
 	private void deleteDocument() throws IOException, JSONException {
-		y.deleteDocument(document_id);
+		y.deleteDocument(document_url_id);
+		y.deleteDocument(document_file_id);
 		System.out.println("delete Document " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("deleteDocument", y.responseCode);

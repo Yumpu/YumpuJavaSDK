@@ -24,12 +24,12 @@ public class DeleteAllDocs {
 			JSONException {
 		String[] params = { "limit=100" };
 		String[] returnFields = { "id" };
-		String res = y.getSubscriptions(params, returnFields).toString();
+		String res = y.getDocuments(params, returnFields).toString();
 		JSONObject json = new JSONObject(res);
-		JSONArray jarr = new JSONArray(json.get("subscriptions").toString());
+		JSONArray jarr = new JSONArray(json.get("documents").toString());
 		for (int i = 0; i < jarr.length(); i++) {
 			JSONObject jnew = new JSONObject(jarr.get(i).toString());
-			y.deleteSubscription(jnew.get("id").toString());
+			y.deleteDocument(jnew.get("id").toString());
 			System.out.println("delete " + jnew.get("id").toString());
 		}
 	}

@@ -8,6 +8,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,10 +54,10 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject postDocumentFile() throws IOException,
+	public JSONObject postDocumentFile(String path, Map map) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");
-		JSONObject json = rm.postFileRequest(config, url);
+		JSONObject json = rm.postFileRequest(config, url, path, map);
 		prettyJSON(json);
 		return json;
 	}
