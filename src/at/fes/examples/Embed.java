@@ -11,7 +11,8 @@ public class Embed {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		JSONObject json = new JSONObject(y.deleteEmbed("lrQUW1EPLz5ey8bO"));
+		String[] body = {"id=VNEqkn2idMpc1COL", "document_id=55893346", "type=2"};
+		y.putEmbed(body);
 
 //		String[] body = {"document_id=55875854", "type=1", "start_page=2", "width=619"};
 //		String[] params = {};

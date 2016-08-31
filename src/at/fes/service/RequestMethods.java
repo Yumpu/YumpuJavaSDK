@@ -27,6 +27,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -155,7 +156,12 @@ public class RequestMethods {
 			JSONException {
 		String jsonString = EntityUtils.toString(response.getEntity());
 //		System.out.println(jsonString);
-		JSONObject myObject = new JSONObject(jsonString);
+		JSONObject myObject;
+		try {
+			myObject = new JSONObject(jsonString);
+		} catch (Exception e) {
+			myObject = new JSONObject(jsonString.substring(jsonString.indexOf("{")));
+		}
 		responseCode = response.getStatusLine().getStatusCode();
 		return myObject;
 	}

@@ -199,7 +199,7 @@ public class YumpuTestAll {
 		String[] body = { "id=" + hotspot_id, "type=link" };
 		String[] settings = { "x=100", "y=100", "w=50", "h=50", "name=google",
 				"tooltip=google.com", "link=http://www.google.com" };
-		String res = y.putDocumentHotspot(body, settings).toString();
+		y.putDocumentHotspot(body, settings).toString();
 		System.out.println("put Document hotspot "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("putDocumentHotspot", y.responseCode);
@@ -273,10 +273,9 @@ public class YumpuTestAll {
 	}
 
 	private void putSection() throws IOException, JSONException {
-		String[] body = { "id=" + section_id, "name=sasdfd",
-				"description=aösldasdöjd" };
+		String[] body = { "id=" + section_id, "name=new name"};
 		y.putSection(body);
-		System.out.println("post Section " + checkStatus(y.responseCode) + " "
+		System.out.println("put Section " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("putSection", y.responseCode);
 		postSectionDocument();
@@ -302,7 +301,7 @@ public class YumpuTestAll {
 		String[] body = { "gender=male", "firstname=Stefan",
 				"lastname=nachname", "address=dahuam 10" };
 		y.putUser(body);
-		System.out.println("post User " + checkStatus(y.responseCode) + " "
+		System.out.println("put User " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("putUser", y.responseCode);
 		getUser();
@@ -348,6 +347,15 @@ public class YumpuTestAll {
 		System.out.println("get Embed " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getEmbed", y.responseCode);
+		putEmbed();
+	}
+
+	private void putEmbed() throws IOException, JSONException {
+		String[] body = {"id=" + embed_id, "document_id=" + document_url_id, "type=2"};
+		y.putEmbed(body);
+		System.out.println("put Embed " + checkStatus(y.responseCode) + " "
+				+ y.responseCode);
+		control.put("putEmbed", y.responseCode);
 		postMember();
 	}
 
@@ -575,8 +583,8 @@ public class YumpuTestAll {
 	}
 
 	private void deleteDocument() throws IOException, JSONException {
-		y.deleteDocument(document_url_id);
 		y.deleteDocument(document_file_id);
+		y.deleteDocument(document_url_id);
 		System.out.println("delete Document " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("deleteDocument", y.responseCode);

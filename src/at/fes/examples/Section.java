@@ -11,7 +11,7 @@ public class Section {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[]  body = {"id=iX0uAxwlhKynP1pq_Yi5uT16akbf4oXBV", "name=sasdfd", "description=aösldasdöjd"};
+		String[]  body = {"id=46gGMFOTEVf3SamD_n9KtE8zih401Nj7d", "name=sasdfd"};
 		JSONObject json = new JSONObject(y.putSection(body));
 		
 
