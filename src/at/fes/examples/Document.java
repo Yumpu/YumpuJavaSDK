@@ -23,7 +23,8 @@ public class Document {
 		map.put("page_teaser_url", "http://www.yumpu.com/en");
 
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		y.postDocumentUrl(imgPath, map);
+//		y.postDocumentUrl(imgPath, map);
+		delete(y);
 		
 //		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
 
@@ -35,6 +36,11 @@ public class Document {
 //		y.postDocumentUrl(body);
 //		y.putDocument(body);
 //		y.deleteDocument("10671");
+	}
+
+	private static void delete(Yumpu y) throws IOException, JSONException {
+		y.deleteDocument("55893958");
+		y.deleteDocument("55893957");
 	}
 
 }

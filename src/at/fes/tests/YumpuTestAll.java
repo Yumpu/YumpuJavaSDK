@@ -15,9 +15,9 @@ import at.fes.service.Yumpu;
 
 public class YumpuTestAll {
 	private Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-	private String progress_id, progress_state, document_url_id, document_file_id, hotspot_id,
-			collection_id, section_id, embed_id, member_id, access_tag_id,
-			subscription_id;
+	private String progress_url_id, progress_file_id, progress_state, progress_state_file,
+			document_url_id, document_file_id, hotspot_id, collection_id,
+			section_id, embed_id, member_id, access_tag_id, subscription_id;
 	JSONObject control = new JSONObject();
 	private int successful, fail;
 
@@ -25,11 +25,11 @@ public class YumpuTestAll {
 			InterruptedException {
 		YumpuTestAll ya = new YumpuTestAll();
 		ya.getCountries();
-//		ya.postDocumentFile();
-//		ya.getDocuments();
+		// ya.postDocumentFile();
+		// ya.getDocuments();
 	}
 
-	public void getCountries() throws IOException, JSONException {
+	public void getCountries() throws IOException, JSONException, InterruptedException {
 		y.getCountries();
 		System.out.println("get Countries " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
@@ -37,7 +37,7 @@ public class YumpuTestAll {
 		getCategories();
 	}
 
-	public void getCategories() throws IOException, JSONException {
+	public void getCategories() throws IOException, JSONException, InterruptedException {
 		y.getCategories();
 		System.out.println("get Categories " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
@@ -45,23 +45,21 @@ public class YumpuTestAll {
 		getLanguages();
 	}
 
-	public void getLanguages() throws IOException, JSONException {
+	public void getLanguages() throws IOException, JSONException, InterruptedException {
 		y.getLanguages();
-		try {
-			System.out.println("get Languages " + checkStatus(y.responseCode)
-					+ " " + y.responseCode);
-			control.put("getLanguages", y.responseCode);
-			postDocumentURL();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
+		System.out.println("get Languages " + checkStatus(y.responseCode) + " "
+				+ y.responseCode);
+		control.put("getLanguages", y.responseCode);
+		postDocumentURL();
+
 	}
 
 	public void postDocumentURL() throws IOException, JSONException,
 			InterruptedException {
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("url", "http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf");
+		map.put("url",
+				"http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf");
 		map.put("title", "Das istasdsd");
 		map.put("description", "das ist genial");
 		map.put("category", "1");
@@ -69,38 +67,68 @@ public class YumpuTestAll {
 		map.put("page_teaser_url", "http://www.yumpu.com/en");
 
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		y.postDocumentUrl(imgPath, map);
 		String res = y.postDocumentUrl(imgPath, map).toString();
 		JSONObject j = new JSONObject(res);
-		progress_id = j.getString("progress_id");
+		progress_url_id = j.getString("progress_id");
 		System.out.println("post document URL " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("postDocumentURL", y.responseCode);
 		postDocumentFile();
 		getDocumentProgress();
 	}
-	
-	public void postDocumentFile() throws IOException, JSONException, InterruptedException {
-		HashMap<String, String>map = new HashMap<String, String>();
+
+	public void postDocumentFile() throws IOException, JSONException,
+			InterruptedException {
+		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("title", "Test file");
 		map.put("description", "Test desc");
 		map.put("page_teaser_page_range", "1-2");
 		map.put("page_teaser_url", "http://www.yumpu.com/en");
-		
+
 		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		y.postDocumentFile(path, imgPath, map);
+		String res = y.postDocumentFile(path, imgPath, map).toString();
+		JSONObject j = new JSONObject(res);
+		progress_file_id = j.getString("progress_id");
 		System.out.println("post document file " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("postDocumentFile", y.responseCode);
+		getDocumentFileProgress();
+	}
+
+	public void getDocumentFileProgress() throws IOException, JSONException,
+			InterruptedException {
+		String[] params = {};
+		String returnFields[] = {};
+		String res = y.getDocumentProgress(progress_file_id, params,
+				returnFields).toString();
+		JSONObject j = new JSONObject(res);
+		try {
+			String doc = (String) j.get("document").toString();
+			JSONObject jdoc = new JSONObject(doc);
+			progress_state_file = jdoc.getString("state");
+		} catch (Exception e) {
+			progress_state_file = "done";
+		}
+		if (progress_state_file.equals("rendering_in_progress")) {
+			TimeUnit.SECONDS.sleep(5);
+			getDocumentFileProgress();
+		} else {
+			String doc = (String) j.get("document").toString();
+			JSONArray jarr = new JSONArray(doc);
+			for (int i = 0; i < jarr.length(); ++i) {
+				JSONObject rec = jarr.getJSONObject(i);
+				document_file_id = Integer.toString(rec.getInt("id"));
+			}
+		}
 	}
 
 	public void getDocumentProgress() throws IOException, JSONException,
 			InterruptedException {
 		String[] params = {};
 		String returnFields[] = {};
-		String res = y.getDocumentProgress(progress_id, params, returnFields)
-				.toString();
+		String res = y.getDocumentProgress(progress_url_id, params,
+				returnFields).toString();
 		control.put("getDocumentProgress", y.responseCode);
 		JSONObject j = new JSONObject(res);
 		try {
@@ -132,14 +160,14 @@ public class YumpuTestAll {
 		String[] params = { "limit=2" };
 		String[] returnFields = {};
 		String res = y.getDocuments(params, returnFields).toString();
-		JSONObject json = new JSONObject(res);
-		JSONArray jarr = new JSONArray(json.get("documents").toString());
-		for (int i = 0; i < jarr.length(); i++) {
-			JSONObject jnew = new JSONObject(jarr.get(i).toString());
-			if (i == 0)
-				document_file_id = jnew.get("id").toString();
-		}
-		
+		// JSONObject json = new JSONObject(res);
+		// JSONArray jarr = new JSONArray(json.get("documents").toString());
+		// for (int i = 0; i < jarr.length(); i++) {
+		// JSONObject jnew = new JSONObject(jarr.get(i).toString());
+		// if (i == 0)
+		// document_file_id = jnew.get("id").toString();
+		// }
+
 		System.out.println("get Documents " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocuments", y.responseCode);
@@ -166,7 +194,8 @@ public class YumpuTestAll {
 	}
 
 	private void postDocumentHotspot() throws IOException, JSONException {
-		String[] body = { "document_id=" + document_url_id, "type=link", "page=1" };
+		String[] body = { "document_id=" + document_url_id, "type=link",
+				"page=1" };
 		String[] settings = { "x=100", "y=100", "w=50", "h=50", "name=google",
 				"tooltip=google.com", "link=http://www.google.com" };
 		String res = y.postDocumentHotspot(body, settings).toString();
@@ -279,7 +308,7 @@ public class YumpuTestAll {
 	}
 
 	private void putSection() throws IOException, JSONException {
-		String[] body = { "id=" + section_id, "name=new name"};
+		String[] body = { "id=" + section_id, "name=new name" };
 		y.putSection(body);
 		System.out.println("put Section " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
@@ -357,7 +386,8 @@ public class YumpuTestAll {
 	}
 
 	private void putEmbed() throws IOException, JSONException {
-		String[] body = {"id=" + embed_id, "document_id=" + document_url_id, "type=2"};
+		String[] body = { "id=" + embed_id, "document_id=" + document_url_id,
+				"type=2" };
 		y.putEmbed(body);
 		System.out.println("put Embed " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);

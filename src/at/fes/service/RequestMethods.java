@@ -74,9 +74,7 @@ public class RequestMethods {
 		HttpDeleteWithBody request = new HttpDeleteWithBody(url);
 
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
-
 		StringEntity inputId = new StringEntity("id=" + id);
-
 		request.setEntity(inputId);
 
 		HttpResponse response = client.execute(request);
@@ -176,6 +174,7 @@ public class RequestMethods {
 	private JSONObject sendResponse(HttpResponse response) throws IOException,
 			JSONException {
 		String jsonString = EntityUtils.toString(response.getEntity());
+//		System.out.println(jsonString);
 		JSONObject myObject;
 		try {
 			myObject = new JSONObject(jsonString);
