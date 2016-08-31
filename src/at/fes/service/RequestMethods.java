@@ -110,24 +110,27 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes"})
-	public JSONObject postFileRequest(Config config, String url, String path, Map map) throws JSONException,
-			ParseException, IOException {
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	public JSONObject postFileRequest(Config config, String url, String path,
+			Map map, String imgPath) throws JSONException, ParseException, IOException {
 		File file = new File(path);
-
+		File img = new File(imgPath);
+		
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
 		MultipartEntity entity = new MultipartEntity();
-		FileBody body = new FileBody(file);
-		entity.addPart("file", body);
-		
+		FileBody pdfBody = new FileBody(file);
+		FileBody imageBody = new FileBody(img);
+		entity.addPart("file", pdfBody);
+		entity.addPart("page_teaser_image", imageBody);
+
 		Set<String> keys = map.keySet();
 		for (String key : keys) {
 			entity.addPart(key, new StringBody((String) map.get(key)));
 		}
 		request.setEntity(entity);
-		
+
 		HttpResponse response = client.execute(request);
 		JSONObject myObject = sendResponse(response);
 

@@ -80,9 +80,12 @@ public class YumpuTestAll {
 		HashMap<String, String>map = new HashMap<String, String>();
 		map.put("title", "Test file");
 		map.put("description", "Test desc");
+		map.put("page_teaser_page_range", "1-2");
+		map.put("page_teaser_url", "http://www.yumpu.com/en");
 		
 		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
-		y.postDocumentFile(path, map);
+		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
+		y.postDocumentFile(path, imgPath, map);
 		System.out.println("post document file " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("postDocumentFile", y.responseCode);
@@ -125,7 +128,6 @@ public class YumpuTestAll {
 		String[] params = { "limit=2" };
 		String[] returnFields = {};
 		String res = y.getDocuments(params, returnFields).toString();
-		
 		JSONObject json = new JSONObject(res);
 		JSONArray jarr = new JSONArray(json.get("documents").toString());
 		for (int i = 0; i < jarr.length(); i++) {

@@ -54,10 +54,10 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject postDocumentFile(String path, Map map) throws IOException,
+	public JSONObject postDocumentFile(String path, String imgPath, Map map) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");
-		JSONObject json = rm.postFileRequest(config, url, path, map);
+		JSONObject json = rm.postFileRequest(config, url, path, map, imgPath);
 		prettyJSON(json);
 		return json;
 	}

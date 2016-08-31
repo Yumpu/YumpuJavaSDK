@@ -18,9 +18,12 @@ public class Document {
 		map.put("title", "Das ist super");
 		map.put("description", "das ist genial");
 		map.put("category", "1");
+		map.put("page_teaser_page_range", "1-2");
+		map.put("page_teaser_url", "http://www.yumpu.com/en");
 		
 		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
-		y.postDocumentFile(path, map);
+		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
+		y.postDocumentFile(path, imgPath, map);
 		
 //		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
 
