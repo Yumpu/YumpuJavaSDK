@@ -47,7 +47,7 @@ public class Yumpu {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public JSONObject postDocumentUrl(String imgPath, String[] body)
+	public JSONObject postDocumentUrl(String[] body)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/post/url");
 
@@ -58,12 +58,14 @@ public class Yumpu {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public JSONObject postDocumentFile(String path, String imgPath, Map map)
+	public JSONObject postDocumentFile(String[] body)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");
-		JSONObject json = rm.postFileRequest(config, url, path, map, imgPath);
-		yf.prettyJSON(json);
-		return json;
+		
+		JSONObject json = new JSONObject();
+		yf.createBody(body, json);
+
+		return optionsPostFile(json, url);
 	}
 
 	public JSONObject putDocument(String[] body) throws IOException,
@@ -469,6 +471,15 @@ public class Yumpu {
 			ProtocolException {
 		yf.log("post " + url);
 		JSONObject jo = rm.postUrlRequest(config, url, json);
+		responseCode = rm.responseCode;
+		yf.prettyJSON(jo);
+		return jo;
+	}
+	
+	private JSONObject optionsPostFile(JSONObject json, String url) throws IOException, JSONException,
+			MalformedURLException, ProtocolException {
+		yf.log("post " + url);
+		JSONObject jo = rm.postFileRequest(config, url, json);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
 		return jo;

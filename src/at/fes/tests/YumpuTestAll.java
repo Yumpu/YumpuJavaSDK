@@ -67,9 +67,8 @@ public class YumpuTestAll {
 				"page_teaser_image=src\\at\\fes\\examples\\media\\yumpu.png",
 				"page_teaser_page_range=1-2",
 				"page_teaser_url=http://www.yumpu.com/en" };
-
-		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		String res = y.postDocumentUrl(imgPath, body).toString();
+		
+		String res = y.postDocumentUrl(body).toString();
 		JSONObject j = new JSONObject(res);
 		progress_url_id = j.getString("progress_id");
 		System.out.println("post document URL " + checkStatus(y.responseCode)
@@ -81,15 +80,13 @@ public class YumpuTestAll {
 
 	public void postDocumentFile() throws IOException, JSONException,
 			InterruptedException {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("title", "Test file");
-		map.put("description", "Test desc");
-		map.put("page_teaser_page_range", "1-2");
-		map.put("page_teaser_url", "http://www.yumpu.com/en");
-
-		String path = "src\\at\\fes\\examples\\media\\yumpu.pdf";
-		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		String res = y.postDocumentFile(path, imgPath, map).toString();
+		String[] body = {
+				"file=src\\at\\fes\\examples\\media\\yumpu.pdf",
+				"title=file from tester local",
+				"page_teaser_image=src\\at\\fes\\examples\\media\\yumpu.png",
+				"page_teaser_page_range=1-2",
+				"page_teaser_url=http://www.yumpu.com/en" };
+		String res = y.postDocumentFile(body).toString();
 		JSONObject j = new JSONObject(res);
 		progress_file_id = j.getString("progress_id");
 		System.out.println("post document file " + checkStatus(y.responseCode)

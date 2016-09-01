@@ -104,25 +104,31 @@ public class RequestMethods {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public JSONObject postFileRequest(Config config, String url, String path,
-			Map map, String imgPath) throws JSONException, ParseException,
+	public JSONObject postFileRequest(Config config, String url, JSONObject json) throws JSONException, ParseException,
 			IOException {
-		File file = new File(path);
-		File img = new File(imgPath);
-
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		request.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		MultipartEntity entity = new MultipartEntity();
-		FileBody pdfBody = new FileBody(file);
-		FileBody imageBody = new FileBody(img);
-		entity.addPart("file", pdfBody);
-		entity.addPart("page_teaser_image", imageBody);
-
-		Set<String> keys = map.keySet();
-		for (String key : keys) {
-			entity.addPart(key, new StringBody((String) map.get(key)));
+		
+		Iterator keys = json.keys();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			String value = (String) json.get(key);
+			if (key.equals("page_teaser_image")) {
+				File img = new File(value);
+				FileBody imageBody = new FileBody(img);
+				entity.addPart("page_teaser_image", imageBody);
+			} else if (key.equals("file")) {
+				File file = new File(value);
+				FileBody fileBody = new FileBody(file);
+				entity.addPart("file", fileBody);
+			}
+			
+			else
+				entity.addPart(key, new StringBody(value));
 		}
+		
 		request.setEntity(entity);
 
 		HttpResponse response = client.execute(request);
