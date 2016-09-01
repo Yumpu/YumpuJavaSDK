@@ -13,7 +13,7 @@ public class DocumentHotspots {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = {};
-		JSONObject json = new JSONObject(y.getDocumentHotspots("55875413", params, returnFields));
+//		JSONObject json = new JSONObject(y.getDocumentHotspots("55875413", params, returnFields));
 	}
 
 }

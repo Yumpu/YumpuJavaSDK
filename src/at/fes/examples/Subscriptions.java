@@ -12,7 +12,7 @@ public class Subscriptions {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String[] returnFields = { "id,name" };
-		y.getSubscriptions(params, returnFields);
+//		y.getSubscriptions(params, returnFields);
 	}
 
 }

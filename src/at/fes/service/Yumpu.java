@@ -32,23 +32,23 @@ public class Yumpu {
 		yf.log("Yumpu Class initialized");
 	}
 
-	public JSONObject getDocuments(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getDocuments(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("documents/get");
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
-	public JSONObject getDocument(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/get") + "?id=" + id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getDocument(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("document/get");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public JSONObject postDocumentUrl(String[] body)
-			throws IOException, JSONException {
+	public JSONObject postDocumentUrl(String[] body) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/url");
 
 		JSONObject json = new JSONObject();
@@ -58,10 +58,10 @@ public class Yumpu {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public JSONObject postDocumentFile(String[] body)
-			throws IOException, JSONException {
+	public JSONObject postDocumentFile(String[] body) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");
-		
+
 		JSONObject json = new JSONObject();
 		yf.createBody(body, json);
 
@@ -84,20 +84,18 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getDocumentHotspots(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/hotspots") + "?id="
-				+ id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getDocumentHotspots(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("document/hotspots");
+		url = yf.addParams(params, url);
 
 		return optionsGet(url);
 	}
 
-	public JSONObject getDocumentHotspot(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/hotspot/get") + "?id="
-				+ id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getDocumentHotspot(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("document/hotspot/get");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -130,11 +128,10 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getDocumentProgress(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("document/progress") + "?id="
-				+ id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getDocumentProgress(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("document/progress");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -156,18 +153,18 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject getCollections(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getCollections(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("collections/get");
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 
 		return optionsGet(url);
 	}
 
-	public JSONObject getCollection(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("collection/get") + "?id=" + id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getCollection(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("collection/get");
+		url = yf.addParams(params, url);
 
 		return optionsGet(url);
 	}
@@ -196,10 +193,10 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getSection(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("section/get") + "?id=" + id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getSection(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("section/get");
+		url = yf.addParams(params, url);
 
 		return optionsGet(url);
 	}
@@ -246,16 +243,17 @@ public class Yumpu {
 		return optionsDelete(url, input);
 	}
 
-	public JSONObject search(String params) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("search/get") + "?" + params;
+	public JSONObject search(String[] params) throws IOException, JSONException {
+		String url = config.yumpuEndpoints.get("search/get");
+		url = yf.addParams(params, url);
 
 		return optionsGet(url);
 	}
 
-	public JSONObject getUser(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getUser(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("user/get");
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -275,18 +273,18 @@ public class Yumpu {
 		return optionsPut(url, json);
 	}
 
-	public JSONObject getEmbeds(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getEmbeds(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("embeds/get");
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 
 		return optionsGet(url);
 	}
 
-	public JSONObject getEmbed(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("embed/get") + "?id=" + id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getEmbed(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("embed/get");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -313,18 +311,17 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getMembers(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getMembers(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("members/get");
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
-	public JSONObject getMember(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("member/get") + "?id=" + id;
-
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getMember(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("member/get");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -357,18 +354,17 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getAccessTags(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getAccessTags(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("accessTags/get");
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
-	public JSONObject getAccessTag(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("accessTag/get") + "?id=" + id;
-
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getAccessTag(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("accessTag/get");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -397,19 +393,18 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject getSubscriptions(String[] params, String returnFields[])
-			throws IOException, JSONException {
+	public JSONObject getSubscriptions(String[] params) throws IOException,
+			JSONException {
 		String url = config.yumpuEndpoints.get("subscriptions/get");
 
-		url = yf.addParams(false, url, params, returnFields);
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
-	public JSONObject getSubscription(String id, String[] params,
-			String returnFields[]) throws IOException, JSONException {
-		String url = config.yumpuEndpoints.get("subscription/get") + "?id="
-				+ id;
-		url = yf.addParams(true, url, params, returnFields);
+	public JSONObject getSubscription(String[] params) throws IOException,
+			JSONException {
+		String url = config.yumpuEndpoints.get("subscription/get");
+		url = yf.addParams(params, url);
 		return optionsGet(url);
 	}
 
@@ -443,7 +438,6 @@ public class Yumpu {
 		yf.log("get " + url);
 		JSONObject jo = rm.getRequest(config, url);
 		responseCode = rm.responseCode;
-		yf.prettyJSON(jo);
 		return jo;
 	}
 
@@ -453,7 +447,7 @@ public class Yumpu {
 		JSONObject jo = rm.deleteRequest(config, url, id);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
-		return null;
+		return jo;
 	}
 
 	private JSONObject optionsPost(JSONObject json, String url)
@@ -475,9 +469,10 @@ public class Yumpu {
 		yf.prettyJSON(jo);
 		return jo;
 	}
-	
-	private JSONObject optionsPostFile(JSONObject json, String url) throws IOException, JSONException,
-			MalformedURLException, ProtocolException {
+
+	private JSONObject optionsPostFile(JSONObject json, String url)
+			throws IOException, JSONException, MalformedURLException,
+			ProtocolException {
 		yf.log("post " + url);
 		JSONObject jo = rm.postFileRequest(config, url, json);
 		responseCode = rm.responseCode;

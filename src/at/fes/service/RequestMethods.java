@@ -189,7 +189,7 @@ public class RequestMethods {
 	private JSONObject sendResponse(HttpResponse response) throws IOException,
 			JSONException {
 		String jsonString = EntityUtils.toString(response.getEntity());
-		// System.out.println(jsonString);
+//		 System.out.println(jsonString);
 		JSONObject myObject;
 		try {
 			myObject = new JSONObject(jsonString);

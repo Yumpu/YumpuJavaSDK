@@ -12,6 +12,6 @@ public class Embeds {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "id" };
-		y.getEmbeds(params, returnFields);
+//		y.getEmbeds(params, returnFields);
 	}
 }

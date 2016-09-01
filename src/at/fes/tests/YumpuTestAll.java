@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.json.JSONArray;
@@ -97,10 +96,8 @@ public class YumpuTestAll {
 
 	public void getDocumentFileProgress() throws IOException, JSONException,
 			InterruptedException {
-		String[] params = {};
-		String returnFields[] = {};
-		String res = y.getDocumentProgress(progress_file_id, params,
-				returnFields).toString();
+		String[] params = {"id=" + progress_file_id};
+		String res = y.getDocumentProgress(params).toString();
 		JSONObject j = new JSONObject(res);
 		try {
 			String doc = (String) j.get("document").toString();
@@ -124,10 +121,8 @@ public class YumpuTestAll {
 
 	public void getDocumentProgress() throws IOException, JSONException,
 			InterruptedException {
-		String[] params = {};
-		String returnFields[] = {};
-		String res = y.getDocumentProgress(progress_url_id, params,
-				returnFields).toString();
+		String[] params = {"id=" + progress_url_id};
+		String res = y.getDocumentProgress(params).toString();
 		control.put("getDocumentProgress", y.responseCode);
 		JSONObject j = new JSONObject(res);
 		try {
@@ -157,15 +152,7 @@ public class YumpuTestAll {
 
 	private void getDocuments() throws IOException, JSONException {
 		String[] params = { "limit=2" };
-		String[] returnFields = {};
-		String res = y.getDocuments(params, returnFields).toString();
-		// JSONObject json = new JSONObject(res);
-		// JSONArray jarr = new JSONArray(json.get("documents").toString());
-		// for (int i = 0; i < jarr.length(); i++) {
-		// JSONObject jnew = new JSONObject(jarr.get(i).toString());
-		// if (i == 0)
-		// document_file_id = jnew.get("id").toString();
-		// }
+		y.getDocuments(params).toString();
 
 		System.out.println("get Documents " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
@@ -174,9 +161,8 @@ public class YumpuTestAll {
 	}
 
 	private void getDocument() throws IOException, JSONException {
-		String[] params = {};
-		String returnFields[] = { "url" };
-		y.getDocument(document_url_id, params, returnFields);
+		String[] params = {"id=" + document_url_id, "return_fields=url"};
+		y.getDocument(params);
 		System.out.println("get Document " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getDocument", y.responseCode);
@@ -210,9 +196,8 @@ public class YumpuTestAll {
 	}
 
 	private void getDocumentHotspots() throws IOException, JSONException {
-		String[] params = {};
-		String returnFields[] = {};
-		y.getDocumentHotspots(document_url_id, params, returnFields).toString();
+		String[] params = {"id=" + document_url_id};
+		y.getDocumentHotspots(params).toString();
 		System.out.println("get Document hotpsots "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getDocumentHotspots", y.responseCode);
@@ -220,9 +205,8 @@ public class YumpuTestAll {
 	}
 
 	private void getDocumentHotspot() throws IOException, JSONException {
-		String[] params = {};
-		String returnFields[] = {};
-		y.getDocumentHotspot(hotspot_id, params, returnFields);
+		String[] params = {"id=" + hotspot_id};
+		y.getDocumentHotspot(params);
 		System.out.println("get Document hotpsot "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("getDocumentHotspot", y.responseCode);
@@ -256,8 +240,7 @@ public class YumpuTestAll {
 
 	private void getCollections() throws IOException, JSONException {
 		String[] params = {};
-		String returnFields[] = {};
-		y.getCollections(params, returnFields);
+		y.getCollections(params);
 		System.out.println("get Collections " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("getCollections", y.responseCode);
@@ -265,9 +248,8 @@ public class YumpuTestAll {
 	}
 
 	private void getCollection() throws IOException, JSONException {
-		String[] params = {};
-		String returnFields[] = {};
-		y.getCollection(collection_id, params, returnFields);
+		String[] params = {"id=" + collection_id};
+		y.getCollection(params);
 		System.out.println("get Collection " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("getCollection", y.responseCode);
@@ -299,9 +281,8 @@ public class YumpuTestAll {
 	}
 
 	private void getSection() throws IOException, JSONException {
-		String[] params = {};
-		String returnFields[] = {};
-		y.getSection(section_id, params, returnFields);
+		String[] params = {"id=" + section_id};
+		y.getSection(params);
 		System.out.println("get Section " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getSection", y.responseCode);
@@ -326,7 +307,8 @@ public class YumpuTestAll {
 	}
 
 	private void search() throws IOException, JSONException {
-		y.search("q=sports&in=title,description&views=1000-5000&language=en");
+		String[] params = {"q=sports"};
+		y.search(params);
 		System.out.println("search " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("search", y.responseCode);
@@ -345,8 +327,7 @@ public class YumpuTestAll {
 
 	private void getUser() throws IOException, JSONException {
 		String[] params = {};
-		String[] returnFields = {};
-		y.getUser(params, returnFields);
+		y.getUser(params);
 		System.out.println("get User " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getUser", y.responseCode);
@@ -368,8 +349,7 @@ public class YumpuTestAll {
 
 	private void getEmbeds() throws IOException, JSONException {
 		String[] params = {};
-		String returnFields[] = {};
-		y.getEmbeds(params, returnFields);
+		y.getEmbeds(params);
 		System.out.println("get Embeds " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getEmbeds", y.responseCode);
@@ -377,9 +357,8 @@ public class YumpuTestAll {
 	}
 
 	private void getEmbed() throws IOException, JSONException {
-		String[] params = {};
-		String[] returnFields = {};
-		y.getEmbed(embed_id, params, returnFields);
+		String[] params = {"id=" + embed_id};
+		y.getEmbed(params);
 		System.out.println("get Embed " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getEmbed", y.responseCode);
@@ -425,8 +404,7 @@ public class YumpuTestAll {
 
 	private void getMembers() throws IOException, JSONException {
 		String[] params = {};
-		String[] returnFields = {};
-		y.getMembers(params, returnFields);
+		y.getMembers(params);
 		System.out.println("get Members " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getMembers", y.responseCode);
@@ -434,9 +412,8 @@ public class YumpuTestAll {
 	}
 
 	private void getMember() throws IOException, JSONException {
-		String[] params = {};
-		String[] returnFields = {};
-		y.getMember(member_id, params, returnFields);
+		String[] params = {"id=" + member_id};
+		y.getMember(params);
 		System.out.println("get Member " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getMember", y.responseCode);
@@ -475,8 +452,7 @@ public class YumpuTestAll {
 
 	private void getAccessTags() throws IOException, JSONException {
 		String[] params = {};
-		String[] returnFields = {};
-		y.getAccessTags(params, returnFields);
+		y.getAccessTags(params);
 		System.out.println("get AccessTags " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("getAccessTags", y.responseCode);
@@ -484,9 +460,8 @@ public class YumpuTestAll {
 	}
 
 	private void getAccessTag() throws IOException, JSONException {
-		String[] params = {};
-		String[] returnFields = {};
-		y.getAccessTag(access_tag_id, params, returnFields);
+		String[] params = {"id=" + access_tag_id};
+		y.getAccessTag(params);
 		System.out.println("get AccessTag " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
 		control.put("getAccessTag", y.responseCode);
@@ -524,8 +499,7 @@ public class YumpuTestAll {
 
 	private void getSubscriptions() throws IOException, JSONException {
 		String[] params = {};
-		String[] returnFields = {};
-		y.getSubscriptions(params, returnFields);
+		y.getSubscriptions(params);
 		System.out.println("get Subscriptions " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("getSubscriptions", y.responseCode);
@@ -533,9 +507,8 @@ public class YumpuTestAll {
 	}
 
 	private void getSubscription() throws IOException, JSONException {
-		String[] params = {};
-		String[] returnFields = {};
-		y.getSubscription(subscription_id, params, returnFields);
+		String[] params = {"id=" + subscription_id};
+		y.getSubscription(params);
 		System.out.println("get Subscription " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("getSubscription", y.responseCode);

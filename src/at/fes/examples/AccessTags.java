@@ -12,7 +12,7 @@ public class AccessTags {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "id,name" };
-		y.getAccessTags(params, returnFields);
+//		y.getAccessTags(params, returnFields);
 	}
 
 }

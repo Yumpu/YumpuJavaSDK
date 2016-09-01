@@ -24,7 +24,7 @@ public class AccessTag {
 //		String[] returnFields = { "id,name" };
 //		String[] body = {"name=jhjklk", "description=hallolo", "default=y"};
 //		y.getAccessTag("pWDAKmcyUHR2o04T", params, returnFields);
-		y.postAccessTag(body);
+//		y.postAccessTag(body);
 //		y.putAccessTag("BVinDRHKNhl1ev56", "qweqw");
 //		y.deleteAccessTag("BVinDRHKNhl1ev56");
 	}

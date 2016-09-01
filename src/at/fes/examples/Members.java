@@ -12,7 +12,7 @@ public class Members {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {"offset=0"};
 		String[] returnFields = { "id" };
-		y.getMembers(params, returnFields);
+//		y.getMembers(params, returnFields);
 	}
 
 }

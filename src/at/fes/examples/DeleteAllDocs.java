@@ -22,16 +22,16 @@ public class DeleteAllDocs {
 
 	private static void deleteAll(Yumpu y) throws IOException,
 			JSONException {
-		String[] params = { "limit=100" };
-		String[] returnFields = { "id" };
-		String res = y.getDocuments(params, returnFields).toString();
-		JSONObject json = new JSONObject(res);
-		JSONArray jarr = new JSONArray(json.get("documents").toString());
-		for (int i = 0; i < jarr.length(); i++) {
-			JSONObject jnew = new JSONObject(jarr.get(i).toString());
-			y.deleteDocument(jnew.get("id").toString());
-			System.out.println("delete " + jnew.get("id").toString());
-		}
+//		String[] params = { "limit=100" };
+//		String[] returnFields = { "id" };
+////		String res = y.getDocuments(params, returnFields).toString();
+//		JSONObject json = new JSONObject(res);
+//		JSONArray jarr = new JSONArray(json.get("documents").toString());
+//		for (int i = 0; i < jarr.length(); i++) {
+//			JSONObject jnew = new JSONObject(jarr.get(i).toString());
+//			y.deleteDocument(jnew.get("id").toString());
+//			System.out.println("delete " + jnew.get("id").toString());
+//		}
 	}
 
 }

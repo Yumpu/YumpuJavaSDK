@@ -72,4 +72,12 @@ public class YumpuFunctions {
 
 		return url;
 	}
+	
+	public String addParams(String[] params, String url) {
+		url = url + "?";
+		for (String s : params) {
+			url = url + s + "&";
+		}
+		return url;
+	}
 }

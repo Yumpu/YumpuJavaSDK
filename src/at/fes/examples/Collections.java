@@ -13,7 +13,7 @@ public class Collections {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		String[] params = {};
 		String returnFields[] = { "id" };
-		JSONObject json = new JSONObject(y.getCollections(params, returnFields));
+//		JSONObject json = new JSONObject(y.getCollections(params, returnFields));
 	}
 
 }

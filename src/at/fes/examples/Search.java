@@ -11,6 +11,8 @@ public class Search {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		JSONObject json = new JSONObject(y.search("q=sports&in=title,description&views=1000-5000&language=en"));
+		String[] params = {"q=sports"};
+		JSONObject json = y.search(params);
+		System.out.println(json);
 	}
 }

@@ -16,9 +16,10 @@ public class Documents {
 	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[] params = {"offset=1", "limit=1"};
+		String[] params = {};
 		String[] returnFields = { "url" };
-		JSONObject json = new JSONObject(y.getDocuments(params, returnFields));
+//		JSONObject json = y.getDocuments(params, returnFields);
+//		System.out.println(json);
 	}
 
 }
