@@ -15,9 +15,10 @@ import at.fes.service.Yumpu;
 
 public class YumpuTestAll {
 	private Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-	private String progress_url_id, progress_file_id, progress_state, progress_state_file,
-			document_url_id, document_file_id, hotspot_id, collection_id,
-			section_id, embed_id, member_id, access_tag_id, subscription_id;
+	private String progress_url_id, progress_file_id, progress_state,
+			progress_state_file, document_url_id, document_file_id, hotspot_id,
+			collection_id, section_id, embed_id, member_id, access_tag_id,
+			subscription_id;
 	JSONObject control = new JSONObject();
 	private int successful, fail;
 
@@ -29,7 +30,8 @@ public class YumpuTestAll {
 		// ya.getDocuments();
 	}
 
-	public void getCountries() throws IOException, JSONException, InterruptedException {
+	public void getCountries() throws IOException, JSONException,
+			InterruptedException {
 		y.getCountries();
 		System.out.println("get Countries " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
@@ -37,7 +39,8 @@ public class YumpuTestAll {
 		getCategories();
 	}
 
-	public void getCategories() throws IOException, JSONException, InterruptedException {
+	public void getCategories() throws IOException, JSONException,
+			InterruptedException {
 		y.getCategories();
 		System.out.println("get Categories " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
@@ -45,7 +48,8 @@ public class YumpuTestAll {
 		getLanguages();
 	}
 
-	public void getLanguages() throws IOException, JSONException, InterruptedException {
+	public void getLanguages() throws IOException, JSONException,
+			InterruptedException {
 		y.getLanguages();
 
 		System.out.println("get Languages " + checkStatus(y.responseCode) + " "
@@ -59,7 +63,10 @@ public class YumpuTestAll {
 			InterruptedException {
 		String[] body = {
 				"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
-				"title=Das ist ein file mit json", "page_teaser_page_range=1-2", "page_teaser_url=http://www.yumpu.com/en" };
+				"title=Das ist ein file mit json",
+				"page_teaser_image=src\\at\\fes\\examples\\media\\yumpu.png",
+				"page_teaser_page_range=1-2",
+				"page_teaser_url=http://www.yumpu.com/en" };
 
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
 		String res = y.postDocumentUrl(imgPath, body).toString();
@@ -237,7 +244,7 @@ public class YumpuTestAll {
 	}
 
 	private void postCollection() throws IOException, JSONException {
-		String[] body = {"name=holidays"};
+		String[] body = { "name=holidays" };
 		String res = y.postCollection(body).toString();
 		JSONObject j = new JSONObject(res);
 		String collection = (String) j.get("collection").toString();
@@ -271,7 +278,7 @@ public class YumpuTestAll {
 	}
 
 	private void putCollection() throws IOException, JSONException {
-		String[] body = {"id=" + collection_id, "name=newname"};
+		String[] body = { "id=" + collection_id, "name=newname" };
 		y.putCollection(body);
 		System.out.println("put Collection " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);

@@ -54,7 +54,7 @@ public class Yumpu {
 		JSONObject json = new JSONObject();
 		yf.createBody(body, json);
 
-		return optionsPostUrl(json, url, imgPath);
+		return optionsPostUrl(json, url);
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -464,11 +464,11 @@ public class Yumpu {
 		return jo;
 	}
 
-	private JSONObject optionsPostUrl(JSONObject json, String url, String imgPath)
+	private JSONObject optionsPostUrl(JSONObject json, String url)
 			throws IOException, JSONException, MalformedURLException,
 			ProtocolException {
 		yf.log("post " + url);
-		JSONObject jo = rm.postUrlRequest(config, url, json, imgPath);
+		JSONObject jo = rm.postUrlRequest(config, url, json);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
 		return jo;

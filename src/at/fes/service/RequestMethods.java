@@ -132,33 +132,33 @@ public class RequestMethods {
 	}
 
 	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
-	public JSONObject postUrlRequest(Config config, String url, JSONObject json, String imgPath)
-			throws JSONException, ParseException, IOException {
-
-		File img = new File(imgPath);
-
+	public JSONObject postUrlRequest(Config config, String url,
+			JSONObject json) throws JSONException,
+			ParseException, IOException {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		request.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
 		MultipartEntity entity = new MultipartEntity();
-		FileBody imageBody = new FileBody(img);
-		entity.addPart("page_teaser_image", imageBody);
 
 		Iterator keys = json.keys();
 		while (keys.hasNext()) {
 			String key = (String) keys.next();
 			String value = (String) json.get(key);
-			// System.out.println(key + " + " + value);
-			entity.addPart(key, new StringBody(value));
+			if (key.equals("page_teaser_image")) {
+				File img = new File(value);
+				FileBody imageBody = new FileBody(img);
+				entity.addPart("page_teaser_image", imageBody);
+			} else
+				entity.addPart(key, new StringBody(value));
 		}
 
 		request.setEntity(entity);
 
 		HttpResponse response = client.execute(request);
 		JSONObject myObject = sendResponse(response);
-
+		
 		return myObject;
 	}
 
