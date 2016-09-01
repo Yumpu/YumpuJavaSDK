@@ -3,6 +3,7 @@ package at.fes.service;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -102,12 +103,13 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	@SuppressWarnings({"unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public JSONObject postFileRequest(Config config, String url, String path,
-			Map map, String imgPath) throws JSONException, ParseException, IOException {
+			Map map, String imgPath) throws JSONException, ParseException,
+			IOException {
 		File file = new File(path);
 		File img = new File(imgPath);
-		
+
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
@@ -128,23 +130,30 @@ public class RequestMethods {
 
 		return myObject;
 	}
-	
-	@SuppressWarnings({"unchecked", "rawtypes" })
-	public JSONObject postUrlRequest(Config config, String url,
-			Map map, String imgPath) throws JSONException, ParseException, IOException {
+
+	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
+	public JSONObject postUrlRequest(Config config, String url, JSONObject json, String imgPath)
+			throws JSONException, ParseException, IOException {
+
 		File img = new File(imgPath);
-		
+
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
+
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+
 		MultipartEntity entity = new MultipartEntity();
 		FileBody imageBody = new FileBody(img);
 		entity.addPart("page_teaser_image", imageBody);
-		
-		Set<String> keys = map.keySet();
-		for (String key : keys) {
-			entity.addPart(key, new StringBody((String) map.get(key)));
+
+		Iterator keys = json.keys();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			String value = (String) json.get(key);
+			// System.out.println(key + " + " + value);
+			entity.addPart(key, new StringBody(value));
 		}
+
 		request.setEntity(entity);
 
 		HttpResponse response = client.execute(request);
@@ -158,7 +167,7 @@ public class RequestMethods {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPut request = new HttpPut(url);
-		
+
 		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
 		request.addHeader("Content-Type", "application/json");
 
@@ -174,12 +183,13 @@ public class RequestMethods {
 	private JSONObject sendResponse(HttpResponse response) throws IOException,
 			JSONException {
 		String jsonString = EntityUtils.toString(response.getEntity());
-//		System.out.println(jsonString);
+		// System.out.println(jsonString);
 		JSONObject myObject;
 		try {
 			myObject = new JSONObject(jsonString);
 		} catch (Exception e) {
-			myObject = new JSONObject(jsonString.substring(jsonString.indexOf("{")));
+			myObject = new JSONObject(jsonString.substring(jsonString
+					.indexOf("{")));
 		}
 		responseCode = response.getStatusLine().getStatusCode();
 		return myObject;

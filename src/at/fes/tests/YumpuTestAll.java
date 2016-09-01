@@ -57,17 +57,12 @@ public class YumpuTestAll {
 
 	public void postDocumentURL() throws IOException, JSONException,
 			InterruptedException {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("url",
-				"http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf");
-		map.put("title", "Das istasdsd");
-		map.put("description", "das ist genial");
-		map.put("category", "1");
-		map.put("page_teaser_page_range", "1-2");
-		map.put("page_teaser_url", "http://www.yumpu.com/en");
+		String[] body = {
+				"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
+				"title=Das ist ein file mit json", "page_teaser_page_range=1-2", "page_teaser_url=http://www.yumpu.com/en" };
 
 		String imgPath = "src\\at\\fes\\examples\\media\\yumpu.png";
-		String res = y.postDocumentUrl(imgPath, map).toString();
+		String res = y.postDocumentUrl(imgPath, body).toString();
 		JSONObject j = new JSONObject(res);
 		progress_url_id = j.getString("progress_id");
 		System.out.println("post document URL " + checkStatus(y.responseCode)
@@ -242,7 +237,8 @@ public class YumpuTestAll {
 	}
 
 	private void postCollection() throws IOException, JSONException {
-		String res = y.postCollection("new Collection").toString();
+		String[] body = {"name=holidays"};
+		String res = y.postCollection(body).toString();
 		JSONObject j = new JSONObject(res);
 		String collection = (String) j.get("collection").toString();
 		JSONArray jarr = new JSONArray(collection);
@@ -275,7 +271,8 @@ public class YumpuTestAll {
 	}
 
 	private void putCollection() throws IOException, JSONException {
-		y.putCollection(collection_id, "neydaswer");
+		String[] body = {"id=" + collection_id, "name=newname"};
+		y.putCollection(body);
 		System.out.println("put Collection " + checkStatus(y.responseCode)
 				+ " " + y.responseCode);
 		control.put("putCollection", y.responseCode);

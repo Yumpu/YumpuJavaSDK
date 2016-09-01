@@ -46,19 +46,20 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	@SuppressWarnings("rawtypes") 
-	public JSONObject postDocumentUrl(String imgPath, Map map) throws IOException,
-			JSONException {
+	@SuppressWarnings("rawtypes")
+	public JSONObject postDocumentUrl(String imgPath, String[] body)
+			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/post/url");
-		JSONObject json = rm.postUrlRequest(config, url, map, imgPath);
-		yf.prettyJSON(json);		
-	
-		return json;
+
+		JSONObject json = new JSONObject();
+		yf.createBody(body, json);
+
+		return optionsPostUrl(json, url, imgPath);
 	}
-	
-	@SuppressWarnings("rawtypes") 
-	public JSONObject postDocumentFile(String path, String imgPath, Map map) throws IOException,
-			JSONException {
+
+	@SuppressWarnings("rawtypes")
+	public JSONObject postDocumentFile(String path, String imgPath, Map map)
+			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");
 		JSONObject json = rm.postFileRequest(config, url, path, map, imgPath);
 		yf.prettyJSON(json);
@@ -98,7 +99,8 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postDocumentHotspot(String[] body, String[] settings) throws IOException, JSONException {
+	public JSONObject postDocumentHotspot(String[] body, String[] settings)
+			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/post");
 		JSONObject json = new JSONObject();
 		yf.createBody(body, json);
@@ -107,8 +109,9 @@ public class Yumpu {
 		json.put("settings", jsonSett);
 		return optionsPost(json, url);
 	}
-	
-	public JSONObject putDocumentHotspot(String[] body, String[] settings) throws IOException, JSONException {
+
+	public JSONObject putDocumentHotspot(String[] body, String[] settings)
+			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/put");
 		JSONObject json = new JSONObject();
 		yf.createBody(body, json);
@@ -167,21 +170,20 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postCollection(String name) throws IOException,
+	public JSONObject postCollection(String[] body) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
 		JSONObject json = new JSONObject();
-		json.put("name", name);
+		yf.createBody(body, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putCollection(String id, String name) throws IOException,
+	public JSONObject putCollection(String[] body) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("collection/put");
 		JSONObject json = new JSONObject();
-		json.put("id", id);
-		json.put("name", name);
+		yf.createBody(body, json);
 		return optionsPut(url, json);
 	}
 
@@ -295,12 +297,11 @@ public class Yumpu {
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putEmbed(String[] body)
-			throws IOException, JSONException {
+	public JSONObject putEmbed(String[] body) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/put");
 		JSONObject json = new JSONObject();
 		yf.createBody(body, json);
-		
+
 		return optionsPut(url, json);
 	}
 
@@ -437,7 +438,7 @@ public class Yumpu {
 
 	private JSONObject optionsGet(String url) throws IOException,
 			JSONException, MalformedURLException, ProtocolException {
-		yf.log("getDocument from " + url);
+		yf.log("get " + url);
 		JSONObject jo = rm.getRequest(config, url);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
@@ -446,7 +447,7 @@ public class Yumpu {
 
 	private JSONObject optionsDelete(String url, String id) throws IOException,
 			JSONException {
-		yf.log("deleteDocument from " + url);
+		yf.log("delete " + url);
 		JSONObject jo = rm.deleteRequest(config, url, id);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
@@ -456,8 +457,18 @@ public class Yumpu {
 	private JSONObject optionsPost(JSONObject json, String url)
 			throws IOException, JSONException, MalformedURLException,
 			ProtocolException {
-		yf.log("postDocuments to " + url);
+		yf.log("post " + url);
 		JSONObject jo = rm.postRequest(config, url, json);
+		responseCode = rm.responseCode;
+		yf.prettyJSON(jo);
+		return jo;
+	}
+
+	private JSONObject optionsPostUrl(JSONObject json, String url, String imgPath)
+			throws IOException, JSONException, MalformedURLException,
+			ProtocolException {
+		yf.log("post " + url);
+		JSONObject jo = rm.postUrlRequest(config, url, json, imgPath);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
 		return jo;
