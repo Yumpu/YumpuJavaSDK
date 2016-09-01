@@ -8,20 +8,34 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class Section {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[]  body = {"id=46gGMFOTEVf3SamD_n9KtE8zih401Nj7d", "name=sasdfd"};
-		JSONObject json = new JSONObject(y.putSection(body));
-		
-
-//		String[]  body = {"id=SyQPxIYetzpAhOgK_e1a8grt3i0FPMklT", "name=sasdfd", "description=aösldasdöjd"};
-//		String[] params = {};
-//		String returnFields[] = { "id,name" };
-//		y.getSection("9RDnBITHpkxwc3s7_HxcT6zFO9Z1nmaEL", params, returnFields)
-//		y.postSection(body);
-//		y.putSection(body);
-//		y.deleteSection("SyQPxIYetzpAhOgK_e1a8grt3i0FPMklT");
+		Section s = new Section();
+		 System.out.println(s.postSection());
+		// System.out.println(s.getSection());
+		// System.out.println(s.putSection());
+		// System.out.println(s.deleteSection());
 	}
 
+	private JSONObject postSection() throws IOException, JSONException {
+		String[] params = { "id=46gGMFOTEVf3SamD", "name=newsection" };
+		return y.postSection(params);
+	}
+
+	private JSONObject getSection() throws IOException, JSONException {
+		String[] params = { "id=46gGMFOTEVf3SamD_ZmUlVyovE9RMt0su" };
+		return y.getSection(params);
+	}
+
+	private JSONObject putSection() throws IOException, JSONException {
+		String[] params = { "id=46gGMFOTEVf3SamD_ZmUlVyovE9RMt0su",
+				"name=newpostname" };
+		return y.putSection(params);
+	}
+
+	private JSONObject deleteSection() throws IOException, JSONException {
+		String id = "46gGMFOTEVf3SamD_ZmUlVyovE9RMt0su";
+		return y.deleteSection(id);
+	}
 }

@@ -22,9 +22,9 @@ public class YumpuFunctions {
 		return prettyJson;
 	}
 
-	public void createBody(String[] body, JSONObject json)
+	public void createBody(String[] params, JSONObject json)
 			throws JSONException {
-		for (String s : body) {
+		for (String s : params) {
 			String index = s.substring(0, s.indexOf("="));
 			String value = s.substring(s.indexOf("=") + 1);
 			json.put(index, value);

@@ -8,16 +8,33 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class Collection {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		JSONObject json = new JSONObject(y.deleteCollection("49cvPY1uKERtNnyZ"));
-		
-//		String[] params = {};
-//		String returnFields[] = { "id,name" };
-//		y.getCollection("9RDnBITHpkxwc3s7", params, returnFields);
-//		y.postCollection("new one");
-//		y.putCollection("49cvPY1uKERtNnyZ", "neydaswer");
-//		y.deleteCollection("49cvPY1uKERtNnyZ");
+		Collection c = new Collection();
+//		System.out.println(c.postCollection());
+//		System.out.println(c.getCollection());
+//		System.out.println(c.putCollection());
+//		System.out.println(c.deleteCollection());
+	}
+
+	private JSONObject getCollection() throws IOException, JSONException {
+		String[] params = { "id=ZyoDkM2sPzaJnVdq" };
+		return y.getCollection(params);
+	}
+
+	private JSONObject postCollection() throws IOException, JSONException {
+		String[] params = { "name=newcoll3" };
+		return y.postCollection(params);
+	}
+
+	private JSONObject putCollection() throws IOException, JSONException {
+		String[] params = { "id=ZyoDkM2sPzaJnVdq", "name=putname" };
+		return y.putCollection(params);
+	}
+
+	private JSONObject deleteCollection() throws IOException, JSONException {
+		String id = "ZyoDkM2sPzaJnVdq";
+		return y.deleteCollection(id);
 	}
 }

@@ -11,7 +11,7 @@ public class Languages {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		JSONObject json = new JSONObject(y.getLanguages());
+		System.out.println(y.getLanguages());
 	}
 
 }

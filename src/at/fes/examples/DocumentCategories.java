@@ -11,7 +11,7 @@ public class DocumentCategories {
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		JSONObject json = new JSONObject(y.getCategories());
+		System.out.println(y.getCategories());
 	}
 
 }

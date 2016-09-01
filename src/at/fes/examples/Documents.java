@@ -8,18 +8,16 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class Documents {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
-	/**
-	 * @param args
-	 * @throws JSONException
-	 * @throws IOException
-	 */
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[] params = {};
-		String[] returnFields = { "url" };
-//		JSONObject json = y.getDocuments(params, returnFields);
-//		System.out.println(json);
+		Documents d = new Documents();
+//		System.out.println(d.getDocuments());
+	}
+	
+	private JSONObject getDocuments() throws IOException, JSONException {
+		String[] params = {"limit=10"};
+		return y.getDocuments(params);
 	}
 
 }

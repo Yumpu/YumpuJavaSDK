@@ -8,14 +8,15 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class DocumentProgress {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[] params = {};
-		String returnFields[] = {};
-//		JSONObject json = new JSONObject(y.getDocumentProgress(
-//				"b0b39-298a0-8a3b3-6cad5-4e817-ecce9-628f3-e2980", params,
-//				returnFields));
+		DocumentProgress dp = new DocumentProgress();
+//		System.out.println(dp.getDocumentProgress());
 	}
-
+	
+	private JSONObject getDocumentProgress() throws IOException, JSONException {
+		String[] params = {"id=6f652-51552-0c0c7-02228-c7d21-45010-ad98c-9dbde"};
+		return y.getDocumentProgress(params);
+	}
 }

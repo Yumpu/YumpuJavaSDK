@@ -8,21 +8,35 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class DocumentHotspot {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");	
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");	
-//		String[] body = {"document_id=55890265", "type=link", "page=1"};
-//		String[] settings = {"x=100", "y=100", "w=50", "h=50", "name=google", "tooltip=google.com", "link=http://www.google.com"};
-		String[] body = {"id=d3160bf4ZAykIx2l", "type=link"};
-		String[] settings = {"x=100", "y=100", "w=50", "h=50", "name=google", "tooltip=google.com", "link=http://www.google.com"};
-
-		JSONObject json = new JSONObject(y.postDocumentHotspot(body, settings));
-		
-//		String[] params = {};
-//		String returnFields[] = { "id" };
-//		y.postDocumentHotspot();
-//		y.putDocumentHotspot();		
-//		y.deleteDocumentHotspot("35936979C40pnPVD");
+		DocumentHotspot dh = new DocumentHotspot();
+//		System.out.println(dh.postDocumentHotspot());
+//		System.out.println(dh.getDocumentHotspot());
+//		System.out.println(dh.putDocumentHotspot());
+//		System.out.println(dh.deleteDocumentHotspot());
 	}
-
+	
+	private JSONObject postDocumentHotspot() throws IOException, JSONException {
+		String[] params = {"document_id=55898015", "type=link", "page=1"};
+		String[] settings = {"x=100", "y=100", "w=50", "h=50", "name=google", "tooltip=google.com", "link=http://www.google.com"};
+		return y.postDocumentHotspot(params, settings);
+	}
+	
+	private JSONObject getDocumentHotspot() throws IOException, JSONException {
+		String[] params = {"id=b762266fEuN7Bb5L", "return_fields=create_date,page,id"};
+		return y.getDocumentHotspot(params);
+	}
+	
+	private JSONObject putDocumentHotspot() throws IOException, JSONException {
+		String[] params = {"id=b762266fEuN7Bb5L", "type=link"};
+		String[] settings = {"x=100", "y=100", "w=50", "h=50", "name=google", "tooltip=google.com", "link=http://www.google.com"};
+		return y.putDocumentHotspot(params, settings);
+	}
+	
+	private JSONObject deleteDocumentHotspot() throws IOException, JSONException {
+		String id = "b762266fEuN7Bb5L";
+		return y.deleteDocumentHotspot(id);
+	}
 }

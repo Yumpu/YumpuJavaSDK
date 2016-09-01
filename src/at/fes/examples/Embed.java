@@ -8,19 +8,33 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class Embed {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[] body = {"id=VNEqkn2idMpc1COL", "document_id=55893346", "type=2"};
-		y.putEmbed(body);
-
-//		String[] body = {"document_id=55875854", "type=1", "start_page=2", "width=619"};
-//		String[] params = {};
-//		String[] returnFields = { "id" };
-//		y.getEmbed("rU3W05fqP9kZGnYw", params, returnFields);
-//		y.postEmbed(body);
-//		y.putEmbed("lrQUW1EPLz5ey8bO", "55869263", "1");
-//		y.deleteEmbed("lrQUW1EPLz5ey8bO");
+		Embed e = new Embed();
+//		System.out.println(e.postEmbed());
+//		System.out.println(e.getEmbed());
+//		System.out.println(e.putEmbed());
+//		System.out.println(e.deleteEmbed());
 	}
-
+	
+	private JSONObject postEmbed() throws IOException, JSONException {
+		String[] params = {"document_id=55898128", "type=1", "start_page=2"};
+		return y.postEmbed(params);
+	}
+	
+	private JSONObject getEmbed() throws IOException, JSONException {
+		String[] params = {"id=kEtNKVp5xbmRjwze"};
+		return y.getEmbed(params);
+	}
+	
+	private JSONObject putEmbed() throws IOException, JSONException {
+		String[] params = {"id=kEtNKVp5xbmRjwze", "document_id=55898128", "type=1"};
+		return y.putEmbed(params);
+	}
+	
+	private JSONObject deleteEmbed() throws IOException, JSONException {
+		String id = "kEtNKVp5xbmRjwze";
+		return y.deleteEmbed(id);
+	}
 }

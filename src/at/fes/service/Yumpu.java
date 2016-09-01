@@ -47,32 +47,32 @@ public class Yumpu {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public JSONObject postDocumentUrl(String[] body) throws IOException,
+	public JSONObject postDocumentUrl(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/url");
 
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPostUrl(json, url);
 	}
 
 	@SuppressWarnings("rawtypes")
-	public JSONObject postDocumentFile(String[] body) throws IOException,
+	public JSONObject postDocumentFile(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("document/post/file");
 
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPostFile(json, url);
 	}
 
-	public JSONObject putDocument(String[] body) throws IOException,
+	public JSONObject putDocument(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("document/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}
@@ -99,22 +99,22 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postDocumentHotspot(String[] body, String[] settings)
+	public JSONObject postDocumentHotspot(String[] params, String[] settings)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 		JSONObject jsonSett = new JSONObject();
 		yf.createBody(settings, jsonSett);
 		json.put("settings", jsonSett);
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putDocumentHotspot(String[] body, String[] settings)
+	public JSONObject putDocumentHotspot(String[] params, String[] settings)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("document/hotspot/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 		JSONObject jsonSett = new JSONObject();
 		yf.createBody(settings, jsonSett);
 		json.put("settings", jsonSett);
@@ -169,20 +169,20 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postCollection(String[] body) throws IOException,
+	public JSONObject postCollection(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("collection/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putCollection(String[] body) throws IOException,
+	public JSONObject putCollection(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("collection/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 		return optionsPut(url, json);
 	}
 
@@ -201,20 +201,20 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postSection(String[] body) throws IOException,
+	public JSONObject postSection(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("section/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putSection(String[] body) throws IOException,
+	public JSONObject putSection(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("section/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}
@@ -226,12 +226,11 @@ public class Yumpu {
 		return optionsDelete(url, id);
 	}
 
-	public JSONObject postSectionDocument(String id, String documents)
+	public JSONObject postSectionDocument(String[] params)
 			throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("sectionDocument/post");
 		JSONObject json = new JSONObject();
-		json.put("id", id);
-		json.put("documents", documents);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
@@ -257,18 +256,18 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postUser(String[] body) throws IOException, JSONException {
+	public JSONObject postUser(String[] params) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("user/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putUser(String[] body) throws IOException, JSONException {
+	public JSONObject putUser(String[] params) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("user/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}
@@ -288,19 +287,19 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postEmbed(String[] body) throws IOException,
+	public JSONObject postEmbed(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("embed/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putEmbed(String[] body) throws IOException, JSONException {
+	public JSONObject putEmbed(String[] params) throws IOException, JSONException {
 		String url = config.yumpuEndpoints.get("embed/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}
@@ -325,7 +324,7 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postMember(String username, String password, String[] body)
+	public JSONObject postMember(String username, String password, String[] params)
 			throws IOException, JSONException, NoSuchAlgorithmException {
 		String url = config.yumpuEndpoints.get("member/post");
 		JSONObject json = new JSONObject();
@@ -334,16 +333,16 @@ public class Yumpu {
 		password = new BigInteger(1, m.digest()).toString(16);
 		json.put("username", username);
 		json.put("password", password);
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putMember(String[] body) throws IOException,
+	public JSONObject putMember(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("member/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}
@@ -368,20 +367,20 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postAccessTag(String[] body) throws IOException,
+	public JSONObject postAccessTag(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putAccessTag(String[] body) throws IOException,
+	public JSONObject putAccessTag(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("accessTag/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}
@@ -408,20 +407,20 @@ public class Yumpu {
 		return optionsGet(url);
 	}
 
-	public JSONObject postSubscription(String[] body) throws IOException,
+	public JSONObject postSubscription(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("subscription/post");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPost(json, url);
 	}
 
-	public JSONObject putSubscription(String[] body) throws IOException,
+	public JSONObject putSubscription(String[] params) throws IOException,
 			JSONException {
 		String url = config.yumpuEndpoints.get("subscription/put");
 		JSONObject json = new JSONObject();
-		yf.createBody(body, json);
+		yf.createBody(params, json);
 
 		return optionsPut(url, json);
 	}

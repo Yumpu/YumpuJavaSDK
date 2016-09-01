@@ -299,7 +299,8 @@ public class YumpuTestAll {
 	}
 
 	private void postSectionDocument() throws IOException, JSONException {
-		y.postSectionDocument(section_id, document_url_id);
+		String[] params = {"id=" + section_id, "documents=" + document_url_id + "," + document_file_id};
+		y.postSectionDocument(params);
 		System.out.println("post Section document "
 				+ checkStatus(y.responseCode) + " " + y.responseCode);
 		control.put("postSectionDocument", y.responseCode);

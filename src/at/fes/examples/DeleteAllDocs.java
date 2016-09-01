@@ -10,11 +10,6 @@ import at.fes.service.Yumpu;
 
 public class DeleteAllDocs {
 
-	/**
-	 * @param args
-	 * @throws IOException
-	 * @throws JSONException
-	 */
 	public static void main(String[] args) throws IOException, JSONException {
 		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 		deleteAll(y);
@@ -22,16 +17,15 @@ public class DeleteAllDocs {
 
 	private static void deleteAll(Yumpu y) throws IOException,
 			JSONException {
-//		String[] params = { "limit=100" };
-//		String[] returnFields = { "id" };
-////		String res = y.getDocuments(params, returnFields).toString();
-//		JSONObject json = new JSONObject(res);
-//		JSONArray jarr = new JSONArray(json.get("documents").toString());
-//		for (int i = 0; i < jarr.length(); i++) {
-//			JSONObject jnew = new JSONObject(jarr.get(i).toString());
-//			y.deleteDocument(jnew.get("id").toString());
-//			System.out.println("delete " + jnew.get("id").toString());
-//		}
+		String[] params = { "limit=100", "return_fields=id" };
+		String res = y.getDocuments(params).toString();
+		JSONObject json = new JSONObject(res);
+		JSONArray jarr = new JSONArray(json.get("documents").toString());
+		for (int i = 0; i < jarr.length(); i++) {
+			JSONObject jnew = new JSONObject(jarr.get(i).toString());
+			y.deleteDocument(jnew.get("id").toString());
+			System.out.println("delete " + jnew.get("id").toString());
+		}
 	}
 
 }

@@ -9,34 +9,42 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class Document {
+	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		String[] params = {};
-		String returnFields[] = { "url" };
-		String[] body = {
-				"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
-				"title=Das ist ein file mit json",
-				"page_teaser_image=src\\at\\fes\\examples\\media\\yumpu.png",
-				"page_teaser_page_range=1-2",
-				"page_teaser_url=http://www.yumpu.com/en" };
-		System.out.println(y.postDocumentUrl(body));
-		
-//		JSONObject json = new JSONObject(y.deleteDocument("55886141"));
-
-//		String[] body = {"id=55875793","title=new title"};
-//		String[] params = {};
-//		String returnFields[] = { "url" };
-//		y.getDocument("55875413", params, returnFields);
-		
-//		y.postDocumentUrl(body);
-//		y.putDocument(body);
-//		y.deleteDocument("10671");
+		Document d = new Document();
+//		System.out.println(d.postDocumentFile());
+		System.out.println(d.postDocumentURL());
+//		System.out.println(d.getDocument());
+//		System.out.println(d.putDocument());
+//		System.out.println(d.deleteDocument());
 	}
 
-	private static void delete(Yumpu y) throws IOException, JSONException {
-		y.deleteDocument("55893958");
-		y.deleteDocument("55893957");
+	private JSONObject getDocument() throws IOException, JSONException {
+		String[] params = { "id=55898008" };
+		return y.getDocument(params);
 	}
 
+	private JSONObject postDocumentFile() throws IOException, JSONException {
+		String[] params = {
+				"file=src\\at\\fes\\examples\\media\\yumpu.pdf",
+				"title=file from tester local"};
+		return y.postDocumentFile(params);
+	}
+	
+	private JSONObject postDocumentURL() throws IOException, JSONException {
+		String[] params = {"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
+				"title=Das ist ein file mit json"};
+		return y.postDocumentUrl(params);
+	}
+	
+	private JSONObject putDocument() throws IOException, JSONException {
+		String[] params = {"id=55898008", "title=neuer titel"};
+		return y.putDocument(params);
+	}
+
+	private JSONObject deleteDocument() throws IOException, JSONException {
+		String id = "55898008";
+		return y.deleteDocument(id);
+	}
 }
