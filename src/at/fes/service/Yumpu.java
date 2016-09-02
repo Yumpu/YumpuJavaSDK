@@ -27,6 +27,10 @@ public class Yumpu {
 	public Yumpu() throws IOException {
 		yf.log("Yumpu Class initialized");
 	}
+	
+	public static void main(String[] args) throws IOException {
+		Yumpu y = new Yumpu();
+	}
 
 	public JSONObject getDocuments(String[] params) throws IOException,
 			JSONException {
