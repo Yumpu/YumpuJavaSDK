@@ -15,7 +15,7 @@ Common characteristics of Yumpu REST API resources are as follows:
 
 ## Get started
 
-Download the YumpuSDK.jar
+Download the YumpuSDK.jar from the jar folder above. Add this jar to your Java project build path.
 
 Code:
 ```
