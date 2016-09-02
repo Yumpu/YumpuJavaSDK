@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -31,6 +29,7 @@ public class RequestMethods {
 	private Config config;
 	public int responseCode;
 
+	// this class is used to build the correct DELETE request
 	@NotThreadSafe
 	class HttpDeleteWithBody extends HttpEntityEnclosingRequestBase {
 		public static final String METHOD_NAME = "DELETE";
@@ -54,13 +53,14 @@ public class RequestMethods {
 		}
 	}
 
+	// create the GET request
 	public JSONObject getRequest(Config config, String url)
 			throws ClientProtocolException, IOException, JSONException {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpGet request = new HttpGet(url);
 
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		request.setHeader("X-ACCESS-TOKEN", config.domainSettings.get("token"));
 		HttpResponse response = client.execute(request);
 
 		JSONObject myObject = sendResponse(response);
@@ -68,30 +68,14 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	public JSONObject deleteRequest(Config config, String url, String id)
-			throws ClientProtocolException, IOException, JSONException {
-		this.config = config;
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpDeleteWithBody request = new HttpDeleteWithBody(url);
-
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
-		StringEntity inputId = new StringEntity("id=" + id);
-		request.setEntity(inputId);
-
-		HttpResponse response = client.execute(request);
-
-		JSONObject myObject = sendResponse(response);
-
-		return myObject;
-	}
-
+	// create the POST request
 	public JSONObject postRequest(Config config, String url, JSONObject json)
 			throws JSONException, ParseException, IOException {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		request.setHeader("X-ACCESS-TOKEN", config.domainSettings.get("token"));
 		request.addHeader("content-type", "application/json");
 
 		StringEntity params = new StringEntity(json.toString());
@@ -103,48 +87,14 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public JSONObject postFileRequest(Config config, String url, JSONObject json) throws JSONException, ParseException,
-			IOException {
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpPost request = new HttpPost(url);
-		request.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
-		MultipartEntity entity = new MultipartEntity();
-		
-		Iterator keys = json.keys();
-		while (keys.hasNext()) {
-			String key = (String) keys.next();
-			String value = (String) json.get(key);
-			if (key.equals("page_teaser_image")) {
-				File img = new File(value);
-				FileBody imageBody = new FileBody(img);
-				entity.addPart("page_teaser_image", imageBody);
-			} else if (key.equals("file")) {
-				File file = new File(value);
-				FileBody fileBody = new FileBody(file);
-				entity.addPart("file", fileBody);
-			}
-			
-			else
-				entity.addPart(key, new StringBody(value));
-		}
-		
-		request.setEntity(entity);
-
-		HttpResponse response = client.execute(request);
-		JSONObject myObject = sendResponse(response);
-
-		return myObject;
-	}
-
-	@SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
-	public JSONObject postUrlRequest(Config config, String url,
-			JSONObject json) throws JSONException,
-			ParseException, IOException {
+	// create the POST document url request
+	@SuppressWarnings({ "rawtypes" })
+	public JSONObject postUrlRequest(Config config, String url, JSONObject json)
+			throws JSONException, ParseException, IOException {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
 
-		request.setHeader("X-ACCESS-TOKEN", "plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+		request.setHeader("X-ACCESS-TOKEN", config.domainSettings.get("token"));
 
 		MultipartEntity entity = new MultipartEntity();
 
@@ -164,7 +114,61 @@ public class RequestMethods {
 
 		HttpResponse response = client.execute(request);
 		JSONObject myObject = sendResponse(response);
+
+		return myObject;
+	}
+
+	// create the POST document file request
+	@SuppressWarnings({ "rawtypes" })
+	public JSONObject postFileRequest(Config config, String url, JSONObject json)
+			throws JSONException, ParseException, IOException {
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpPost request = new HttpPost(url);
 		
+		request.setHeader("X-ACCESS-TOKEN", config.domainSettings.get("token"));
+		MultipartEntity entity = new MultipartEntity();
+
+		Iterator keys = json.keys();
+		while (keys.hasNext()) {
+			String key = (String) keys.next();
+			String value = (String) json.get(key);
+			if (key.equals("page_teaser_image")) {
+				File img = new File(value);
+				FileBody imageBody = new FileBody(img);
+				entity.addPart("page_teaser_image", imageBody);
+			} else if (key.equals("file")) {
+				File file = new File(value);
+				FileBody fileBody = new FileBody(file);
+				entity.addPart("file", fileBody);
+			}
+
+			else
+				entity.addPart(key, new StringBody(value));
+		}
+
+		request.setEntity(entity);
+
+		HttpResponse response = client.execute(request);
+		JSONObject myObject = sendResponse(response);
+
+		return myObject;
+	}
+
+	// create the DELETE request
+	public JSONObject deleteRequest(Config config, String url, String id)
+			throws ClientProtocolException, IOException, JSONException {
+		this.config = config;
+		HttpClient client = HttpClientBuilder.create().build();
+		HttpDeleteWithBody request = new HttpDeleteWithBody(url);
+
+		request.setHeader("X-ACCESS-TOKEN", config.domainSettings.get("token"));
+		StringEntity inputId = new StringEntity("id=" + id);
+		request.setEntity(inputId);
+
+		HttpResponse response = client.execute(request);
+
+		JSONObject myObject = sendResponse(response);
+
 		return myObject;
 	}
 
@@ -174,7 +178,7 @@ public class RequestMethods {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPut request = new HttpPut(url);
 
-		request.setHeader("X-ACCESS-TOKEN", config.config.get("token"));
+		request.setHeader("X-ACCESS-TOKEN", config.domainSettings.get("token"));
 		request.addHeader("Content-Type", "application/json");
 
 		StringEntity params = new StringEntity(json.toString());
@@ -189,7 +193,7 @@ public class RequestMethods {
 	private JSONObject sendResponse(HttpResponse response) throws IOException,
 			JSONException {
 		String jsonString = EntityUtils.toString(response.getEntity());
-//		 System.out.println(jsonString);
+		// System.out.println(jsonString);
 		JSONObject myObject;
 		try {
 			myObject = new JSONObject(jsonString);

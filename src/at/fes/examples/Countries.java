@@ -10,7 +10,7 @@ import at.fes.service.Yumpu;
 public class Countries {
 
 	public static void main(String[] args) throws IOException, JSONException {
-		Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+		Yumpu y = new Yumpu("your access token");
 		System.out.println(y.getCountries());
 	}
 

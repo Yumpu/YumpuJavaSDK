@@ -4,81 +4,76 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Config {
-	Map<String, String> config;
+	Map<String, String> domainSettings;
 	Map<String, String> yumpuEndpoints;
 	
 	public Config(String token) {
-		config(token);
+		domainSettings(token);
 		yumpuEndpoints();
 	}
 	
-	public Config() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public void config(String token){
-		config = new HashMap<String, String>();
+	// create a map with the domains and the token
+	public void domainSettings(String token){
+		domainSettings = new HashMap<String, String>();
 		
-		//String.valueOf(token)
-		config.put("token" , String.valueOf(token));
-		config.put("devtoken" , String.valueOf("vEKfrHQLPlOc2sAbU5zqGwoegmSdnC1M"));
-		config.put("endpointDomain" , String.valueOf("http://api.yumpu.com/2.0/"));
-		config.put("devEndpointDomain" , String.valueOf("http://devapi.yumpu.com/2.0/"));
-		config.put("endpointSearchDomain" , String.valueOf("http://search.yumpu.com/2.0/"));
+		domainSettings.put("token" , String.valueOf(token));
+		domainSettings.put("endpointDomain" , String.valueOf("http://api.yumpu.com/2.0/"));
+		domainSettings.put("endpointSearchDomain" , String.valueOf("http://search.yumpu.com/2.0/"));
 	}
 	
+	// define all endpoints of the yumpu api
 	public void yumpuEndpoints() {
-
 		yumpuEndpoints = new HashMap<String, String>();
-		yumpuEndpoints.put("documents/get" , String.valueOf(config.get("endpointDomain") + "documents.json"));
-		yumpuEndpoints.put("document/get" , String.valueOf(config.get("endpointDomain") + "document.json"));
-		yumpuEndpoints.put("document/post/url" , String.valueOf(config.get("endpointDomain") + "document/url.json"));
-		yumpuEndpoints.put("document/post/file" , String.valueOf(config.get("endpointDomain") + "document/file.json"));
-		yumpuEndpoints.put("document/delete" , String.valueOf(config.get("endpointDomain") + "document.json"));
-		yumpuEndpoints.put("document/put" , String.valueOf(config.get("endpointDomain") + "document.json"));
-		yumpuEndpoints.put("document/hotspots" , String.valueOf(config.get("endpointDomain") + "document/hotspots.json"));
-		yumpuEndpoints.put("document/hotspot/get" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
-		yumpuEndpoints.put("document/hotspot/post" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
-		yumpuEndpoints.put("document/hotspot/put" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
-		yumpuEndpoints.put("document/hotspot/delete" , String.valueOf(config.get("endpointDomain") + "document/hotspot.json"));
-		yumpuEndpoints.put("document/progress" , String.valueOf(config.get("endpointDomain") + "document/progress.json"));
-		yumpuEndpoints.put("categories/get" , String.valueOf(config.get("endpointDomain") + "document/categories.json"));
-		yumpuEndpoints.put("languages/get" , String.valueOf(config.get("endpointDomain") + "document/languages.json"));
-		yumpuEndpoints.put("countries/get" , String.valueOf(config.get("endpointDomain") + "countries.json"));
-		yumpuEndpoints.put("collections/get" , String.valueOf(config.get("endpointDomain") + "collections.json"));
-		yumpuEndpoints.put("collection/get" , String.valueOf(config.get("endpointDomain") + "collection.json"));
-		yumpuEndpoints.put("collection/post" , String.valueOf(config.get("endpointDomain") + "collection.json"));
-		yumpuEndpoints.put("collection/put" , String.valueOf(config.get("endpointDomain") + "collection.json"));
-		yumpuEndpoints.put("collection/delete" , String.valueOf(config.get("endpointDomain") + "collection.json"));
-		yumpuEndpoints.put("section/get" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
-		yumpuEndpoints.put("section/post" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
-		yumpuEndpoints.put("section/put" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
-		yumpuEndpoints.put("section/delete" , String.valueOf(config.get("endpointDomain") + "collection/section.json"));
-		yumpuEndpoints.put("sectionDocument/post" , String.valueOf(config.get("endpointDomain") + "collection/section/document.json"));
-		yumpuEndpoints.put("sectionDocument/delete" , String.valueOf(config.get("endpointDomain") + "collection/section/document.json"));
-		yumpuEndpoints.put("search/get" , String.valueOf(config.get("endpointSearchDomain") + "search.json"));
-		yumpuEndpoints.put("user/get" , String.valueOf(config.get("endpointDomain") + "user.json"));
-		yumpuEndpoints.put("user/post" , String.valueOf(config.get("endpointDomain") + "user.json"));
-		yumpuEndpoints.put("user/put" , String.valueOf(config.get("endpointDomain") + "user.json"));
-		yumpuEndpoints.put("embeds/get" , String.valueOf(config.get("endpointDomain") + "embeds.json"));
-		yumpuEndpoints.put("embed/get" , String.valueOf(config.get("endpointDomain") + "embed.json"));
-		yumpuEndpoints.put("embed/post" , String.valueOf(config.get("endpointDomain") + "embed.json"));
-		yumpuEndpoints.put("embed/put" , String.valueOf(config.get("endpointDomain") + "embed.json"));
-		yumpuEndpoints.put("embed/delete" , String.valueOf(config.get("endpointDomain") + "embed.json"));
-		yumpuEndpoints.put("members/get" , String.valueOf(config.get("endpointDomain") + "account/members.json"));
-		yumpuEndpoints.put("member/get" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
-		yumpuEndpoints.put("member/post" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
-		yumpuEndpoints.put("member/put" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
-		yumpuEndpoints.put("member/delete" , String.valueOf(config.get("endpointDomain") + "account/member.json"));
-		yumpuEndpoints.put("accessTags/get" , String.valueOf(config.get("endpointDomain") + "account/access_tags.json"));
-		yumpuEndpoints.put("accessTag/get" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
-		yumpuEndpoints.put("accessTag/post" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
-		yumpuEndpoints.put("accessTag/put" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
-		yumpuEndpoints.put("accessTag/delete" , String.valueOf(config.get("endpointDomain") + "account/access_tag.json"));
-		yumpuEndpoints.put("subscriptions/get" , String.valueOf(config.get("endpointDomain") + "account/subscriptions.json"));
-		yumpuEndpoints.put("subscription/get" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
-		yumpuEndpoints.put("subscription/post" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
-		yumpuEndpoints.put("subscription/put" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
-		yumpuEndpoints.put("subscription/delete" , String.valueOf(config.get("endpointDomain") + "account/subscription.json"));
+		
+		yumpuEndpoints.put("documents/get" , String.valueOf(domainSettings.get("endpointDomain") + "documents.json"));
+		yumpuEndpoints.put("document/get" , String.valueOf(domainSettings.get("endpointDomain") + "document.json"));
+		yumpuEndpoints.put("document/post/url" , String.valueOf(domainSettings.get("endpointDomain") + "document/url.json"));
+		yumpuEndpoints.put("document/post/file" , String.valueOf(domainSettings.get("endpointDomain") + "document/file.json"));
+		yumpuEndpoints.put("document/delete" , String.valueOf(domainSettings.get("endpointDomain") + "document.json"));
+		yumpuEndpoints.put("document/put" , String.valueOf(domainSettings.get("endpointDomain") + "document.json"));
+		yumpuEndpoints.put("document/hotspots" , String.valueOf(domainSettings.get("endpointDomain") + "document/hotspots.json"));
+		yumpuEndpoints.put("document/hotspot/get" , String.valueOf(domainSettings.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/hotspot/post" , String.valueOf(domainSettings.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/hotspot/put" , String.valueOf(domainSettings.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/hotspot/delete" , String.valueOf(domainSettings.get("endpointDomain") + "document/hotspot.json"));
+		yumpuEndpoints.put("document/progress" , String.valueOf(domainSettings.get("endpointDomain") + "document/progress.json"));
+		yumpuEndpoints.put("categories/get" , String.valueOf(domainSettings.get("endpointDomain") + "document/categories.json"));
+		yumpuEndpoints.put("languages/get" , String.valueOf(domainSettings.get("endpointDomain") + "document/languages.json"));
+		yumpuEndpoints.put("countries/get" , String.valueOf(domainSettings.get("endpointDomain") + "countries.json"));
+		yumpuEndpoints.put("collections/get" , String.valueOf(domainSettings.get("endpointDomain") + "collections.json"));
+		yumpuEndpoints.put("collection/get" , String.valueOf(domainSettings.get("endpointDomain") + "collection.json"));
+		yumpuEndpoints.put("collection/post" , String.valueOf(domainSettings.get("endpointDomain") + "collection.json"));
+		yumpuEndpoints.put("collection/put" , String.valueOf(domainSettings.get("endpointDomain") + "collection.json"));
+		yumpuEndpoints.put("collection/delete" , String.valueOf(domainSettings.get("endpointDomain") + "collection.json"));
+		yumpuEndpoints.put("section/get" , String.valueOf(domainSettings.get("endpointDomain") + "collection/section.json"));
+		yumpuEndpoints.put("section/post" , String.valueOf(domainSettings.get("endpointDomain") + "collection/section.json"));
+		yumpuEndpoints.put("section/put" , String.valueOf(domainSettings.get("endpointDomain") + "collection/section.json"));
+		yumpuEndpoints.put("section/delete" , String.valueOf(domainSettings.get("endpointDomain") + "collection/section.json"));
+		yumpuEndpoints.put("sectionDocument/post" , String.valueOf(domainSettings.get("endpointDomain") + "collection/section/document.json"));
+		yumpuEndpoints.put("sectionDocument/delete" , String.valueOf(domainSettings.get("endpointDomain") + "collection/section/document.json"));
+		yumpuEndpoints.put("search/get" , String.valueOf(domainSettings.get("endpointSearchDomain") + "search.json"));
+		yumpuEndpoints.put("user/get" , String.valueOf(domainSettings.get("endpointDomain") + "user.json"));
+		yumpuEndpoints.put("user/post" , String.valueOf(domainSettings.get("endpointDomain") + "user.json"));
+		yumpuEndpoints.put("user/put" , String.valueOf(domainSettings.get("endpointDomain") + "user.json"));
+		yumpuEndpoints.put("embeds/get" , String.valueOf(domainSettings.get("endpointDomain") + "embeds.json"));
+		yumpuEndpoints.put("embed/get" , String.valueOf(domainSettings.get("endpointDomain") + "embed.json"));
+		yumpuEndpoints.put("embed/post" , String.valueOf(domainSettings.get("endpointDomain") + "embed.json"));
+		yumpuEndpoints.put("embed/put" , String.valueOf(domainSettings.get("endpointDomain") + "embed.json"));
+		yumpuEndpoints.put("embed/delete" , String.valueOf(domainSettings.get("endpointDomain") + "embed.json"));
+		yumpuEndpoints.put("members/get" , String.valueOf(domainSettings.get("endpointDomain") + "account/members.json"));
+		yumpuEndpoints.put("member/get" , String.valueOf(domainSettings.get("endpointDomain") + "account/member.json"));
+		yumpuEndpoints.put("member/post" , String.valueOf(domainSettings.get("endpointDomain") + "account/member.json"));
+		yumpuEndpoints.put("member/put" , String.valueOf(domainSettings.get("endpointDomain") + "account/member.json"));
+		yumpuEndpoints.put("member/delete" , String.valueOf(domainSettings.get("endpointDomain") + "account/member.json"));
+		yumpuEndpoints.put("accessTags/get" , String.valueOf(domainSettings.get("endpointDomain") + "account/access_tags.json"));
+		yumpuEndpoints.put("accessTag/get" , String.valueOf(domainSettings.get("endpointDomain") + "account/access_tag.json"));
+		yumpuEndpoints.put("accessTag/post" , String.valueOf(domainSettings.get("endpointDomain") + "account/access_tag.json"));
+		yumpuEndpoints.put("accessTag/put" , String.valueOf(domainSettings.get("endpointDomain") + "account/access_tag.json"));
+		yumpuEndpoints.put("accessTag/delete" , String.valueOf(domainSettings.get("endpointDomain") + "account/access_tag.json"));
+		yumpuEndpoints.put("subscriptions/get" , String.valueOf(domainSettings.get("endpointDomain") + "account/subscriptions.json"));
+		yumpuEndpoints.put("subscription/get" , String.valueOf(domainSettings.get("endpointDomain") + "account/subscription.json"));
+		yumpuEndpoints.put("subscription/post" , String.valueOf(domainSettings.get("endpointDomain") + "account/subscription.json"));
+		yumpuEndpoints.put("subscription/put" , String.valueOf(domainSettings.get("endpointDomain") + "account/subscription.json"));
+		yumpuEndpoints.put("subscription/delete" , String.valueOf(domainSettings.get("endpointDomain") + "account/subscription.json"));
 	}
 }

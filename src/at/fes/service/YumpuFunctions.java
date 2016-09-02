@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 
 public class YumpuFunctions {
 
+	//generate pretty JSON output
 	public String prettyJSON(JSONObject jo) throws MalformedURLException,
 			IOException, ProtocolException, JSONException {
 		Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
@@ -22,6 +23,7 @@ public class YumpuFunctions {
 		return prettyJson;
 	}
 
+	//write params into a JSON Object
 	public void createBody(String[] params, JSONObject json)
 			throws JSONException {
 		for (String s : params) {
@@ -31,6 +33,7 @@ public class YumpuFunctions {
 		}
 	}
 
+	//write the log in the log file
 	public void log(String logText) throws IOException {
 		File yumpuLog = new File(".\\yumpu_log.txt");
 		FileWriter writer = new FileWriter(yumpuLog, true);
@@ -38,41 +41,7 @@ public class YumpuFunctions {
 		writer.close();
 	}
 	
-	public String addParamsToURL(boolean isId, String[] returnFields,
-			String url) {
-		if (returnFields.length > 0) {
-
-			url = url + "return_fields=";
-			for (int i = 0; i < returnFields.length; i++) {
-				url = url + returnFields[i];
-				if (!(i == returnFields.length - 1)) {
-					url = url + ",";
-				}
-			}
-		}
-		return url;
-	}
-	
-	public String addParams(boolean isId, String url, String[] params,
-			String[] returnFields) {
-
-		if (isId) {
-			url = url + "&";
-			for (String s : params) {
-				url = url + s + "&";
-			}
-			url = addParamsToURL(isId, returnFields, url);
-		} else {
-			url = url + "?";
-			for (String s : params) {
-				url = url + s + "&";
-			}
-			url = addParamsToURL(isId, returnFields, url);
-		}
-
-		return url;
-	}
-	
+	//add parameter to URL
 	public String addParams(String[] params, String url) {
 		url = url + "?";
 		for (String s : params) {

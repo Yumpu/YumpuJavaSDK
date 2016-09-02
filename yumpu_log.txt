@@ -5195,3 +5195,425 @@ delete http://api.yumpu.com/2.0/account/access_tag.json
 delete http://api.yumpu.com/2.0/account/subscription.json
 delete http://api.yumpu.com/2.0/document.json
 delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=98603-cc86a-3faec-58a17-6cae9-474cd-27d1d-c752e&
+get http://api.yumpu.com/2.0/document/progress.json?id=98603-cc86a-3faec-58a17-6cae9-474cd-27d1d-c752e&
+get http://api.yumpu.com/2.0/document/progress.json?id=5e21b-15a94-f8af9-dd41d-672cc-2cd60-d9798-ad42a&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900167&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/document/hotspots.json?id=55900167&
+get http://api.yumpu.com/2.0/document/hotspot.json?id=6ddd2356hFV86MUZ&
+putDocuments to http://api.yumpu.com/2.0/document/hotspot.json
+post http://api.yumpu.com/2.0/collection.json
+get http://api.yumpu.com/2.0/collections.json?
+get http://api.yumpu.com/2.0/collection.json?id=g6xjOrJ21mqheSHy&
+putDocuments to http://api.yumpu.com/2.0/collection.json
+post http://api.yumpu.com/2.0/collection/section.json
+get http://api.yumpu.com/2.0/collection/section.json?id=g6xjOrJ21mqheSHy_hTL4s3GXxaBo2iwq&
+putDocuments to http://api.yumpu.com/2.0/collection/section.json
+post http://api.yumpu.com/2.0/collection/section/document.json
+get http://search.yumpu.com/2.0/search.json?q=sports&
+putDocuments to http://api.yumpu.com/2.0/user.json
+get http://api.yumpu.com/2.0/user.json?
+post http://api.yumpu.com/2.0/embed.json
+get http://api.yumpu.com/2.0/embeds.json?
+get http://api.yumpu.com/2.0/embed.json?id=sWOL9xwAY2QgiqRZ&
+putDocuments to http://api.yumpu.com/2.0/embed.json
+post http://api.yumpu.com/2.0/account/member.json
+get http://api.yumpu.com/2.0/account/members.json?
+get http://api.yumpu.com/2.0/account/member.json?id=MhxQpdnDT8YImiLe&
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+post http://api.yumpu.com/2.0/account/access_tag.json
+get http://api.yumpu.com/2.0/account/access_tags.json?
+get http://api.yumpu.com/2.0/account/access_tag.json?id=tw8NRnLBaskTOmPh&
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json
+post http://api.yumpu.com/2.0/account/subscription.json
+get http://api.yumpu.com/2.0/account/subscriptions.json?
+get http://api.yumpu.com/2.0/account/subscription.json?id=KTOkVm2s4oNqd9C6&
+putDocuments to http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document/hotspot.json
+delete http://api.yumpu.com/2.0/collection/section/document.json
+delete http://api.yumpu.com/2.0/collection/section.json
+delete http://api.yumpu.com/2.0/collection.json
+delete http://api.yumpu.com/2.0/embed.json
+delete http://api.yumpu.com/2.0/account/member.json
+delete http://api.yumpu.com/2.0/account/access_tag.json
+delete http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=47b8f-f9d90-4667f-ebe88-31df5-ab5d0-9555c-a9710&
+get http://api.yumpu.com/2.0/document/progress.json?id=47b8f-f9d90-4667f-ebe88-31df5-ab5d0-9555c-a9710&
+get http://api.yumpu.com/2.0/document/progress.json?id=142ce-63556-996b6-3b5a2-f3f83-5d3cf-7b1e7-c2325&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900235&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/document/hotspots.json?id=55900235&
+get http://api.yumpu.com/2.0/document/hotspot.json?id=551b2697YwDu9vQO&
+putDocuments to http://api.yumpu.com/2.0/document/hotspot.json
+post http://api.yumpu.com/2.0/collection.json
+get http://api.yumpu.com/2.0/collections.json?
+get http://api.yumpu.com/2.0/collection.json?id=opcyB5qPK12Jm60Y&
+putDocuments to http://api.yumpu.com/2.0/collection.json
+post http://api.yumpu.com/2.0/collection/section.json
+get http://api.yumpu.com/2.0/collection/section.json?id=opcyB5qPK12Jm60Y_hjHg9itbTnAUWQ3R&
+putDocuments to http://api.yumpu.com/2.0/collection/section.json
+post http://api.yumpu.com/2.0/collection/section/document.json
+get http://search.yumpu.com/2.0/search.json?q=sports&
+putDocuments to http://api.yumpu.com/2.0/user.json
+get http://api.yumpu.com/2.0/user.json?
+post http://api.yumpu.com/2.0/embed.json
+get http://api.yumpu.com/2.0/embeds.json?
+get http://api.yumpu.com/2.0/embed.json?id=Ll4tSuEo6QpCT82F&
+putDocuments to http://api.yumpu.com/2.0/embed.json
+post http://api.yumpu.com/2.0/account/member.json
+get http://api.yumpu.com/2.0/account/members.json?
+get http://api.yumpu.com/2.0/account/member.json?id=oiP1RY8VxaLeFMXp&
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+post http://api.yumpu.com/2.0/account/access_tag.json
+get http://api.yumpu.com/2.0/account/access_tags.json?
+get http://api.yumpu.com/2.0/account/access_tag.json?id=Oe2y8aifH93hWCBw&
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json
+post http://api.yumpu.com/2.0/account/subscription.json
+get http://api.yumpu.com/2.0/account/subscriptions.json?
+get http://api.yumpu.com/2.0/account/subscription.json?id=z4EudYPx5Xrtqsnw&
+putDocuments to http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document/hotspot.json
+delete http://api.yumpu.com/2.0/collection/section/document.json
+delete http://api.yumpu.com/2.0/collection/section.json
+delete http://api.yumpu.com/2.0/collection.json
+delete http://api.yumpu.com/2.0/embed.json
+delete http://api.yumpu.com/2.0/account/member.json
+delete http://api.yumpu.com/2.0/account/access_tag.json
+delete http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=76def-cbb95-f23f3-6cf66-cf38e-22f09-858e0-24f9e&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=00a36-ec5c3-d9990-4a9e5-d1474-4d40a-fd540-f9ae3&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=37872-49d6f-5c30b-72b6c-6a79c-cc29c-6aef6-09a6e&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=d3bfc-d6d47-61629-318bf-457a6-cb1c0-07349-4cdc5&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=7454a-7cbca-d6c22-54e3a-8214b-23d55-bd991-aa2b2&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=04150-1ff14-c29c3-42a1f-25505-b1ce3-655ef-76b95&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=c2fb0-b21d0-f6311-1fe93-559e6-37f07-a900f-eeabd&
+get http://api.yumpu.com/2.0/document/progress.json?id=c2fb0-b21d0-f6311-1fe93-559e6-37f07-a900f-eeabd&
+get http://api.yumpu.com/2.0/document/progress.json?id=9aa3d-6c015-0b999-0fd4c-63518-6ee95-ed6f6-e6367&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900280&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/document/hotspots.json?id=55900280&
+get http://api.yumpu.com/2.0/document/hotspot.json?id=9963a9118qVkoPgz&
+putDocuments to http://api.yumpu.com/2.0/document/hotspot.json
+post http://api.yumpu.com/2.0/collection.json
+get http://api.yumpu.com/2.0/collections.json?
+get http://api.yumpu.com/2.0/collection.json?id=r1WmJklDeLMcSdxo&
+putDocuments to http://api.yumpu.com/2.0/collection.json
+post http://api.yumpu.com/2.0/collection/section.json
+get http://api.yumpu.com/2.0/collection/section.json?id=r1WmJklDeLMcSdxo_nqbxy4XdShz6Asi5&
+putDocuments to http://api.yumpu.com/2.0/collection/section.json
+post http://api.yumpu.com/2.0/collection/section/document.json
+get http://search.yumpu.com/2.0/search.json?q=sports&
+putDocuments to http://api.yumpu.com/2.0/user.json
+get http://api.yumpu.com/2.0/user.json?
+post http://api.yumpu.com/2.0/embed.json
+get http://api.yumpu.com/2.0/embeds.json?
+get http://api.yumpu.com/2.0/embed.json?id=DYmewkO6bxZr5azB&
+putDocuments to http://api.yumpu.com/2.0/embed.json
+post http://api.yumpu.com/2.0/account/member.json
+get http://api.yumpu.com/2.0/account/members.json?
+get http://api.yumpu.com/2.0/account/member.json?id=xNcEahiwyHnU8L5M&
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+post http://api.yumpu.com/2.0/account/access_tag.json
+get http://api.yumpu.com/2.0/account/access_tags.json?
+get http://api.yumpu.com/2.0/account/access_tag.json?id=D0THbXLjNhMPcK5Y&
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json
+post http://api.yumpu.com/2.0/account/subscription.json
+get http://api.yumpu.com/2.0/account/subscriptions.json?
+get http://api.yumpu.com/2.0/account/subscription.json?id=EhXfU7q1LbK6GDv3&
+putDocuments to http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document/hotspot.json
+delete http://api.yumpu.com/2.0/collection/section/document.json
+delete http://api.yumpu.com/2.0/collection/section.json
+delete http://api.yumpu.com/2.0/collection.json
+delete http://api.yumpu.com/2.0/embed.json
+delete http://api.yumpu.com/2.0/account/member.json
+delete http://api.yumpu.com/2.0/account/access_tag.json
+delete http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=c6b12-fa8d6-3e534-25bff-1123a-f7a71-95235-77c91&
+get http://api.yumpu.com/2.0/document/progress.json?id=c6b12-fa8d6-3e534-25bff-1123a-f7a71-95235-77c91&
+get http://api.yumpu.com/2.0/document/progress.json?id=bf62e-f542f-18c56-69344-08543-de91b-60208-4e242&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900284&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=a7031-27947-1359c-8cee7-b4af6-5f365-d2f82-d99e9&
+get http://api.yumpu.com/2.0/document/progress.json?id=a7031-27947-1359c-8cee7-b4af6-5f365-d2f82-d99e9&
+get http://api.yumpu.com/2.0/document/progress.json?id=25318-39132-485d9-65d9f-0417d-bc143-05a07-e2f1e&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=3a7a9-05949-47c80-120c1-9277e-ce9db-f484f-df5e6&
+get http://api.yumpu.com/2.0/document/progress.json?id=3a7a9-05949-47c80-120c1-9277e-ce9db-f484f-df5e6&
+get http://api.yumpu.com/2.0/document/progress.json?id=696ba-38bfb-42ba4-14830-ad3e9-533ed-a5dae-f0c21&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=68e58-8d620-61294-fab11-acbb9-78b8b-949d6-76b27&
+get http://api.yumpu.com/2.0/document/progress.json?id=68e58-8d620-61294-fab11-acbb9-78b8b-949d6-76b27&
+get http://api.yumpu.com/2.0/document/progress.json?id=150f3-d6b82-45e7f-95135-afcc7-893aa-3e393-0792e&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=63ffa-8210a-45d01-5f8f3-3a5f2-d94ce-03db7-57148&
+get http://api.yumpu.com/2.0/document/progress.json?id=63ffa-8210a-45d01-5f8f3-3a5f2-d94ce-03db7-57148&
+get http://api.yumpu.com/2.0/document/progress.json?id=a834a-929b5-513f9-7e1cb-31903-fe9f5-116c6-5ff5b&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=c978f-373b0-bfe4f-839cf-74401-df3e1-da90a-81a90&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=bcf76-28a3e-d189d-0e965-81933-203e0-024ca-cca61&
+get http://api.yumpu.com/2.0/document/progress.json?id=bcf76-28a3e-d189d-0e965-81933-203e0-024ca-cca61&
+get http://api.yumpu.com/2.0/document/progress.json?id=246cc-c90a9-e8e9c-cad32-158d8-197c7-fe332-6d490&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900308&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/document/hotspots.json?id=55900308&
+get http://api.yumpu.com/2.0/document/hotspot.json?id=4b2fff3aroMxESmf&
+putDocuments to http://api.yumpu.com/2.0/document/hotspot.json
+post http://api.yumpu.com/2.0/collection.json
+get http://api.yumpu.com/2.0/collections.json?
+get http://api.yumpu.com/2.0/collection.json?id=PvwzWmRDUNyLsHS6&
+putDocuments to http://api.yumpu.com/2.0/collection.json
+post http://api.yumpu.com/2.0/collection/section.json
+get http://api.yumpu.com/2.0/collection/section.json?id=PvwzWmRDUNyLsHS6_ZRU6TkKehCpOu7HS&
+putDocuments to http://api.yumpu.com/2.0/collection/section.json
+post http://api.yumpu.com/2.0/collection/section/document.json
+get http://search.yumpu.com/2.0/search.json?q=sports&
+putDocuments to http://api.yumpu.com/2.0/user.json
+get http://api.yumpu.com/2.0/user.json?
+post http://api.yumpu.com/2.0/embed.json
+get http://api.yumpu.com/2.0/embeds.json?
+get http://api.yumpu.com/2.0/embed.json?id=4yEiN13kxP7hJ6fH&
+putDocuments to http://api.yumpu.com/2.0/embed.json
+post http://api.yumpu.com/2.0/account/member.json
+get http://api.yumpu.com/2.0/account/members.json?
+get http://api.yumpu.com/2.0/account/member.json?id=sbGYIwNkMzC5KVyi&
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+post http://api.yumpu.com/2.0/account/access_tag.json
+get http://api.yumpu.com/2.0/account/access_tags.json?
+get http://api.yumpu.com/2.0/account/access_tag.json?id=Kwb6HftiemFdA2z4&
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json
+post http://api.yumpu.com/2.0/account/subscription.json
+get http://api.yumpu.com/2.0/account/subscriptions.json?
+get http://api.yumpu.com/2.0/account/subscription.json?id=BrRPLTkVnsd2Jq8Z&
+putDocuments to http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document/hotspot.json
+delete http://api.yumpu.com/2.0/collection/section/document.json
+delete http://api.yumpu.com/2.0/collection/section.json
+delete http://api.yumpu.com/2.0/collection.json
+delete http://api.yumpu.com/2.0/embed.json
+delete http://api.yumpu.com/2.0/account/member.json
+delete http://api.yumpu.com/2.0/account/access_tag.json
+delete http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/documents.json?limit=100&return_fields=id&
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/documents.json?limit=100&return_fields=id&
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=21b83-a927d-c1267-9a2d2-6630b-74a79-d84ef-f1953&
+get http://api.yumpu.com/2.0/document/progress.json?id=21b83-a927d-c1267-9a2d2-6630b-74a79-d84ef-f1953&
+get http://api.yumpu.com/2.0/document/progress.json?id=21b83-a927d-c1267-9a2d2-6630b-74a79-d84ef-f1953&
+get http://api.yumpu.com/2.0/document/progress.json?id=a02a0-14e05-8074c-3a6f2-24738-5859b-40255-14e9e&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900362&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/document/hotspots.json?id=55900362&
+get http://api.yumpu.com/2.0/document/hotspot.json?id=8c02c815SUhp9QTO&
+putDocuments to http://api.yumpu.com/2.0/document/hotspot.json
+post http://api.yumpu.com/2.0/collection.json
+get http://api.yumpu.com/2.0/collections.json?
+get http://api.yumpu.com/2.0/collection.json?id=vsrmFtkZedDfiIEu&
+putDocuments to http://api.yumpu.com/2.0/collection.json
+post http://api.yumpu.com/2.0/collection/section.json
+get http://api.yumpu.com/2.0/collection/section.json?id=vsrmFtkZedDfiIEu_3hPHelx4MNILRp2B&
+putDocuments to http://api.yumpu.com/2.0/collection/section.json
+post http://api.yumpu.com/2.0/collection/section/document.json
+get http://search.yumpu.com/2.0/search.json?q=sports&
+putDocuments to http://api.yumpu.com/2.0/user.json
+get http://api.yumpu.com/2.0/user.json?
+post http://api.yumpu.com/2.0/embed.json
+get http://api.yumpu.com/2.0/embeds.json?
+get http://api.yumpu.com/2.0/embed.json?id=ESbOIr6fhXFCnNox&
+putDocuments to http://api.yumpu.com/2.0/embed.json
+post http://api.yumpu.com/2.0/account/member.json
+get http://api.yumpu.com/2.0/account/members.json?
+get http://api.yumpu.com/2.0/account/member.json?id=ZStR20FKJwjVLiDG&
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+post http://api.yumpu.com/2.0/account/access_tag.json
+get http://api.yumpu.com/2.0/account/access_tags.json?
+get http://api.yumpu.com/2.0/account/access_tag.json?id=pJn2L3u1OMf8zcHY&
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json
+post http://api.yumpu.com/2.0/account/subscription.json
+get http://api.yumpu.com/2.0/account/subscriptions.json?
+get http://api.yumpu.com/2.0/account/subscription.json?id=Fm3NehSYwtJnziC7&
+putDocuments to http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document/hotspot.json
+delete http://api.yumpu.com/2.0/collection/section/document.json
+delete http://api.yumpu.com/2.0/collection/section.json
+delete http://api.yumpu.com/2.0/collection.json
+delete http://api.yumpu.com/2.0/embed.json
+delete http://api.yumpu.com/2.0/account/member.json
+delete http://api.yumpu.com/2.0/account/access_tag.json
+delete http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+get http://api.yumpu.com/2.0/countries.json
+get http://api.yumpu.com/2.0/document/categories.json
+get http://api.yumpu.com/2.0/document/languages.json
+post http://api.yumpu.com/2.0/document/url.json
+post http://api.yumpu.com/2.0/document/file.json
+get http://api.yumpu.com/2.0/document/progress.json?id=3ed93-b0a52-074de-3a517-b9cf0-76eee-efdda-ca570&
+get http://api.yumpu.com/2.0/document/progress.json?id=3ed93-b0a52-074de-3a517-b9cf0-76eee-efdda-ca570&
+get http://api.yumpu.com/2.0/document/progress.json?id=854cb-cca3b-000c6-29a11-6de7e-c5100-8ec2a-4d5e0&
+get http://api.yumpu.com/2.0/documents.json?limit=2&
+get http://api.yumpu.com/2.0/document.json?id=55900379&return_fields=url&
+putDocuments to http://api.yumpu.com/2.0/document.json
+post http://api.yumpu.com/2.0/document/hotspot.json
+get http://api.yumpu.com/2.0/document/hotspots.json?id=55900379&
+get http://api.yumpu.com/2.0/document/hotspot.json?id=6eb2ffbamezKLx7C&
+putDocuments to http://api.yumpu.com/2.0/document/hotspot.json
+post http://api.yumpu.com/2.0/collection.json
+get http://api.yumpu.com/2.0/collections.json?
+get http://api.yumpu.com/2.0/collection.json?id=mU2znIo3k6hNClwW&
+putDocuments to http://api.yumpu.com/2.0/collection.json
+post http://api.yumpu.com/2.0/collection/section.json
+get http://api.yumpu.com/2.0/collection/section.json?id=mU2znIo3k6hNClwW_sdFH1S37xqKXmYRz&
+putDocuments to http://api.yumpu.com/2.0/collection/section.json
+post http://api.yumpu.com/2.0/collection/section/document.json
+get http://search.yumpu.com/2.0/search.json?q=sports&
+putDocuments to http://api.yumpu.com/2.0/user.json
+get http://api.yumpu.com/2.0/user.json?
+post http://api.yumpu.com/2.0/embed.json
+get http://api.yumpu.com/2.0/embeds.json?
+get http://api.yumpu.com/2.0/embed.json?id=Tm87HrxuNYpfo9bP&
+putDocuments to http://api.yumpu.com/2.0/embed.json
+post http://api.yumpu.com/2.0/account/member.json
+get http://api.yumpu.com/2.0/account/members.json?
+get http://api.yumpu.com/2.0/account/member.json?id=7OHCJzeG58jK1y6n&
+putDocuments to http://api.yumpu.com/2.0/account/member.json
+post http://api.yumpu.com/2.0/account/access_tag.json
+get http://api.yumpu.com/2.0/account/access_tags.json?
+get http://api.yumpu.com/2.0/account/access_tag.json?id=5Auk3KgVadRtSjsY&
+putDocuments to http://api.yumpu.com/2.0/account/access_tag.json
+post http://api.yumpu.com/2.0/account/subscription.json
+get http://api.yumpu.com/2.0/account/subscriptions.json?
+get http://api.yumpu.com/2.0/account/subscription.json?id=1OuWdSt6exQwCTBv&
+putDocuments to http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document/hotspot.json
+delete http://api.yumpu.com/2.0/collection/section/document.json
+delete http://api.yumpu.com/2.0/collection/section.json
+delete http://api.yumpu.com/2.0/collection.json
+delete http://api.yumpu.com/2.0/embed.json
+delete http://api.yumpu.com/2.0/account/member.json
+delete http://api.yumpu.com/2.0/account/access_tag.json
+delete http://api.yumpu.com/2.0/account/subscription.json
+delete http://api.yumpu.com/2.0/document.json
+delete http://api.yumpu.com/2.0/document.json

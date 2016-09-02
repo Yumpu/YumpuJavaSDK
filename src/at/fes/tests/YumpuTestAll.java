@@ -21,16 +21,20 @@ public class YumpuTestAll {
 	JSONObject control = new JSONObject();
 	private int successful, fail;
 
+	//this class tests all the yumpu functions
+	//let it run and check the sysout in the console
 	public static void main(String[] args) throws IOException, JSONException,
 			InterruptedException {
 		YumpuTestAll ya = new YumpuTestAll();
 		ya.getCountries();
-		// ya.postDocumentFile();
-		// ya.getDocuments();
 	}
 
 	public void getCountries() throws IOException, JSONException,
 			InterruptedException {
+		if (y.token.equals("your access token and try again")) {
+			System.out.println("add your access token and try again");
+			return;
+		}
 		y.getCountries();
 		System.out.println("get Countries " + checkStatus(y.responseCode) + " "
 				+ y.responseCode);
@@ -62,7 +66,7 @@ public class YumpuTestAll {
 			InterruptedException {
 		String[] body = {
 				"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
-				"title=Das ist ein file mit json",
+				"title=postet document per url",
 				"page_teaser_image=src\\at\\fes\\examples\\media\\yumpu.png",
 				"page_teaser_page_range=1-2",
 				"page_teaser_url=http://www.yumpu.com/en" };
@@ -81,7 +85,7 @@ public class YumpuTestAll {
 			InterruptedException {
 		String[] body = {
 				"file=src\\at\\fes\\examples\\media\\yumpu.pdf",
-				"title=file from tester local",
+				"title=postet document per local file",
 				"page_teaser_image=src\\at\\fes\\examples\\media\\yumpu.png",
 				"page_teaser_page_range=1-2",
 				"page_teaser_url=http://www.yumpu.com/en" };

@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import at.fes.service.Yumpu;
 
 public class Subscriptions {
-	Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+	Yumpu y = new Yumpu("your access token");
 
 	public static void main(String[] args) throws IOException, JSONException {
 		Subscriptions s = new Subscriptions();
