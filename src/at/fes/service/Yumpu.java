@@ -485,7 +485,7 @@ public class Yumpu {
 	private JSONObject optionsPut(String url, JSONObject json)
 			throws IOException, JSONException, MalformedURLException,
 			ProtocolException {
-		yf.log("putDocuments to " + url);
+		yf.log("put " + url);
 		JSONObject jo = rm.putRequest(config, url, json);
 		responseCode = rm.responseCode;
 		yf.prettyJSON(jo);
