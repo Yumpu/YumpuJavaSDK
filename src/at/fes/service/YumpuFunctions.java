@@ -35,7 +35,7 @@ public class YumpuFunctions {
 
 	//write the log in the log file
 	public void log(String logText) throws IOException {
-		File yumpuLog = new File(".\\yumpu_log.txt");
+		File yumpuLog = new File(".yumpu_log.txt");
 		FileWriter writer = new FileWriter(yumpuLog, true);
 		writer.write(logText + "\n");
 		writer.close();

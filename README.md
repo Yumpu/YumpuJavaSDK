@@ -1,6 +1,6 @@
 # Java SDK for Yumpu
 
-With the YumpuSDK.jar you can create classes that use the Yumpu API. With this you can publish your pdf documents. Find out how to get started, publish your first pdf as flip book on the web or use the search function to display content.
+With the Yumpu java SDK you can use the Yumpu API in java. With this you can publish your pdf documents. Find out how to get started, publish your first pdf as flip book on the web or use the search function to display content.
 
 ## Introduction
 
@@ -15,7 +15,7 @@ Common characteristics of Yumpu REST API resources are as follows:
 
 ## Get started
 
-Download the YumpuSDK.jar from the jar folder above. Add this jar to your Java project build path.
+Download the SDK and start coding.
 
 Code:
 ```

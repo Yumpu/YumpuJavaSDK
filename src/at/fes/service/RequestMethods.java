@@ -1,10 +1,5 @@
 package at.fes.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Iterator;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.annotation.NotThreadSafe;
@@ -22,6 +17,11 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Iterator;
 
 @SuppressWarnings("deprecation")
 public class RequestMethods {
