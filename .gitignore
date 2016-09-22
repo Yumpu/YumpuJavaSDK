@@ -1,0 +1,23 @@
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
+
+bin/
+jar/
+
+# maven related stuff
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# few custom extras
+tempdata/
+logs/
+
