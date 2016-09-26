@@ -1,3 +1,12 @@
+sudo: required
 language: java
-sudo: true
-script: mvn test
+jdk: oraclejdk7
+cache:
+  directories:
+  - $HOME/.m2
+install: true
+before_script:
+- Xvfb :99 &
+- export DISPLAY=:99
+script:
+  - sudo /usr/local/maven/bin/mvn clean package
