@@ -9,4 +9,4 @@ before_script:
 - Xvfb :99 &
 - export DISPLAY=:99
 script:
-  - sudo /usr/local/maven/bin/mvn clean package
+  - mvn test
