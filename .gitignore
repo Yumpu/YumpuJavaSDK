@@ -2,6 +2,7 @@
 .*
 # except for .gitignore
 !.gitignore
+!.travis.yml
 
 bin/
 jar/
