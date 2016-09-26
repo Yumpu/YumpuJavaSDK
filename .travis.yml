@@ -3,9 +3,8 @@ language: java
 cache:
   directories:
   - $HOME/.m2
-install: true
 before_script:
 - Xvfb :99 &
 - export DISPLAY=:99
-script:
-  - mvn test
+install: mvn install -Dmaven.compiler.target=1.5 -Dmaven.compiler.source=1.5 -DskipTests=true -B
+script: mvn test -Dmaven.compiler.target=1.5 -Dmaven.compiler.source=1.5 -B
