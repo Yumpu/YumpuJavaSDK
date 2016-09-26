@@ -59,7 +59,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>1.8</version>
+				<version>3.2</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
