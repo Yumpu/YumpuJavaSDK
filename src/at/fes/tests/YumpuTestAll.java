@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 public class YumpuTestAll {
-    private Yumpu y = new Yumpu(System.getenv('token'));
+    private Yumpu y = new Yumpu(System.getenv("token"));
     private String progress_url_id, progress_file_id, progress_state,
             progress_state_file, document_url_id, document_file_id, hotspot_id,
             collection_id, section_id, embed_id, member_id, access_tag_id,
