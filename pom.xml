@@ -33,7 +33,7 @@
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>src/</testSourceDirectory>
+		<testSourceDirectory>src/at/fes/tests/</testSourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
