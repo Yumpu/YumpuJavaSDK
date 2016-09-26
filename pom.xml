@@ -20,6 +20,11 @@
 			<email>stefan@yumpu.com</email>
 		</developer>
 		<developer>
+			<id>Yumpu</id>
+			<name>lukas.bals</name>
+			<email>lukas@yumpu.com</email>
+		</developer>
+		<developer>
 			<id>BeerStorm</id>
 			<name>Yilmaz Guleryuz</name>
 			<email>yilmaz@guleryuz.net</email>
@@ -30,6 +35,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 	</properties>
+
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/Yumpu/YumpuJavaSDK</url>
+	</ciManagement>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
