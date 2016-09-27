@@ -1,7 +1,6 @@
 package at.fes.tests;
 
 import at.fes.service.Yumpu;
-import junit.framework.TestCase;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -12,7 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
-public class YumpuTestAll extends TestCase{
+public class YumpuTestAll {
     private Yumpu y = new Yumpu(System.getenv("token"));
     private String progress_url_id, progress_file_id, progress_state,
             progress_state_file, document_url_id, document_file_id, hotspot_id,
