@@ -1,5 +1,7 @@
 # Java SDK for Yumpu
 
+[![Build Status](https://travis-ci.org/Yumpu/YumpuJavaSDK.svg?branch=master)](https://travis-ci.org/Yumpu/YumpuJavaSDK)
+
 With the Yumpu java SDK you can use the Yumpu API in java. With this you can publish your pdf documents. Find out how to get started, publish your first pdf as flip book on the web or use the search function to display content.
 
 ## Introduction
