@@ -7,4 +7,6 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
-script: mvn test
+script:
+  - mvn test
+  - mvn -Dtest=TestCircle test
