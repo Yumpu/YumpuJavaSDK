@@ -9,3 +9,4 @@ addons:
       - oracle-java8-installer
 script:
   - mvn test
+  - mvn -Dtest=YumpuTestAll test
