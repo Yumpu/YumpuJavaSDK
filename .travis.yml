@@ -9,4 +9,4 @@ addons:
       - oracle-java8-installer
 script:
   - mvn test
-  - mvn exec:java -Dexec.mainClass="src/at/fes/tests/YumpuTestAll"
+  - mvn exec:java -Dexec.mainClass="YumpuTestAll"
