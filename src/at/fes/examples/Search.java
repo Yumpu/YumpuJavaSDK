@@ -2,20 +2,19 @@ package at.fes.examples;
 
 import java.io.IOException;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import at.fes.service.Yumpu;
 
 public class Search {
 	Yumpu y = new Yumpu("your access token");
 
-	public static void main(String[] args) throws IOException, JSONException {
+	public static void main(String[] args) throws IOException, Exception {
 		Search s = new Search();
 //		System.out.println(s.getSearch());
 	}
 	
-	private JSONObject getSearch() throws IOException, JSONException {
+	private JsonObject getSearch() throws IOException, Exception {
 		String[] params = {"q=da"};
 		return y.search(params);
 	}

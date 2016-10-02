@@ -3,15 +3,14 @@ package at.fes.examples;
 import java.io.IOException;
 import java.util.HashMap;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import at.fes.service.Yumpu;
 
 public class Document {
 	Yumpu y = new Yumpu("your access token");
 
-	public static void main(String[] args) throws IOException, JSONException {
+	public static void main(String[] args) throws IOException, Exception {
 		Document d = new Document();
 //		System.out.println(d.postDocumentFile());
 		System.out.println(d.postDocumentURL());
@@ -20,30 +19,30 @@ public class Document {
 //		System.out.println(d.deleteDocument());
 	}
 
-	private JSONObject getDocument() throws IOException, JSONException {
+	private JsonObject getDocument() throws IOException, Exception {
 		String[] params = { "id=55898008" };
 		return y.getDocument(params);
 	}
 
-	private JSONObject postDocumentFile() throws IOException, JSONException {
+	private JsonObject postDocumentFile() throws IOException, Exception {
 		String[] params = {
 				"file=src\\at\\fes\\examples\\media\\yumpu.pdf",
 				"title=file from tester local"};
 		return y.postDocumentFile(params);
 	}
 	
-	private JSONObject postDocumentURL() throws IOException, JSONException {
+	private JsonObject postDocumentURL() throws IOException, Exception {
 		String[] params = {"url=http://www.onlinemarketing-praxis.de/uploads/pdf/suchparameter-google-uebersicht.pdf",
 				"title=Das ist ein file mit json"};
 		return y.postDocumentUrl(params);
 	}
 	
-	private JSONObject putDocument() throws IOException, JSONException {
+	private JsonObject putDocument() throws IOException, Exception {
 		String[] params = {"id=55898008", "title=neuer titel"};
 		return y.putDocument(params);
 	}
 
-	private JSONObject deleteDocument() throws IOException, JSONException {
+	private JsonObject deleteDocument() throws IOException, Exception {
 		String id = "55898008";
 		return y.deleteDocument(id);
 	}

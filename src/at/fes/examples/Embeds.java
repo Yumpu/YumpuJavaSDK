@@ -2,20 +2,19 @@ package at.fes.examples;
 
 import java.io.IOException;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import at.fes.service.Yumpu;
 
 public class Embeds {
 	Yumpu y = new Yumpu("your access token");
 
-	public static void main(String[] args) throws IOException, JSONException {
+	public static void main(String[] args) throws IOException, Exception {
 		Embeds e = new Embeds();
 //		System.out.println(e.getEmbeds());
 	}
 	
-	private JSONObject getEmbeds() throws IOException, JSONException {
+	private JsonObject getEmbeds() throws IOException, Exception {
 		String[] params = {"limit=11"};
 		return y.getEmbeds(params);
 	}

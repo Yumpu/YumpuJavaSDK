@@ -6,7 +6,7 @@ With the Yumpu java SDK you can use the Yumpu API in java. With this you can pub
 
 ## Introduction
 
-What is Java SDK? To make it simple, SDK deifines a set of functions wich developers can use to perform requests and rececive data from the REST API.
+What is Java SDK? To make it simple, SDK deifines a set of functions wich developers can use to perform requests and receive data from the REST API.
 
 Common characteristics of Yumpu REST API resources are as follows:
 

@@ -2,15 +2,14 @@ package at.fes.examples;
 
 import java.io.IOException;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.JsonObject;
 
 import at.fes.service.Yumpu;
 
 public class Collection {
 	Yumpu y = new Yumpu("your access token");
 
-	public static void main(String[] args) throws IOException, JSONException {
+	public static void main(String[] args) throws IOException, Exception {
 		Collection c = new Collection();
 //		System.out.println(c.postCollection());
 //		System.out.println(c.getCollection());
@@ -18,22 +17,22 @@ public class Collection {
 //		System.out.println(c.deleteCollection());
 	}
 
-	private JSONObject getCollection() throws IOException, JSONException {
+	private JsonObject getCollection() throws IOException, Exception {
 		String[] params = { "id=ZyoDkM2sPzaJnVdq" };
 		return y.getCollection(params);
 	}
 
-	private JSONObject postCollection() throws IOException, JSONException {
+	private JsonObject postCollection() throws IOException, Exception {
 		String[] params = { "name=newcoll3" };
 		return y.postCollection(params);
 	}
 
-	private JSONObject putCollection() throws IOException, JSONException {
+	private JsonObject putCollection() throws IOException, Exception {
 		String[] params = { "id=ZyoDkM2sPzaJnVdq", "name=putname" };
 		return y.putCollection(params);
 	}
 
-	private JSONObject deleteCollection() throws IOException, JSONException {
+	private JsonObject deleteCollection() throws IOException, Exception {
 		String id = "ZyoDkM2sPzaJnVdq";
 		return y.deleteCollection(id);
 	}
