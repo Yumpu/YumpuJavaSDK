@@ -216,7 +216,7 @@ public class RequestMethods {
 		return myObject;
 	}
 
-	private JsonObject sendResponse(HttpResponse response) throws IOException {
+	private JsonObject sendResponse(HttpResponse response) throws IOException, Exception {
 		String responseString = EntityUtils.toString(response.getEntity());
 		
 		JsonObject responseJson; 
@@ -225,9 +225,14 @@ public class RequestMethods {
 					responseString
 					).getAsJsonObject();
 		} catch (Exception ex) {
-			responseJson = (new JsonParser()).parse(
-					responseString.substring(responseString.indexOf("{"))
-					).getAsJsonObject();
+			if (responseString.contains("{")) {
+				responseJson = (new JsonParser()).parse(
+						responseString.substring(responseString.indexOf("{"))
+						).getAsJsonObject();
+			}
+			else {
+				throw (ex);
+			}
 		}
 		responseCode = response.getStatusLine().getStatusCode();
 		return responseJson;

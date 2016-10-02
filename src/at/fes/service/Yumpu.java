@@ -19,20 +19,24 @@ public class Yumpu {
 	private RequestMethods rm = new RequestMethods();
 	public int responseCode;
 	public String documents = null;
-	public String token;
+	public String apptoken;
 
-	public Yumpu(String token) {
-		this.token = token;
-		Config config = new Config(token);
+	public Yumpu(String apptoken) {
+		this.apptoken = apptoken;
+		Config config = new Config(apptoken);
 		this.config = config;
-	}
-
-	public Yumpu() throws IOException {
+		
 		logger.debug("Yumpu Class initialized");
 	}
 	
 	public static void main(String[] args) throws IOException {
-		Yumpu y = new Yumpu();
+		Yumpu yumpu = null;
+		if (args.length>0)
+			yumpu = new Yumpu(args[0]);
+		else 
+			yumpu = new Yumpu("empty token");
+		
+		// TODO: implement basic calls if necessary
 	}
 
 	public JsonObject getDocuments(String[] params) throws IOException,

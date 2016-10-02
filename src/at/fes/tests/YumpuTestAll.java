@@ -31,7 +31,7 @@ public class YumpuTestAll {
 
     public void getCountries() throws IOException, Exception,
             InterruptedException {
-        if (y.token.equals("your access token")) {
+        if (y.apptoken.equals("your access token")) {
             System.out.println("add your access token and try again");
             return;
         }
