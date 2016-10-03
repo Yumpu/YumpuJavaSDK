@@ -14,6 +14,7 @@ import java.lang.reflect.Modifier;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Map;
 import java.util.TimeZone;
 
 import com.google.gson.Gson;
@@ -81,6 +82,18 @@ public final class MyUtils {
 		    .create();
 	}
 
+	
+	public static String buildUrlParams(Map<String, String> params) {
+		
+		String result = "";
+		
+		for (Map.Entry<String, String> param : params.entrySet()) {
+			result += param.getKey() +"=" + param.getValue() + "&";
+		}
+		if (result.contains("&")) result = result.substring(0, result.lastIndexOf("&"));
+		
+		return result;
+	}
 	
 	public static boolean isNotEmpty(Object input) {
 		return !isEmpty(input);

@@ -433,11 +433,14 @@ public class Yumpu {
 	private JsonObject optionsGet(String url) throws IOException,
 			Exception, MalformedURLException, ProtocolException {
 		logger.debug("get " + url);
-		JsonObject jo = rm.getRequest(config, url);
-		responseCode = rm.responseCode;
 		
-		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(jo) );
-		return jo;
+		//JsonObject jo = rm.getRequest(config, url);
+		//responseCode = rm.responseCode;
+		ResponseData responseData = rm.getRequest(config, url);
+		responseCode = responseData.meta.code;
+		
+		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(responseData) );
+		return responseData.getDataAsJson().getAsJsonObject();
 	}
 
 	// POST request
@@ -445,11 +448,14 @@ public class Yumpu {
 			throws IOException, Exception, MalformedURLException,
 			ProtocolException {
 		logger.debug("post " + url);
-		JsonObject jo = rm.postRequest(config, url, json);
-		responseCode = rm.responseCode;
 		
-		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(jo) );
-		return jo;
+		//JsonObject jo = rm.postRequest(config, url, json);
+		//responseCode = rm.responseCode;
+		ResponseData responseData = rm.postRequest(config, url, json);
+		responseCode = responseData.meta.code;
+		
+		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(responseData) );
+		return responseData.getDataAsJson().getAsJsonObject();
 	}
 
 	// POST document url request
@@ -457,11 +463,14 @@ public class Yumpu {
 			throws IOException, Exception, MalformedURLException,
 			ProtocolException {
 		logger.debug("post " + url);
-		JsonObject jo = rm.postUrlRequest(config, url, json);
-		responseCode = rm.responseCode;
 		
-		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(jo) );
-		return jo;
+		//JsonObject jo = rm.postUrlRequest(config, url, json);
+		//responseCode = rm.responseCode;
+		ResponseData responseData = rm.postUrlRequest(config, url, json);
+		responseCode = responseData.meta.code;
+		
+		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(responseData) );
+		return responseData.getDataAsJson().getAsJsonObject();
 	}
 
 	// POST document file request
@@ -469,11 +478,14 @@ public class Yumpu {
 			throws IOException, Exception, MalformedURLException,
 			ProtocolException {
 		logger.debug("post " + url);
-		JsonObject jo = rm.postFileRequest(config, url, json);
-		responseCode = rm.responseCode;
 		
-		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(jo) );
-		return jo;
+		//JsonObject jo = rm.postFileRequest(config, url, json);
+		//responseCode = rm.responseCode;
+		ResponseData responseData = rm.postFileRequest(config, url, json);
+		responseCode = responseData.meta.code;
+		
+		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(responseData) );
+		return responseData.getDataAsJson().getAsJsonObject();
 	}
 
 	// PUT request
@@ -481,21 +493,27 @@ public class Yumpu {
 			throws IOException, Exception, MalformedURLException,
 			ProtocolException {
 		logger.debug("put " + url);
-		JsonObject jo = rm.putRequest(config, url, json);
-		responseCode = rm.responseCode;
 		
-		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(jo) );
-		return jo;
+		//JsonObject jo = rm.putRequest(config, url, json);
+		//responseCode = rm.responseCode;
+		ResponseData responseData = rm.putRequest(config, url, json);
+		responseCode = responseData.meta.code;
+		
+		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(responseData) );
+		return responseData.getDataAsJson().getAsJsonObject();
 	}
 
 	// DELETE request
 	private JsonObject optionsDelete(String url, String id) 
 			throws IOException,Exception {
 		logger.debug("delete " + url);
-		JsonObject jo = rm.deleteRequest(config, url, id);
-		responseCode = rm.responseCode;
 		
-		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(jo) );
-		return jo;
+		//JsonObject jo = rm.deleteRequest(config, url, id);
+		//responseCode = rm.responseCode;
+		ResponseData responseData = rm.deleteRequest(config, url, id);
+		responseCode = responseData.meta.code;
+		
+		logger.debug( MyUtils.getGsonSimpleWithPrettyPrinting().toJson(responseData) );
+		return responseData.getDataAsJson().getAsJsonObject();
 	}
 }

@@ -19,6 +19,7 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -32,8 +33,11 @@ import java.util.Map;
 public class RequestMethods {
 	@SuppressWarnings("unused")
 	private Config config;
-	public int responseCode;
+	//public int responseCode;
 
+	private final Logger logger = Logger.getLogger(RequestMethods.class);
+	protected static final String TAG = RequestMethods.class.getSimpleName();
+	
 	private final static int TIMEOUT = 30000;
 	RequestConfig httpRequestConfig;
 	public RequestMethods() {
@@ -68,7 +72,7 @@ public class RequestMethods {
 	}
 
 	// create the GET request
-	public JsonObject getRequest(Config config, String url)
+	public ResponseData getRequest(Config config, String url)
 			throws ClientProtocolException, IOException, Exception {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
@@ -78,13 +82,13 @@ public class RequestMethods {
 		request.setHeader("X-ACCESS-TOKEN", config.apptoken);
 		HttpResponse response = client.execute(request);
 
-		JsonObject myObject = sendResponse(response);
-
-		return myObject;
+		//JsonObject myObject = sendResponse(response);
+		//return myObject;
+		return processResponse(response);
 	}
 
 	// create the POST request
-	public JsonObject postRequest(Config config, String url, JsonObject json)
+	public ResponseData postRequest(Config config, String url, JsonObject json)
 			throws Exception, ParseException, IOException {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
@@ -98,13 +102,14 @@ public class RequestMethods {
 		request.setEntity(params);
 
 		HttpResponse response = client.execute(request);
-		JsonObject myObject = sendResponse(response);
 
-		return myObject;
+		//JsonObject myObject = sendResponse(response);
+		//return myObject;
+		return processResponse(response);
 	}
 
 	// create the POST document url request
-	public JsonObject postUrlRequest(Config config, String url, JsonObject json)
+	public ResponseData postUrlRequest(Config config, String url, JsonObject json)
 			throws Exception, ParseException, IOException {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
@@ -133,13 +138,14 @@ public class RequestMethods {
 		request.setEntity(entity);
 
 		HttpResponse response = client.execute(request);
-		JsonObject myObject = sendResponse(response);
-
-		return myObject;
+		
+		//JsonObject myObject = sendResponse(response);
+		//return myObject;
+		return processResponse(response);
 	}
 
 	// create the POST document file request
-	public JsonObject postFileRequest(Config config, String url, JsonObject json)
+	public ResponseData postFileRequest(Config config, String url, JsonObject json)
 			throws Exception, ParseException, IOException {
 		HttpClient client = HttpClientBuilder.create().build();
 		HttpPost request = new HttpPost(url);
@@ -173,13 +179,14 @@ public class RequestMethods {
 		request.setEntity(entity);
 
 		HttpResponse response = client.execute(request);
-		JsonObject myObject = sendResponse(response);
-
-		return myObject;
+		
+		//JsonObject myObject = sendResponse(response);
+		//return myObject;
+		return processResponse(response);
 	}
 
 	// create the DELETE request
-	public JsonObject deleteRequest(Config config, String url, String id)
+	public ResponseData deleteRequest(Config config, String url, String id)
 			throws ClientProtocolException, IOException, Exception {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
@@ -192,12 +199,12 @@ public class RequestMethods {
 
 		HttpResponse response = client.execute(request);
 
-		JsonObject myObject = sendResponse(response);
-
-		return myObject;
+		//JsonObject myObject = sendResponse(response);
+		//return myObject;
+		return processResponse(response);
 	}
 
-	public JsonObject putRequest(Config config, String url, JsonObject json)
+	public ResponseData putRequest(Config config, String url, JsonObject json)
 			throws ClientProtocolException, IOException, Exception {
 		this.config = config;
 		HttpClient client = HttpClientBuilder.create().build();
@@ -211,11 +218,13 @@ public class RequestMethods {
 		request.setEntity(params);
 
 		HttpResponse response = client.execute(request);
-		JsonObject myObject = sendResponse(response);
-
-		return myObject;
+		
+		//JsonObject myObject = sendResponse(response);
+		//return myObject;
+		return processResponse(response);
 	}
 
+	/*// specific response as JsonObject 
 	private JsonObject sendResponse(HttpResponse response) throws IOException, Exception {
 		String responseString = EntityUtils.toString(response.getEntity());
 		
@@ -236,5 +245,44 @@ public class RequestMethods {
 		}
 		responseCode = response.getStatusLine().getStatusCode();
 		return responseJson;
+	}
+	*/
+	
+	// unified response using ResponseData model  
+	private ResponseData processResponse(HttpResponse httpResponse) throws Exception {
+		
+		ResponseData responseData = new ResponseData();
+		
+		Integer httpResponseCode;
+		String responseStr = "";
+		
+		try {
+			
+			httpResponseCode = httpResponse.getStatusLine().getStatusCode();
+			//responseCode = httpResponseCode;
+			HttpEntity responseEntity = httpResponse.getEntity();
+			if (httpResponseCode >= 200 && httpResponseCode < 300) {
+				responseStr = responseEntity!=null ? EntityUtils.toString(responseEntity) : "";
+            } else {
+                //throw new ClientProtocolException("Unexpected response status: " + status);
+            	responseStr = httpResponseCode + "|"+"ERROR";
+            }
+			
+			responseData.meta.code = httpResponseCode;
+			if (responseData.meta.code>204) {// error occured!
+				responseData.meta.errorType = "general";
+				responseData.meta.errorDetail = responseStr;
+			}
+			else {
+				responseData.data = responseStr;
+			}
+		} 
+		catch (Exception ex) {
+			logger.error(ex.toString());
+			
+			throw(ex);
+		}
+		
+		return responseData;
 	}
 }
