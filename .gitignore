@@ -21,6 +21,7 @@ buildNumber.properties
 # few custom extras
 tempdata/
 logs/
+*.log
 
 # IntelliJ IDEA
 YumpuJavaSDK.iml

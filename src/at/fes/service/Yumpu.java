@@ -35,19 +35,6 @@ public class Yumpu {
 	}
 	
 	/*
-	 * --- functions used for executable JAR ---  
-	 * e.g. testing endpoints etc
-	 */
-	public static void main(String[] args) throws IOException {
-		
-		/*configAssertion(args);
-		
-		Yumpu yumpu = new Yumpu(args[0]);
-		yumpu.testAll();
-		*/
-	}
-	
-	/*
 	 * --- SDK API functions ---  
 	 */
 	public JsonObject getDocuments(String[] params) throws IOException,
