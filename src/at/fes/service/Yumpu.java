@@ -315,8 +315,7 @@ public class Yumpu {
 	}
 
 	public JsonObject postMember(String username, String password,
-			String[] params) throws IOException, Exception,
-			NoSuchAlgorithmException {
+			String[] params) throws Exception {
 		String url = config.yumpuEndpoints.get("member/post");
 		MessageDigest m = MessageDigest.getInstance("MD5");
 		m.update(password.getBytes(), 0, password.length());
@@ -326,7 +325,6 @@ public class Yumpu {
 		json.addProperty("username", username);
 		json.addProperty("password", password);
 		
-
 		return optionsPost(json, url);
 	}
 
@@ -443,8 +441,7 @@ public class Yumpu {
 
 	// POST request
 	private JsonObject optionsPost(JsonObject json, String url)
-			throws IOException, Exception, MalformedURLException,
-			ProtocolException {
+			throws Exception {
 		logger.debug("post " + url);
 		
 		//JsonObject jo = rm.postRequest(config, url, json);

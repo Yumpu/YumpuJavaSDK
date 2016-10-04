@@ -4,7 +4,7 @@
 
 	<groupId>at.fes</groupId>
 	<artifactId>YumpuJavaSDK</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 
 	<name>YumpuJavaSDK</name>
 	<description>YumpuJavaSDK for Yumpu.com API</description>

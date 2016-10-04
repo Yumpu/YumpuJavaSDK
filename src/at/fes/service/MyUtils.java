@@ -82,6 +82,19 @@ public final class MyUtils {
 		    .create();
 	}
 
+	public static String getPrettyJson(JsonObject json) {
+		String result = "";
+		
+		try {
+			Gson gson = MyUtils.getGsonWithPrettyPrinting();
+			result = gson.toJson(json);
+		}
+		catch (Exception ex) {
+			System.err.println("getPrettyJson: " + ex.toString() + " while processing json: "+json);
+		}
+		
+		return result;
+	}
 	
 	public static String buildUrlParams(Map<String, String> params) {
 		

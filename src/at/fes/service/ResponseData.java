@@ -38,21 +38,24 @@ public class ResponseData implements Serializable {
 				+ "]";
 	}
 	
-	public JsonElement getDataAsJson() {
-		JsonElement result = new JsonObject();
+	public JsonObject getDataAsJson() {
+		JsonObject result;
 
 		try {
 			
-			result = (new JsonParser()).parse( String.valueOf(this.data) );
+			result = (new JsonParser()).parse( String.valueOf(this.data) ).getAsJsonObject();
 		}
 		catch (Exception ex) {
 			System.err.println("error while parsing data:"+data + " | ex:"+ex.toString());
+			result = new JsonObject();
 		}
 		
-		if (result.isJsonArray())
+		/*if (result.isJsonArray())
 			return result.getAsJsonArray();
 		else
 			return result.getAsJsonObject();
+		*/
+		return result;
 	}
 	public JsonObject toJsonObject() {
 		return (new JsonParser()).parse( toJsonString() ).getAsJsonObject();
