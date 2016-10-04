@@ -23,7 +23,6 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +32,6 @@ import java.util.Map;
 public class RequestMethods {
 	@SuppressWarnings("unused")
 	private Config config;
-	//public int responseCode;
 
 	private final Logger logger = Logger.getLogger(RequestMethods.class);
 	protected static final String TAG = RequestMethods.class.getSimpleName();
