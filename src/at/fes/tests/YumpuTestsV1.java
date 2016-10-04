@@ -12,7 +12,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-public class YumpuTestAll {
+public class YumpuTestsV1 {
     private Yumpu y = new Yumpu(System.getenv("token"));
     private String progress_url_id, progress_file_id, progress_state,
             progress_state_file, document_url_id, document_file_id, hotspot_id,
@@ -25,7 +25,7 @@ public class YumpuTestAll {
     //let it run and check the sysout in the console
     public static void main(String[] args) throws IOException, Exception,
             InterruptedException {
-        YumpuTestAll ya = new YumpuTestAll();
+        YumpuTestsV1 ya = new YumpuTestsV1();
         ya.getCountries();
     }
 

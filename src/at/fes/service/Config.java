@@ -11,7 +11,10 @@ public class Config {
 	Map<String, String> yumpuEndpoints;
 	
 	public Config(String apptoken) {
-		new Config(apptoken, "");
+		if (MyUtils.isNotEmpty(apptoken)) {
+			this.apptoken = apptoken;
+		}
+		initYumpuEndpoints();
 	}
 	public Config(String apptoken, String api_url) {
 		

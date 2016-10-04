@@ -23,22 +23,33 @@ public class Yumpu {
 
 	public Yumpu(String apptoken) {
 		this.apptoken = apptoken;
-		Config config = new Config(apptoken);
-		this.config = config;
+		this.config = new Config(apptoken);
 		
-		logger.debug("Yumpu Class initialized");
+		logger.debug("Yumpu Class initialized! with apptoken="+apptoken);
+	}
+	public Yumpu(String apptoken, String api_url) {
+		this.apptoken = apptoken;
+		this.config = new Config(apptoken, api_url);
+		
+		logger.debug("Yumpu Class initialized! with " + " apptoken="+apptoken+ " api_url="+api_url);
 	}
 	
+	/*
+	 * --- functions used for executable JAR ---  
+	 * e.g. testing endpoints etc
+	 */
 	public static void main(String[] args) throws IOException {
-		Yumpu yumpu = null;
-		if (args.length>0)
-			yumpu = new Yumpu(args[0]);
-		else 
-			yumpu = new Yumpu("empty token");
 		
-		// TODO: implement basic calls if necessary
+		/*configAssertion(args);
+		
+		Yumpu yumpu = new Yumpu(args[0]);
+		yumpu.testAll();
+		*/
 	}
-
+	
+	/*
+	 * --- SDK API functions ---  
+	 */
 	public JsonObject getDocuments(String[] params) throws IOException,
 			Exception {
 		String url = config.yumpuEndpoints.get("documents/get");
@@ -147,7 +158,7 @@ public class Yumpu {
 
 	public JsonObject getCountries() throws IOException, Exception {
 		String url = config.yumpuEndpoints.get("countries/get");
-
+		
 		return optionsGet(url);
 	}
 

@@ -267,7 +267,7 @@ public class RequestMethods {
             }
 			
 			responseData.meta.code = httpResponseCode;
-			if (responseData.meta.code>204) {// error occured!
+			if (responseData.meta.code>202) {// error occured!
 				responseData.meta.errorType = "general";
 				responseData.meta.errorDetail = responseStr;
 			}

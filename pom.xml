@@ -4,7 +4,7 @@
 
 	<groupId>at.fes</groupId>
 	<artifactId>YumpuJavaSDK</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 
 	<name>YumpuJavaSDK</name>
 	<description>YumpuJavaSDK for Yumpu.com API</description>
@@ -71,7 +71,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>at.fes.service.Yumpu</mainClass>
+							<mainClass>at.fes.tests.YumpuTests</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
