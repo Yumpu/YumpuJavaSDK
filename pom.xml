@@ -4,7 +4,7 @@
 
 	<groupId>at.fes</groupId>
 	<artifactId>YumpuJavaSDK</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.3</version>
 
 	<name>YumpuJavaSDK</name>
 	<description>YumpuJavaSDK for Yumpu.com API</description>
@@ -71,7 +71,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>at.fes.service.Yumpu</mainClass>
+							<mainClass>at.fes.tests.YumpuTests</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
@@ -97,11 +97,13 @@
 			<artifactId>gson</artifactId>
 			<version>2.7</version>
 		</dependency>
+		<!-- no need any more, we are using only GSON!
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20160810</version>
 		</dependency>
+		-->
 
 		<dependency> <!-- https://hc.apache.org/httpcomponents-client-ga/ -->
 			<groupId>org.apache.httpcomponents</groupId>
