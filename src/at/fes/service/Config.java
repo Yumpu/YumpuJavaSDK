@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class Config {
 	
-	public String api_url = "http://api.yumpu.com/2.0/";
-	public String api_search_url = "http://search.yumpu.com/2.0/";
+	public String api_url = "https://api.yumpu.com/2.0/";
+	public String api_search_url = "https://search.yumpu.com/2.0/";
 	public String apptoken = "";
 	Map<String, String> yumpuEndpoints;
 	
