@@ -10,7 +10,7 @@ import at.fes.service.Yumpu;
 
 public class DeleteAllDocs {
 	private int cnt;
-	private static Yumpu y = new Yumpu("plbhzBor9sTicnJf51CVZuOEY2aqe7Kv");
+	private static Yumpu y = new Yumpu("your access token");
 
 	public static void main(String[] args) throws IOException, Exception {
 		DeleteAllDocs dad = new DeleteAllDocs();
